@@ -78,7 +78,7 @@ Politica de mantenimiento de configuracion IA
 - Cualquier cambio futuro en agentes, modelos, permisos, routing o skills debe reflejarse en este resumen durante la misma sesion.
 - Cualquier cambio futuro en agentes/modelos/permisos debe actualizar tambien /home/cristiansrc/Documentos/config-ai/agents/agentes-y-modelos.md.
 - Si se modifican agentes o skills, crear un nuevo backup fechado bajo /home/cristiansrc/Documentos/config-ai/agents/ o /home/cristiansrc/Documentos/config-ai/skill/ segun corresponda.
-- Retener maximo 5 backups de agentes y maximo 5 backups de skills; despues de crear un nuevo backup, eliminar los backups mas viejos que excedan ese limite.
+- Retener maximo 25 backups de agentes, 25 backups de skills y 25 backups de configuracion OpenCode; despues de crear un nuevo backup, eliminar los backups mas viejos que excedan ese limite.
 - No dejar secretos hardcodeados en opencode.json, backups ni skills; moverlos a /home/cristiansrc/.config/opencode/.env o al .env corporativo correspondiente.
 
 Flujo de Trabajo Incremental (Pendiente por Probar)

@@ -274,7 +274,7 @@ opencode-backup-20260511-134933.json
 Politica:
 
 - Si se modifican agentes o skills, crear un nuevo backup fechado bajo `agents/` o `skill/`.
-- Retener maximo 5 backups de agentes y maximo 5 backups de skills.
+- Retener maximo 25 backups de agentes, 25 backups de skills y 25 backups de configuracion OpenCode.
 - Despues de crear un backup nuevo, eliminar los backups mas viejos que excedan ese limite.
 - No guardar secretos en backups.
 
@@ -285,7 +285,7 @@ Cuando cambien agentes, modelos, permisos, routing o skills:
 1. Actualizar `resumen-configuracion-ia.txt`.
 2. Si afecta agentes/modelos/permisos, actualizar `agents/agentes-y-modelos.md`.
 3. Crear backup fechado si se modificaron agentes o skills.
-4. Respetar la retencion maxima de 5 backups por categoria.
+4. Respetar la retencion maxima de 25 backups por categoria.
 5. Verificar que `opencode.json` no tenga secretos.
 6. Reiniciar OpenCode si se agregaron o sincronizaron skills.
 
