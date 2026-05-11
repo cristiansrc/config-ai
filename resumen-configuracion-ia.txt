@@ -15,8 +15,8 @@ Escalamiento de Modelos (Tier Routing)
 - Configuracion activa de OpenCode: /home/cristiansrc/.config/opencode/opencode.json.
 - Agentes activos de OpenCode: /home/cristiansrc/.config/opencode/agents/.
 - Archivo canonico de agentes/modelos: /home/cristiansrc/Documentos/config-ai/agents/agentes-y-modelos.md.
-- Backup actual de agentes: /home/cristiansrc/Documentos/config-ai/agents/backup-20260511-115129/.
-- Backup actual de skills: /home/cristiansrc/Documentos/config-ai/skill/backup-20260511-115129/.
+- Backup actual de agentes: /home/cristiansrc/Documentos/config-ai/agents/backup-20260511-120114/.
+- Backup actual de skills: /home/cristiansrc/Documentos/config-ai/skill/backup-20260511-120114/.
 - Agentes criticos de validacion: openai/gpt-5.5.
 - Revision pendiente: evaluar si otro agente necesita GPT 5.5; por ahora solo se asigna a final-validation y spec-validator.
 - La skill model-tier-routing fue alineada con LM Studio/Qwen/Qwopus/GPT-5.5; ya no debe recomendar Ollama como configuracion activa.
@@ -31,6 +31,7 @@ Modelos por Agente
 | final-validation | openai/gpt-5.5 | deny | allow |
 | planner | lmstudio/qwen/qwen3.6-35b-a3b | allow | deny |
 | refactor | lmstudio/qwopus3.5-27b-v3.5 | allow | allow |
+| requirements-analyst | lmstudio/qwen/qwen3.6-35b-a3b | allow | deny |
 | reviewer | lmstudio/google/gemma-4-26b-a4b | deny | allow |
 | security-reviewer | lmstudio/qwopus3.5-27b-v3.5 | deny | allow |
 | spec-remediator | lmstudio/qwopus3.5-27b-v3.5 | allow | deny |
@@ -129,6 +130,10 @@ Optimización del Proceso SDD
 - Spec Remediator primero solicita validación completa, clasifica hallazgos (`mechanical`, `contract-drift`, `design-decision`, `migration-risk`, `validator/process-bug`, `user-decision`), toma el primer hallazgo seguro, aplica una corrección mínima, pide validación solo de ese hallazgo y continúa. Máximo 4 intentos por hallazgo; si no puede resolverlo o reaparece un hallazgo ya resuelto, detiene el flujo y escribe reporte en `/home/cristiansrc/Documentos/config-ai/bugs/`.
 - `spec-remediator` no puede llamar a Task Decomposer ni Executor; solo trabaja contra Planner/Spec Validator y artefactos SDD.
 - Estos artefactos se crean por proyecto/incremento durante el flujo SDD; no debe existir un task board activo global por defecto.
+- Nuevo agente `requirements-analyst`: usa lmstudio/qwen/qwen3.6-35b-a3b antes de Planner para levantar requerimientos cuando la solicitud aun no esta lista para SDD formal.
+- Entregable de requirements-analyst: `docs/specs/requirements/<increment-or-feature>-requirements-brief.md` o, si el proyecto usa contexto temporal, `docs/specs/.working/<increment-or-feature>-requirements-brief.md`.
+- El requirements brief debe incluir estado `requirements-discovery`, objetivo, contexto, actores, roles/permisos, alcance, no objetivos, flujos, entidades funcionales, integraciones, seguridad, restricciones operativas, edge cases, criterios de aceptacion, preguntas abiertas y handoff para Planner.
+- `requirements-analyst` no debe escribir OpenAPI, migraciones, task boards, specs incrementales formales ni codigo. Tampoco debe tomar decisiones tecnicas profundas; debe preparar informacion y marcar decisiones pendientes para Planner/User.
 
 Acciones Sugeridas
 - Reiniciar OpenCode cuando se agreguen o sincronicen skills.
@@ -136,8 +141,5 @@ Acciones Sugeridas
 - Validar el Bug Fixing Workflow con un fallo real/simulado.
 
 Próximos Alcances
-- Evaluar creación de un agente previo al Planner: `requirements-analyst` o `product-architect`.
-- Objetivo del agente: apoyar la planeación antes de escribir specs formales, entendiendo necesidad, alcance, actores, permisos, entidades, flujos, riesgos y preguntas abiertas.
-- Entregable esperado: `requirements-brief.md` con contexto limpio para que Planner 35B genere specs, OpenAPI, migraciones y contratos con menos ambigüedad.
-- El agente no debe escribir OpenAPI, migraciones, task boards ni código. Tampoco debe tomar decisiones técnicas profundas; debe preparar información y marcar decisiones pendientes para Planner/User.
-- Flujo futuro propuesto: `requirements-analyst -> planner -> spec-validator -> spec-remediator -> spec-validator -> task-decomposer -> executor -> final-validation`.
+- Probar `requirements-analyst` con una funcionalidad real o simulada y validar que el `requirements-brief.md` reduce ambigüedad para Planner.
+- Flujo actualizado propuesto: `requirements-analyst -> planner -> spec-validator -> spec-remediator -> spec-validator -> task-decomposer -> executor -> final-validation`.
