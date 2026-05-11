@@ -1,0 +1,113 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "lmstudio": {
+      "api": "openai",
+      "name": "LM Studio",
+      "options": {
+        "baseURL": "http://127.0.0.1:1234/v1",
+        "apiKey": "lm-studio"
+      },
+      "models": {
+        "openai/gpt-oss-20b": {
+          "id": "openai/gpt-oss-20b",
+          "name": "GPT-OSS 20B (LM Studio)",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "qwopus3.5-27b-v3.5": {
+          "id": "qwopus3.5-27b-v3.5",
+          "name": "Qwopus 3.5 27B v3.5 (LM Studio)",
+          "limit": {
+            "context": 77983,
+            "output": 8192
+          }
+        },
+        "Jackrong/qwopus3.5-27b-v3.5": {
+          "id": "Jackrong/qwopus3.5-27b-v3.5",
+          "name": "Jackrong Qwopus 3.5 27B v3.5 (LM Studio)",
+          "limit": {
+            "context": 77983,
+            "output": 8192
+          }
+        },
+        "qwen3.6-27b": {
+          "id": "qwen3.6-27b",
+          "name": "Qwen 3.6 27B (LM Studio)",
+          "limit": {
+            "context": 78033,
+            "output": 8192
+          }
+        },
+        "qwen/qwen3.6-35b-a3b": {
+          "id": "qwen/qwen3.6-35b-a3b",
+          "name": "Qwen 3.6 35B A3B (LM Studio)",
+          "limit": {
+            "context": 84385,
+            "output": 8192
+          }
+        },
+        "google/gemma-4-e2b": {
+          "id": "google/gemma-4-e2b",
+          "name": "Google Gemma 4 E2B IT (LM Studio)",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "google/gemma-4-e4b": {
+          "id": "google/gemma-4-e4b",
+          "name": "Google Gemma 4 E4B IT (LM Studio)",
+          "limit": {
+            "context": 128557,
+            "output": 8192
+          }
+        },
+        "qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2": {
+          "id": "qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2",
+          "name": "Qwen 3.5 9B Claude 4.6 Opus Reasoning Distilled v2 (LM Studio)",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        },
+        "google/gemma-4-26b-a4b": {
+          "id": "google/gemma-4-26b-a4b",
+          "name": "Google Gemma 4 26B A4B IT (LM Studio)",
+          "limit": {
+            "context": 94628,
+            "output": 8192
+          }
+        }
+      }
+    }
+  },
+  "mcp": {
+    "searxng": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-searxng"],
+      "environment": {
+        "SEARXNG_URL": "http://127.0.0.1:8081"
+      },
+      "enabled": true
+    },
+    "memory": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+      "enabled": true
+    },
+    "docker": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-docker-server"],
+      "enabled": true
+    },
+    "github": {
+      "type": "local",
+      "command": ["sh", "-c", "set -a; . /home/cristiansrc/.config/opencode/.env; set +a; exec npx -y @modelcontextprotocol/server-github"],
+      "enabled": true
+    }
+  },
+  "model": "lmstudio/google/gemma-4-e4b"
+}
