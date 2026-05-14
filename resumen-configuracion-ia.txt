@@ -1,5 +1,5 @@
 Resumen de Sesión - Configuración de IA (OpenCode + LM Studio + Agentes)
-Última actualización: 2026-05-11
+Última actualización: 2026-05-14
 
 Objetivo
 Consolidación de un entorno de IA de nivel senior basado en Arquitectura Hexagonal, SDD Incremental y automatización de Git-Ops. El sistema ahora soporta el ciclo de vida completo: creación, incremento, modificación y corrección de bugs.
@@ -11,38 +11,35 @@ Hardware y Entorno
 - OpenCode carga el token de GitHub desde .env mediante el comando local del MCP github; no debe quedar hardcodeado en opencode.json ni backups.
 
 Escalamiento de Modelos (Tier Routing)
-- Modelo default global de OpenCode: lmstudio/google/gemma-4-e4b.
+- Modelo default global de OpenCode: opencode-go/qwen3.6-plus.
 - Configuracion activa de OpenCode: /home/cristiansrc/.config/opencode/opencode.json.
 - Agentes activos de OpenCode: /home/cristiansrc/.config/opencode/agents/.
-- Archivo canonico de agentes/modelos: /home/cristiansrc/Documentos/config-ai/agents/agentes-y-modelos.md.
+- Archivo canonico de agentes/modelos: /home/cristiansrc/Documentos/config-ai/opencode/agents/agentes-y-modelos.md.
 - Backup actual de agentes y skills: /home/cristiansrc/Documentos/config-ai/backups/manual-backup-20260513/.
-- Agentes criticos de validacion (temporal): lmstudio/qwen/qwen3.6-35b-a3b.
-- Revision pendiente: evaluar si otro agente necesita GPT 5.5; por ahora solo se asigna a final-validation y spec-validator.
-- La skill model-tier-routing fue alineada con LM Studio/Qwen/GPT-5.2; se recomienda Qwen 3.6 35B para tareas de planificación y lógica profunda.
-- Modelos LM Studio optimizados en OpenCode: lmstudio/qwen/qwen3.6-35b-a3b (Contexto 152563) y lmstudio/google/gemma-4-e4b (Contexto 131072).
-- Se eliminaron modelos obsoletos (Gemma 4 26B, Qwen 27B, Qwen 3.5 9B) para mejorar la velocidad de carga y estabilidad.
-- Perfil persistente LM Studio para Qwen 3.6 35B: MoE con 3B activos, GPU offload ratio 26/64 capas, K/V cache Q4_0 activo. Velocidad observada: ~40 tok/s constantes con alta eficiencia energética.
+- Agentes criticos de validacion: opencode-go/deepseek-v4-pro.
+- La configuración ha migrado hacia el proveedor `opencode-go`, optimizando el uso de modelos Qwen 3.6 Plus para razonamiento central y DeepSeek V4 Pro/Flash para tareas especializadas.
+- Perfil persistente LM Studio para Qwen 3.6 35B (Backup local): MoE con 3B activos, GPU offload ratio 26/64 capas, K/V cache Q4_0 activo. Velocidad observada: ~40 tok/s constantes con alta eficiencia energética.
 
 Modelos por Agente
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
-| architect-executor | opencode-go/qwen3.5-plus | allow | allow |
+| architect-executor | opencode-go/deepseek-v4-pro | allow | allow |
 | devops-architect | opencode-go/qwen3.5-plus | allow | allow |
-| context-curator | opencode-go/qwen3.5-plus | deny | deny |
-| documentation | opencode-go/qwen3.5-plus | allow | deny |
-| executor | lmstudio/google/gemma-4-e4b | allow | allow |
-| final-validation | opencode-go/qwen3.5-plus | deny | allow |
-| planner | opencode-go/qwen3.5-plus | allow | deny |
+| context-curator | opencode-go/deepseek-v4-flash | deny | deny |
+| documentation | opencode-go/minimax-m2.7 | allow | deny |
+| executor | opencode-go/deepseek-v4-flash | allow | allow |
+| final-validation | opencode-go/qwen3.6-plus | deny | allow |
+| planner | opencode-go/qwen3.6-plus | allow | deny |
 | refactor | opencode-go/qwen3.5-plus | allow | allow |
-| requirements-analyst | opencode-go/qwen3.5-plus | allow | deny |
+| requirements-analyst | opencode-go/qwen3.6-plus | allow | deny |
 | reviewer | opencode-go/qwen3.5-plus | deny | allow |
-| security-reviewer | opencode-go/qwen3.5-plus | deny | allow |
-| spec-remediator | opencode-go/qwen3.5-plus | allow | deny |
-| spec-validator | opencode-go/qwen3.5-plus | allow limitado | deny |
+| security-reviewer | opencode-go/deepseek-v4-pro | deny | allow |
+| spec-remediator | opencode-go/deepseek-v4-flash | allow | deny |
+| spec-validator | opencode-go/deepseek-v4-pro | allow limitado | deny |
 | task-decomposer | opencode-go/qwen3.5-plus | allow | deny |
 | test-architect | opencode-go/qwen3.5-plus | allow | allow |
 
-Ecosistema de Skills (20 Skills Instaladas)
+Ecosistema de Skills (29 Skills Instaladas)
 Directorio activo: /home/cristiansrc/.config/opencode/skills
 Origen canonico: /home/cristiansrc/Documentos/Proyectos/shared-ai-services/skills
 Las skills estan enlazadas por symlink desde OpenCode hacia shared-ai-services.
@@ -53,7 +50,7 @@ Las skills estan enlazadas por symlink desde OpenCode hacia shared-ai-services.
 4.  orchestration/context-pinning (Proteccion de Master Spec).
 5.  orchestration/context-curation.
 6.  orchestration/model-tier-routing.
-7.  backend/flyway-migrations (Gestion de BD PostgreSQL).
+7.  backend/flyway-migrations (Gestion de esquemas multi-motor).
 8.  backend/repository-dto-patterns.
 9.  backend/rest-error-response-standards.
 10. quality/bug-fixing-workflow (Protocolo de Reproduccion/Fix).
@@ -67,6 +64,15 @@ Las skills estan enlazadas por symlink desde OpenCode hacia shared-ai-services.
 18. documentation/documentation-standards.
 19. frontend/frontend-architecture (React/Angular).
 20. git-ops (Ramas, Commits Semanticos, PRs).
+21. backend/postgresql-standard.
+22. backend/mysql-standard.
+23. backend/oracle-standard.
+24. backend/sqlserver-standard.
+25. security/keycloak-standard.
+26. backend/jpa-stack.
+27. architecture/restful-standard.
+28. backend/python-stack.
+29. backend/fastapi-stack.
 
 Convenciones canonicas de skills
 - Master Spec consolidada: docs/specs/master_spec.md.
@@ -74,6 +80,9 @@ Convenciones canonicas de skills
 - Planner es el dueño de editar OpenAPI; Documentation, Executor, Task Decomposer, Reviewer, Security Reviewer, Test Architect y Refactor no deben editar contratos OpenAPI.
 - Spec Remediator no debe editar OpenAPI ni migraciones Flyway por defecto; si un hallazgo requiere esos cambios debe enrutar a Planner, salvo autorizacion explicita del usuario para ese artefacto tecnico exacto.
 - Documentation Lifecycle y Context Pinning fueron alineadas a docs/specs/master_spec.md.
+- Flyway: Las migraciones deben seguir el estándar del motor destino definido en su respectivo skill (PostgreSQL, MySQL, Oracle, SQL Server).
+- Keycloak: Configuración siguiendo el estándar de seguridad y gestión de identidad definido en `keycloak-standard`.
+- Auditoría y Soft Delete: Obligatorio en todas las tablas de negocio (campos `created_at`, `updated_at`, `deleted`). Gestionado automáticamente mediante `jpa-stack`.
 
 Politica de mantenimiento de configuracion IA
 - Cualquier cambio futuro en agentes, modelos, permisos, routing o skills debe reflejarse en este resumen durante la misma sesion.
