@@ -6,8 +6,8 @@ Fuente activa:
 - Configuracion: `/home/cristiansrc/.config/opencode/opencode.json`
 - Agentes: `/home/cristiansrc/.config/opencode/agents/`
 - Skills: `/home/cristiansrc/.config/opencode/skills/`
-- Backup de agentes: `/home/cristiansrc/Documentos/config-ai/agents/backup-20260512-165346/`
-- Backup de skills: `/home/cristiansrc/Documentos/config-ai/skill/backup-20260514/`
+- Backup de agentes: `/home/cristiansrc/Documentos/config-ai/backups/full-backup-20260514-final/agents/`
+- Backup de skills: `/home/cristiansrc/Documentos/config-ai/backups/full-backup-20260514-final/skills/`
 
 Regla de mantenimiento:
 - Cualquier cambio en agentes, modelos, permisos o skills debe actualizar este archivo y `/home/cristiansrc/Documentos/config-ai/resumen-configuracion-ia.txt` en la misma sesion.
@@ -20,18 +20,20 @@ Perfil LM Studio persistente:
 
 | Agente                | Modelo                        | Editar            | Bash  | Descripcion                                                                                                                               |
 |-----------------------|-------------------------------|-------------------|-------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| architect-executor    | opencode-go/deepseek-v4-pro   | allow             | allow | Implementa tareas complejas que requieren razonamiento arquitectonico local sin reemplazar al Planner.                                    |
-| devops-architect      | opencode-go/qwen3.5-plus      | allow             | allow | Especialista en Infraestructura como Código, Docker, CI/CD y Observabilidad.                                                              |
-| context-curator       | opencode-go/deepseek-v4-flash | deny              | deny  | Selecciona y resume contexto relevante para otros agentes, reduciendo ruido.                                                              |
-| documentation         | opencode-go/minimax-m2.7      | allow             | deny  | Crea y actualiza documentacion operativa, README, notas de despliegue y docs funcionales.                                                 |
-| executor              | opencode-go/deepseek-v4-flash | allow             | allow | Implementa codigo desde specs aprobadas y task boards validados siguiendo patrones del repo.                                              |
-| final-validation      | opencode-go/qwen3.6-plus      | deny              | allow | Hace validacion final de produccion: specs, implementacion, tests, seguridad y documentacion.                                             |
-| planner               | opencode-go/qwen3.6-plus      | allow             | deny  | Produce specs SDD, decisiones de arquitectura, contratos OpenAPI y restricciones tecnicas.                                                |
-| refactor              | opencode-go/qwen3.5-plus      | allow             | allow | Refactoriza codigo ya implementado sin cambiar comportamiento externo.                                                                    |
-| requirements-analyst  | opencode-go/qwen3.6-plus      | allow             | deny  | Levanta requerimientos antes del Planner y produce `requirements-brief.md` con alcance, actores, flujos, riesgos y preguntas abiertas.    |
-| reviewer              | opencode-go/qwen3.5-plus      | deny              | allow | Revisa codigo generado para detectar bugs, drift arquitectonico, deuda y falta de tests.                                                  |
-| security-reviewer     | opencode-go/deepseek-v4-pro   | deny              | allow | Revisa riesgos OWASP, auth/authz, manejo de secretos y arquitectura segura.                                                               |
-| spec-remediator       | opencode-go/deepseek-v4-flash | allow             | deny  | Corrige hallazgos mecanicos o drift SDD seguro, uno por uno, sin decidir arquitectura.                                                    |
-| spec-validator        | opencode-go/deepseek-v4-pro   | allow limitado    | deny  | Valida specs SDD y coherencia contra OpenAPI, migraciones, config, task board y shared context.                                           |
-| task-decomposer       | opencode-go/qwen3.5-plus      | allow             | deny  | Descompone specs validadas en tareas atomicas ejecutables con dependencias y verificacion.                                                |
-| test-architect        | opencode-go/qwen3.5-plus      | allow             | allow | Disena y genera pruebas automatizadas, edge cases, integracion y estrategia de validacion.                                                |
+| architect-executor    | opencode-go/deepseek-v4-pro   | allow             | allow | Implementa tareas de arquitectura local y lógica compleja siguiendo `hexagonal-architecture`.                                              |
+| devops-architect      | opencode-go/qwen3.5-plus      | allow             | allow | Especialista en Infraestructura como Código y CI/CD siguiendo `docker-standard` y `observability-standard`.                                |
+| context-curator       | opencode-go/deepseek-v4-flash | deny              | deny  | Gestiona la ventana de contexto y reduce ruido siguiendo `context-curation` y `context-pinning`.                                          |
+| documentation         | opencode-go/minimax-m2.7      | allow             | deny  | Gestiona el ciclo de vida de la documentación siguiendo `documentation-lifecycle` y `documentation-standards`.                            |
+| executor              | opencode-go/deepseek-v4-flash | allow             | allow | Implementa código verificado siguiendo los estándares del stack correspondiente (`springboot-stack`, `fastapi-stack`, etc.).              |
+| final-validation      | opencode-go/qwen3.6-plus      | deny              | allow | Garantiza la calidad final y cobertura mínima siguiendo `testing-strategy` y `pre-flight-check`.                                          |
+| enterprise-architect  | opencode-go/qwen3.6-plus      | allow             | deny  | Define el System Landscape, fronteras de microservicios y flujos globales siguiendo `enterprise-architecture-standard`. |
+| solution-architect    | opencode-go/qwen3.6-plus      | allow             | deny  | Elige patrones de diseño siguiendo `design-patterns-standard`. Colabora con `enterprise-architect` para alinear el diseño local con el global. |
+| planner               | opencode-go/qwen3.6-plus      | allow             | deny  | Planifica incrementos SDD y diseña contratos. Consulta a `solution-architect` para decisiones de patrones complejos.      |
+| refactor              | opencode-go/qwen3.5-plus      | allow             | allow | Refactoriza código existente siguiendo `refactor-patterns` y `refactor-hexagonal-bridge`.                                                 |
+| requirements-analyst  | opencode-go/qwen3.6-plus      | allow             | deny  | Realiza el levantamiento de requerimientos funcionales siguiendo `requirements-gathering`.                                                |
+| reviewer              | opencode-go/qwen3.5-plus      | deny              | allow | Audita el código generado buscando drift y bugs siguiendo `code-review-checklist`.                                                        |
+| security-reviewer     | opencode-go/deepseek-v4-pro   | deny              | allow | Valida la postura de seguridad siguiendo `security-standards` y `keycloak-standard`.                                                      |
+| spec-remediator       | opencode-go/deepseek-v4-flash | allow             | deny  | Corrige hallazgos de validación de forma iterativa siguiendo `spec-remediation`.                                                          |
+| spec-validator        | opencode-go/deepseek-v4-pro   | allow limitado    | deny  | Valida la consistencia de los artefactos SDD siguiendo `spec-driven-development`.                                                         |
+| task-decomposer       | opencode-go/qwen3.5-plus      | allow             | deny  | Descompone especificaciones en tareas atómicas siguiendo los contratos de `spec-driven-development`.                                      |
+| test-architect        | opencode-go/qwen3.5-plus      | allow             | allow | Diseña la estrategia de pruebas y genera casos de test siguiendo `testing-strategy`.                                                      |

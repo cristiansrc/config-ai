@@ -1,21 +1,19 @@
 # config-ai
 
-Repositorio local de referencia para la configuracion de IA usada con OpenCode, LM Studio, agentes especializados, skills SDD y respaldos operativos.
+Repositorio local de referencia para la configuración de IA usada con OpenCode, LM Studio, agentes especializados, skills SDD y respaldos operativos.
 
-Ultima actualizacion documentada: 2026-05-14.
+Última actualización documentada: 2026-05-14.
 
 ## Objetivo
 
-Esta carpeta consolida el estado canonico del entorno de IA local:
+Esta carpeta consolida el estado canónico del entorno de IA local:
 
 - OpenCode como orquestador de agentes.
 - Proveedores: `opencode-go` para modelos cloud de alto rendimiento y LM Studio para modelos locales.
-- Modelos locales y modelos cloud distribuidos por criticidad.
-- Skills de arquitectura, SDD, calidad, seguridad, documentacion y Git-Ops.
-- Backups versionados de agentes, skills y configuracion de OpenCode.
-- Politicas operativas para evitar drift entre specs, OpenAPI, migraciones, task boards y codigo.
-
-El entorno esta orientado a trabajo senior con Arquitectura Hexagonal, Spec-Driven Development incremental y automatización de Git-Ops. El sistema incluye validaciones de estado estrictas ("The Three-Point Update"), pre-comprobaciones de archivos y estándares multi-stack (Java/Spring, Python/FastAPI).
+- **Jerarquía de Arquitectura**: Integración de niveles Enterprise, Solution y Project Architecture.
+- **Solution Workspace**: Gestión de múltiples repositorios bajo una visión macro-arquitectónica única.
+- **Skills SDD**: 34 habilidades que cubren el ciclo de vida completo del software.
+- **Políticas Globales**: Auditoría, Soft Delete, Cobertura del 85% y Naming en snake_case.
 
 ## Estructura
 
@@ -23,106 +21,51 @@ El entorno esta orientado a trabajo senior con Arquitectura Hexagonal, Spec-Driv
 config-ai/
 |-- README.md
 |-- resumen-configuracion-ia.txt
-|-- deuda-tecnica-n8n.md
-|-- spect-vaidation.txt
 |-- agents/
-|   |-- agentes-y-modelos.md
-|   |-- backup-20260511-164320/
-|   `-- backup-20260512-165346/
+|   `-- agentes-y-modelos.md
 |-- skill/
-|   |-- backup-20260512-165623/
-|   `-- backup-20260514/  <-- (Nuevo Backup con 29 skills)
-|-- opencode/
-|   `-- opencode.json (Referencia)
-`-- backups/
-    `-- manual-backup-20260513/
+|   `-- backup-20260514/ (Histórico)
+|-- backups/
+|   `-- full-backup-20260514-final/ <-- (Backup Actual: 34 skills + Agentes)
+`-- opencode/
+    `-- opencode.json (Referencia)
 ```
-
-## Archivos Principales
-
-`resumen-configuracion-ia.txt`
-: Fuente principal de estado operativo. Resume hardware, modelos, agentes, skills (29 activas), politicas SDD, mantenimiento, flujo incremental y convenciones globales (Auditoría, Soft Delete, snake_case).
-
-`agents/agentes-y-modelos.md`
-: Registro canonico de agentes activos. Refleja la transición hacia proveedores optimizados (`opencode-go`) y modelos de la familia Qwen 3.6 Plus y DeepSeek V4 Pro.
 
 ## Hardware y Modelos
 
-- GPU: NVIDIA RTX 4080 de 16 GB.
-- OpenCode consume modelos mediante el proveedor `opencode-go` (Cloud) y `lmstudio` (Local).
+- **GPU**: NVIDIA RTX 4080 de 16 GB.
+- **Modelos Cloud (opencode-go)**: `qwen3.6-plus` (Reasoning), `deepseek-v4-pro` (Validation).
+- **Modelos Locales (lmstudio)**: `qwen/qwen3.6-35b-a3b` (Backup & Local Processing).
 
-Modelos Cloud Destacados (`opencode-go`):
-- `qwen3.6-plus`: Razonamiento central, planeación y validación final.
-- `deepseek-v4-pro`: Validación de specs y tareas críticas de arquitectura/seguridad.
-- `deepseek-v4-flash`: Ejecución rápida y tareas de remediación.
+## Agentes Arquitectónicos
 
-Modelos Locales Destacados (`lmstudio`):
-- `qwen/qwen3.6-35b-a3b`: Backup local de alta capacidad.
+| Agente | Nivel | Responsabilidad | Skill Principal |
+|---|---|---|---|
+| **enterprise-architect** | Macro | System Landscape y Bounded Contexts | `enterprise-architecture-standard` |
+| **solution-architect** | Meso | Patrones de Diseño (GoF) y Estructura Local | `design-patterns-standard` |
+| **planner** | Micro | Planificación SDD e Incrementos | `spec-driven-development` |
 
-## Skills (29 Skills Instaladas)
+## Ecosistema de Skills (34 Skills Instaladas)
 
-Nuestras skills están enlazadas por symlink desde OpenCode hacia `shared-ai-services/skills`.
+Principales categorías:
+- **Arquitectura**: `hexagonal-architecture`, `openapi-first`, `restful-standard`, `enterprise-architecture-standard`, `design-patterns-standard`, `requirements-gathering`.
+- **Backend Stacks**: `springboot-stack`, `fastapi-stack`, `jpa-stack`, `python-stack`, `nodejs-stack`, `spring-cloud-gateway`.
+- **Bases de Datos**: `flyway-migrations`, `postgresql-standard`, `mysql-standard`, `oracle-standard`, `sqlserver-standard`.
+- **Calidad y Seguridad**: `testing-strategy` (85% coverage), `pre-flight-check`, `security-standards`, `keycloak-standard`.
 
-1. `architecture/hexagonal-architecture` (Actualizada: Dominio puro, Ports & Adapters).
-2. `architecture/openapi-first`
-3. `architecture/spec-driven-development`
-4. `architecture/restful-standard` (Nueva: Pluralización, kebab-case, snake_case).
-5. `orchestration/context-pinning`
-6. `orchestration/context-curation`
-7. `orchestration/model-tier-routing`
-8. `backend/flyway-migrations` (Actualizada: Multi-motor, Repetibles).
-9. `backend/repository-dto-patterns`
-10. `backend/rest-error-response-standards` (Actualizada: Alineación con snake_case).
-11. `backend/postgresql-standard` (Nueva: JSONB, Auditoría, Soft Delete).
-12. `backend/mysql-standard` (Nueva: InnoDB, utf8mb4).
-13. `backend/oracle-standard` (Nueva: Identity, VARCHAR2 CHAR).
-14. `backend/sqlserver-standard` (Nueva: NVARCHAR, PascalCase).
-15. `backend/jpa-stack` (Nueva: Soft Delete nativo, AuditingEntityListener).
-16. `backend/python-stack` (Nueva: uv, ruff, typing).
-17. `backend/fastapi-stack` (Nueva: Pydantic V2, Hexagonal Python).
-18. `security/security-standards`
-19. `security/keycloak-standard` (Nueva: IAM, Authorization Code + PKCE).
-20. `quality/bug-fixing-workflow`
-21. `quality/pre-flight-check`
-22. `quality/refactor-hexagonal-bridge`
-23. `quality/refactor-patterns`
-24. `quality/code-review-checklist`
-25. `quality/testing-strategy`
-26. `documentation/documentation-lifecycle`
-27. `documentation/documentation-standards`
-28. `frontend/frontend-architecture`
-29. `git-ops`
+## Solution Workspace Pattern
 
-## Convenciones Globales Obligatorias
+Para gestionar el ecosistema, se utiliza la carpeta `proyectos/` en la raíz de los repositorios de arquitectura:
+- El `.gitignore` raíz ignora `proyectos/*` para mantener aislamiento de repositorios.
+- Los agentes realizan búsquedas jerárquicas hacia arriba (`../../`) para leer la **Master Spec de Solución** y asegurar alineación global.
 
-1. **Auditoría y Soft Delete**: Todas las tablas de negocio deben incluir `created_at`, `updated_at` y `deleted` (Boolean). Las eliminaciones físicas están prohibidas por defecto.
-2. **Naming Consistente**: Uso de `snake_case` desde la base de datos hasta el JSON de la API.
-3. **Desacoplamiento**: El Dominio es agnóstico a frameworks y tecnología.
-4. **OpenAPI First**: El contrato es la única fuente de verdad para la interfaz.
+## Convenciones Críticas
 
-## Mantenimiento
-
-- Retención: Máximo 25 backups por categoría.
-- Backups: Si se modifican agentes o skills, crear un nuevo backup en `agents/` o `skill/`.
-- Sincronización: Cualquier cambio debe impactar simultáneamente en `resumen-configuracion-ia.txt` y `agentes-y-modelos.md`.
-
-## Flujo SDD y Robustez
-
-Regla del "The Three-Point Update" (Mandatoria para Validator):
-1. Spec status: `validated-not-executed`.
-2. Shared context status: `validated-not-executed`.
-3. Bloque `## Spec Validator Approval` único con `verdict: ready`.
-
-Optimizaciones 2026-05-12:
-- **Executor Pre-flight Check**: Verificación de rutas con `ls` antes de escribir.
-- **Context Curator Compaction**: Limpieza de archivos `.working/` y compactación a `MEMORY.md`.
-- **Planner Async Contracts**: Idempotencia y reintentos obligatorios para n8n/queues.
-- **Reviewer Retro-Validation**: Validación obligatoria contra la Master Spec global.
-
-## Mantenimiento
-
-- Retención: Máximo 25 backups por categoría.
-- Actualización: Cualquier cambio en agentes debe sincronizar `resumen-configuracion-ia.txt`, `agentes-y-modelos.md` y generar un backup fechado.
+1. **Auditoría**: `created_at`, `updated_at` y `deleted` obligatorios.
+2. **Soft Delete**: Prohibida la eliminación física de registros.
+3. **Cobertura**: Mínimo 85% por archivo testable (JaCoCo, pytest-cov).
+4. **Naming**: Consistencia total en `snake_case`.
+5. **Idioma**: Comunicación con el usuario exclusivamente en **Español**.
 
 
 ## Skills

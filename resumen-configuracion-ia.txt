@@ -15,7 +15,7 @@ Escalamiento de Modelos (Tier Routing)
 - Configuracion activa de OpenCode: /home/cristiansrc/.config/opencode/opencode.json.
 - Agentes activos de OpenCode: /home/cristiansrc/.config/opencode/agents/.
 - Archivo canonico de agentes/modelos: /home/cristiansrc/Documentos/config-ai/opencode/agents/agentes-y-modelos.md.
-- Backup actual de agentes y skills: /home/cristiansrc/Documentos/config-ai/backups/manual-backup-20260513/.
+- Backup actual de agentes y skills: /home/cristiansrc/Documentos/config-ai/backups/full-backup-20260514-final/.
 - Agentes criticos de validacion: opencode-go/deepseek-v4-pro.
 - La configuración ha migrado hacia el proveedor `opencode-go`, optimizando el uso de modelos Qwen 3.6 Plus para razonamiento central y DeepSeek V4 Pro/Flash para tareas especializadas.
 - Perfil persistente LM Studio para Qwen 3.6 35B (Backup local): MoE con 3B activos, GPU offload ratio 26/64 capas, K/V cache Q4_0 activo. Velocidad observada: ~40 tok/s constantes con alta eficiencia energética.
@@ -39,7 +39,7 @@ Modelos por Agente
 | task-decomposer | opencode-go/qwen3.5-plus | allow | deny |
 | test-architect | opencode-go/qwen3.5-plus | allow | allow |
 
-Ecosistema de Skills (29 Skills Instaladas)
+Ecosistema de Skills (34 Skills Instaladas)
 Directorio activo: /home/cristiansrc/.config/opencode/skills
 Origen canonico: /home/cristiansrc/Documentos/Proyectos/shared-ai-services/skills
 Las skills estan enlazadas por symlink desde OpenCode hacia shared-ai-services.
@@ -73,82 +73,46 @@ Las skills estan enlazadas por symlink desde OpenCode hacia shared-ai-services.
 27. architecture/restful-standard.
 28. backend/python-stack.
 29. backend/fastapi-stack.
+30. backend/spring-cloud-gateway.
+31. architecture/requirements-gathering.
+32. architecture/spec-remediation.
+33. architecture/design-patterns-standard.
+34. architecture/enterprise-architecture-standard.
 
 Convenciones canonicas de skills
 - Master Spec consolidada: docs/specs/master_spec.md.
-- OpenAPI canonico: ruta declarada por proyecto en spec/shared context. Para Spring Boot se aceptan por defecto docs/api/openapi.yaml, docs/api/openapi.yml, src/main/resources/openapi.yaml o src/main/resources/openapi.yml.
-- Planner es el dueño de editar OpenAPI; Documentation, Executor, Task Decomposer, Reviewer, Security Reviewer, Test Architect y Refactor no deben editar contratos OpenAPI.
-- Spec Remediator no debe editar OpenAPI ni migraciones Flyway por defecto; si un hallazgo requiere esos cambios debe enrutar a Planner, salvo autorizacion explicita del usuario para ese artefacto tecnico exacto.
-- Documentation Lifecycle y Context Pinning fueron alineadas a docs/specs/master_spec.md.
-- Flyway: Las migraciones deben seguir el estándar del motor destino definido en su respectivo skill (PostgreSQL, MySQL, Oracle, SQL Server).
-- Keycloak: Configuración siguiendo el estándar de seguridad y gestión de identidad definido en `keycloak-standard`.
-- Auditoría y Soft Delete: Obligatorio en todas las tablas de negocio (campos `created_at`, `updated_at`, `deleted`). Gestionado automáticamente mediante `jpa-stack`.
+- OpenAPI canonico: ruta declarada por proyecto en spec/shared context.
+- Flyway: Las migraciones deben seguir el estándar del motor destino definido en su respectivo skill.
+- Keycloak: Configuración siguiendo el estándar `keycloak-standard`.
+- Auditoría y Soft Delete: Obligatorio en todas las tablas de negocio. Gestionado por `jpa-stack` o Mixins equivalentes en FastAPI.
+- Pruebas y Cobertura: Mínimo 85% por archivo testable. Ver `testing-strategy`.
 
-Politica de mantenimiento de configuracion IA
-- Cualquier cambio futuro en agentes, modelos, permisos, routing o skills debe reflejarse en este resumen durante la misma sesion.
-- Cualquier cambio futuro en agentes/modelos/permisos debe actualizar tambien /home/cristiansrc/Documentos/config-ai/agents/agentes-y-modelos.md.
-- Si se modifican agentes o skills, crear un nuevo backup fechado bajo /home/cristiansrc/Documentos/config-ai/agents/ o /home/cristiansrc/Documentos/config-ai/skill/ segun corresponda.
-- Retener maximo 25 backups de agentes, 25 backups de skills y 25 backups de configuracion OpenCode; despues de crear un nuevo backup, eliminar los backups mas viejos que excedan ese limite.
-- No dejar secretos hardcodeados en opencode.json, backups ni skills; moverlos a /home/cristiansrc/.config/opencode/.env o al .env corporativo correspondiente.
+Políticas de Especialización por Agente
+- **requirements-analyst**: Responsable de levantar requerimientos funcionales siguiendo `requirements-gathering`. Produce el `requirements-brief.md`.
+- **solution-architect**: Responsable de la selección de patrones de diseño GoF y estructuras de alto nivel siguiendo `design-patterns-standard`.
+- **enterprise-architect**: Responsable de la visión macro, fronteras de microservicios y System Landscape siguiendo `enterprise-architecture-standard`.
+- **planner**: Responsable de la arquitectura, diseño técnico y contratos OpenAPI siguiendo `spec-driven-development` y `restful-standard`.
+- **spec-validator**: Responsable de la validación de consistencia y veredictos de 'ready' siguiendo `spec-driven-development`.
+- **spec-remediator**: Responsable de la corrección iterativa de hallazgos siguiendo `spec-remediation`.
+- **task-decomposer**: Responsable de la atomización de tareas siguiendo los contratos de descomposición definidos en `spec-driven-development`.
+- **executor**: Responsable de la implementación técnica y verificación pre-vuelo siguiendo los estándares del stack correspondiente (`springboot-stack`, `fastapi-stack`).
+- **final-validation**: Responsable de la garantía de calidad final y cumplimiento de cobertura mínima.
 
-Flujo de Trabajo Incremental (Pendiente por Probar)
-1. Creación de Delta Spec en docs/specs/increments/.
-2. Impacto en Master Spec y OpenAPI.
-3. Implementación Hexagonal con Pre-flight Check.
-4. Consolidación de documentación y cierre de PR.
-
-Política de Estado de Specs
-- Toda spec debe declarar estado cerca del inicio del archivo.
-- Estados editables: planning, draft, validated-not-executed.
-- Estados no editables: executed, implemented, closed, superseded.
-- Si una spec ya fue ejecutada/implementada/cerrada, no se modifica en sitio.
-- Cualquier cambio posterior debe crearse como nueva spec incremental en docs/specs/increments/ y debe referenciar la spec original.
-- Planner es responsable de aplicar cambios de planificación/specs y de actualizar OpenAPI cuando corresponda.
-- Planner debe asegurar un `.gitignore` en la raiz del repositorio activo cuando cree o actualice specs. Debe cubrir archivos no versionables de todo el proyecto: artefactos temporales de specs como `docs/specs/.working/`, secretos/env, logs, dependencias, outputs de build, coverage/tests, runtime local, IDE/OS y artefactos generados por stacks Java/Spring, Node/React/Angular, Python, n8n o Docker segun aplique. No debe ignorar specs incrementales, OpenAPI, migraciones ni documentacion versionable.
-- Spec Validator debe bloquear cambios directos sobre specs ya ejecutadas.
-
-Política de Idioma
-- Todos los agentes deben comunicarse exclusivamente en español con el usuario.
-- Las especificaciones y documentación técnica pueden mantenerse en inglés si así lo requiere el estándar del proyecto, pero la interacción y reportes deben ser en español.
-- Executor usa lmstudio/google/gemma-4-e4b para priorizar velocidad en implementación de specs ya validadas.
-- Está autorizado para procesar secuencialmente TODO el task board en una sola sesión sin pedir confirmación entre tareas.
-- Solo debe detenerse si la documentación es insuficiente, hay un drift técnico bloqueante con OpenAPI/migraciones, o si ha terminado todas las tareas del plan.
-- Durante codificación no debe pedir aprobación después de cada archivo creado o modificado.
-- Debe reportar el resumen final, archivos cambiados y resultados de verificación solo al concluir el plan completo o al quedar bloqueado.
-
-Optimización del Proceso SDD
-- Planner debe producir un set consistente por incremento: spec/delta, OpenAPI si aplica, contrato de migraciones, contrato de integración/configuración y Decomposition Contract.
-- Spec Validator debe validar no solo la spec, sino también coherencia contra OpenAPI, migraciones, config/realm y task decomposition existente.
-- Task Decomposer debe leer el Decomposition Contract y bloquear si faltan fuentes canónicas o si detecta nombres/rutas/headers/status viejos.
-- Executor debe usar prioridad de fuentes: petición actual, artefactos implementados del repo, specs/tareas activas, históricos solo como trazabilidad.
-- Si task decomposition contradice OpenAPI, migraciones, config o spec validada, Executor debe detenerse con `Blocked: artifact mismatch` en vez de implementar.
-- No se debe pasar a implementación si `task-decomposition.md` contiene términos obsoletos de iteraciones anteriores.
-- Planner y Spec Validator deben compartir contexto persistente mediante `docs/specs/.working/<increment>-sdd-context.md`.
-- Task Decomposer debe crear un task board persistente en `docs/specs/tasks/<increment>-task-board.md`.
-- Executor debe marcar tareas como `todo`, `in_progress`, `done` o `blocked`, con razón y artefactos en conflicto cuando aplique.
-- Todo agente que cree archivos debe crear y verificar primero el directorio padre; solo después debe escribir el archivo.
-- Task Decomposer y Executor solo pueden avanzar cuando shared context/spec están `validated-not-executed` y el último Spec Validator dice `ready`.
-- Planner no puede invocar, recomendar ni establecer como siguiente acción Task Decomposer/Executor sin aprobación explícita de Spec Validator registrada en shared context.
-- La aprobación de Spec Validator debe estar en el shared context como heading exacto `## Spec Validator Approval`, con `verdict: ready`, `reviewed_at`, `validator_agent: spec-validator`, `artifact_set_reviewed`, `summary` e `invalidated_by_changes_since: none`.
-- Frases narrativas como `Ready for Task Decomposer`, `Artifacts aligned` o `all findings resolved` no cuentan como aprobación.
-- Spec Validator puede editar solo reportes de validación y metadatos de estado/lifecycle: `spec-validation.txt`, `spect-vaidation.txt` si ya se está usando, `Current status`, `Spec Validator Approval`, status principal de spec y estados del task board. No puede editar contratos técnicos, OpenAPI, migraciones, tareas ni código.
-- Al terminar cada validación, Spec Validator debe actualizar el reporte de validación, mover findings viejos a `Superseded findings` cuando ya no apliquen y dejar estados coherentes con `ready` o `not ready`.
-- Regla del "The Three-Point Update" (Mandatoria para Spec Validator cuando el veredicto es `ready`):
-  1. Actualizar el archivo de spec primario: `## Status: validated-not-executed`.
-  2. Actualizar el Contexto Compartido: `Current status: validated-not-executed`.
-  3. Actualizar el Contexto Compartido: Escribir el bloque `## Spec Validator Approval` con `verdict: ready` (debe ser único).
-- Optimizaciones de Robustez y Eficiencia (2026-05-12):
-  * Executor: "Mandatory Pre-flight Check" antes de escribir código (validar archivos/rutas con `ls`).
-  * Context Curator: "Compactación de Contexto" y limpieza de archivos temporales al cerrar incrementos.
-  * Planner: "Contratos de Integración Mandatorios" (Idempotencia, Reintentos, Compensación) para n8n/Async.
-  * Reviewer: "Retro-Validación" obligatoria contra la Master Spec para evitar regresiones arquitectónicas.
-- Task Decomposer y Executor deben bloquearse si estos 3 puntos no son exactos (sin alias como `ready` o `approved`).
-- Si cualquier review summary o Spec Validator dice `not ready`, la siguiente acción obligatoria es Planner corrections + nueva validación.
-- Queda prohibido usar `Known Technical Debt`, `Override Approved by User` o `fix post-increment` para saltarse drift entre spec, OpenAPI o migraciones, salvo aprobación explícita del usuario registrada en shared context.
-- Solo debe existir un shared context activo por incremento; contexts anteriores deben marcarse `superseded` o históricos.
-- Los checklists de consistencia deben verificar archivos reales e incluir evidencia de ruta, campo/endpoint/columna revisada y resultado observado.
+Optimización del Proceso SDD (Fuente: skill/spec-driven-development)
+- Planner y Spec Validator deben usar el Shared Context para asegurar trazabilidad.
+- La aprobación `ready` requiere el cumplimiento estricto del "The Three-Point Update".
+- Se prohíbe el uso de 'Technical Debt' para ignorar drifts en contratos de base de datos o API.
 - Cada ruta en `Canonical artifacts` debe existir realmente; el agente debe leer archivos o listar directorios antes de marcar consistencia.
 - El task board solo puede usar estados `todo`, `in_progress`, `done` o `blocked`; si hay `Blocker:` o estado superior `blocked`, no pueden quedar tareas de implementación ejecutables en `todo`.
+
+Pruebas y Cobertura Global
+- **Mínimo Aceptable**: 85% por archivo testable.
+- **Ideal**: 100%.
+- **Archivos Testables**: Dominio, Casos de Uso, Adaptadores con lógica, Utilities.
+- **Exclusiones**: DTOs, Entidades puras, Configs, Excepciones puras, Interfaces, Mappers generados.
+- **Herramientas**: JaCoCo (Spring Boot), pytest-cov (FastAPI), Istanbul (Node.js).
+- **Mandato Planner**: El Planner debe incluir tareas de configuración de herramientas y reglas de cobertura en el primer incremento de cada proyecto.
+- **Bloqueo Final-Validation**: Prohibido aprobar incrementos que no cumplan el umbral de cobertura en archivos testables.
 - Skill `observability-standard`: Estándares de logs JSON, métricas y trazabilidad con OpenTelemetry.
 - Skill `docker-standard`: Empaquetamiento seguro (Multi-stage, No root) y docker-compose local.
 - Skill `testing-strategy`: Estrategia multi-stack con Unit, Integración (Testcontainers) y E2E.
