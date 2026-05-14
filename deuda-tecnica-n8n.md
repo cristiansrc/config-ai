@@ -1,18 +1,28 @@
 # Deuda Técnica - Automatización de IA con n8n
 
-## Estado: Pendiente
-**Descripción:** Implementar un flujo de revisión de código (AI Code Review) externo mediante n8n para proporcionar una "segunda opinión" en los Pull Requests creados por los agentes locales.
+## Estado: Pendiente (Refinado 2026-05-12)
+**Descripción:** Implementar un flujo de revisión de código (AI Code Review) externo mediante n8n para proporcionar una "segunda opinión" crítica en los Pull Requests, con enfoque en **Retro-Validación Arquitectónica** y cumplimiento de la **Master Spec**.
 
-## Arquitectura Propuesta
-1. **Trigger:** Webhook de GitHub (PR Created/Updated).
-2. **Action:** n8n recibe el diff del PR.
-3. **Reasoning:** n8n envía el diff a un agente de IA externo (ej. Anthropic Claude o OpenAI GPT-4o) con un System Prompt enfocado en detección de bugs lógicos y drift arquitectónico.
-4. **Feedback:** n8n publica un comentario en el PR de GitHub con los hallazgos.
+## Arquitectura Refinada
+1. **Trigger:** Webhook de GitHub (Pull Request: `opened`, `synchronize`).
+2. **Context Gathering:**
+   - n8n obtiene el `diff` del PR.
+   - n8n obtiene la `master_spec.md` y el contrato `openapi.yaml` actualizados del repositorio.
+   - n8n obtiene los reportes de validación local del directorio `docs/specs/.working/`.
+3. **Reasoning (Deep Reasoning Step):**
+   - n8n envía el contexto consolidado a un modelo de razonamiento profundo (ej. Claude 3.5 Sonnet o GPT-4o).
+   - **System Prompt:** Enfocado en detectar "Architectural Drift" (desviaciones que los agentes locales pudieron pasar por alto) y regresiones contra la Master Spec global.
+4. **Feedback & Guardrails:**
+   - n8n publica un comentario estructurado en el PR (Markdown).
+   - Si se detectan hallazgos `critical` o `high`, el flujo marca el check del PR como `failed`.
+   - Genera una alerta local para que el agente `spec-remediator` tome el hallazgo externamente validado.
 
-## Requisitos Previos
-- Configurar el Webhook en el repositorio de GitHub apuntando a la instancia local de n8n.
-- Asegurar que el túnel de n8n (si se usa) esté activo o que el webhook sea accesible.
+## Alineación con Estándares Locales
+- **Idempotencia:** El flujo debe usar el `SHA` del commit como clave para evitar comentarios duplicados en el mismo PR.
+- **Error Standards:** El feedback debe seguir el esquema de errores REST definido en el proyecto (timestamp, code, message, path).
+- **Retro-Validation:** n8n debe actuar como el "Juez Supremo" de la Master Spec, validando que el incremento no comprometa la integridad a largo plazo del sistema.
 
 ## Beneficios
-- Validación cruzada entre modelos locales (Ollama) y modelos en la nube.
-- Proceso de QA asíncrono que no bloquea la máquina local del desarrollador.
+- **Validación Cruzada:** Contraste entre el razonamiento local (`Qwen 3.6 35B`) y modelos cloud de última generación.
+- **QA Asíncrono:** Auditoría continua sin consumo de recursos locales de GPU durante la implementación.
+- **Seguridad Extra:** Detección de patrones de ataque complejos que requieren mayor ventana de contexto.

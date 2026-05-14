@@ -2,7 +2,7 @@
 
 Repositorio local de referencia para la configuracion de IA usada con OpenCode, LM Studio, agentes especializados, skills SDD y respaldos operativos.
 
-Ultima actualizacion documentada: 2026-05-11.
+Ultima actualizacion documentada: 2026-05-12.
 
 ## Objetivo
 
@@ -15,7 +15,7 @@ Esta carpeta consolida el estado canonico del entorno de IA local:
 - Backups versionados de agentes, skills y configuracion de OpenCode.
 - Politicas operativas para evitar drift entre specs, OpenAPI, migraciones, task boards y codigo.
 
-El entorno esta orientado a trabajo senior con Arquitectura Hexagonal, Spec-Driven Development incremental y automatizacion de Git-Ops.
+El entorno esta orientado a trabajo senior con Arquitectura Hexagonal, Spec-Driven Development incremental y automatización de Git-Ops. El sistema ahora incluye validaciones de estado estrictas ("The Three-Point Update") y pre-comprobaciones de archivos para evitar fallos de ejecución.
 
 ## Estructura
 
@@ -27,14 +27,13 @@ config-ai/
 |-- spect-vaidation.txt
 |-- agents/
 |   |-- agentes-y-modelos.md
-|   |-- backup-20260511-115129/
-|   |-- backup-20260511-120114/
-|   |-- backup-20260511-130320/
-|   `-- backup-20260511-140434/
+|   |-- backup-20260511-164320/
+|   |-- backup-20260512-164535/
+|   |-- backup-20260512-164910/
+|   `-- backup-20260512-165346/
 |-- skill/
-|   |-- backup-20260511-115129/
-|   |-- backup-20260511-120114/
-|   `-- backup-20260511-130320/
+|   |-- backup-20260511-130320/
+|   `-- backup-20260512-165623/
 |-- opencode-backup-20260511-130320/
 |   `-- opencode.json
 `-- opencode-backup-20260511-134933.json
@@ -43,19 +42,19 @@ config-ai/
 ## Archivos Principales
 
 `resumen-configuracion-ia.txt`
-: Fuente principal de estado operativo. Resume hardware, modelos, agentes, skills, politicas SDD, mantenimiento, flujo incremental y proximos alcances. Debe actualizarse en la misma sesion cuando cambien agentes, modelos, permisos, routing o skills.
+: Fuente principal de estado operativo. Resume hardware, modelos, agentes, skills, politicas SDD, mantenimiento, flujo incremental y proximos alcances. Incluye las nuevas reglas de "The Three-Point Update" y Pre-flight Checks.
 
 `agents/agentes-y-modelos.md`
-: Registro canonico de agentes activos, modelo asignado, permisos de edicion y permisos de bash. Debe actualizarse junto con `resumen-configuracion-ia.txt` cuando cambien agentes, modelos o permisos.
+: Registro canonico de agentes activos, modelo asignado, permisos de edicion y permisos de bash. Refleja la transición al modelo `qwen3.6-35b-a3b`.
 
 `deuda-tecnica-n8n.md`
-: Deuda tecnica pendiente para implementar una revision externa de PRs con n8n. Propone un webhook de GitHub que envie diffs a un modelo externo y publique feedback en el PR.
+: Deuda tecnica pendiente para implementar una revision externa de PRs con n8n.
 
 `spect-vaidation.txt`
-: Reporte historico de validacion SDD para `ms-ticket-user`, incremento 01 User Management. El veredicto registrado es `not ready`; sirve como evidencia de blockers y como ejemplo de validacion estricta. El nombre conserva el typo historico `spect-vaidation`.
+: Reporte historico de validacion SDD para `ms-ticket-user`. El nombre conserva el typo historico `spect-vaidation`.
 
 `opencode-backup-*`
-: Respaldos de `opencode.json`. El backup `20260511-134933` fue creado antes de subir el contexto de `lmstudio/qwen3.6-27b` a `145858`.
+: Respaldos de `opencode.json`.
 
 ## Configuracion Activa Externa
 
@@ -69,77 +68,73 @@ OpenCode env: /home/cristiansrc/.config/opencode/.env
 LM Studio defaults: /home/cristiansrc/.lmstudio/.internal/user-concrete-model-default-config/
 ```
 
-Los secretos no deben quedar hardcodeados en `opencode.json`, backups ni skills. El token de GitHub y variables sensibles deben mantenerse en `/home/cristiansrc/.config/opencode/.env` o en el `.env` corporativo correspondiente.
-
 ## Hardware y LM Studio
 
 - GPU: NVIDIA RTX 4080 de 16 GB.
 - Modos operativos: `ai-game-mode` y `ai-work-mode`.
 - OpenCode consume LM Studio mediante API OpenAI-compatible en `http://127.0.0.1:1234/v1`.
-- OpenCode solo declara limites de contexto/salida; la carga real del modelo, GPU offload y KV cache los controla LM Studio.
 
 Perfil persistente importante:
 
 ```text
-Modelo: lmstudio/qwen3.6-27b
+Modelo: lmstudio/qwen3.6-35b-a3b
 Context length: 145858
-GPU offload ratio: 1.0, equivalente a max / 64 capas
-CPU thread pool size: 6
-K cache: q4_0
-V cache: q4_0
-Flash attention: true
-Estimacion esperada: alrededor de 15 GB en RAM/VRAM segun LM Studio
-```
-
-Archivo persistente de LM Studio:
-
-```text
-/home/cristiansrc/.lmstudio/.internal/user-concrete-model-default-config/qwen3.6-27b.json
+GPU offload ratio: 1.0 (64/64 capas)
+KV cache: q4_0, Flash attention: true
+Velocidad: ~40 tok/s constantes
 ```
 
 ## Modelos
 
 Modelo default global de OpenCode:
-
-```text
-lmstudio/google/gemma-4-e4b
-```
+`lmstudio/google/gemma-4-e4b`
 
 Modelos locales destacados:
 
-- `lmstudio/qwen3.6-27b`: contexto `145858`, usado para arquitectura, refactor, seguridad, remediacion y descomposicion.
-- `lmstudio/qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2`: contexto `262144`, usado para ejecucion rapida y curacion de contexto.
-- `lmstudio/qwen/qwen3.6-35b-a3b`: usado para planner y requirements analyst.
-- `lmstudio/google/gemma-4-e4b`: default global.
-- `lmstudio/google/gemma-4-e2b`: documentacion.
-- `lmstudio/google/gemma-4-26b-a4b`: revision.
-- `openai/gpt-5.5`: validacion critica.
+- `lmstudio/qwen3.6-35b-a3b`: usado para arquitectura, planificación, validación, remediación y tareas críticas.
+- `lmstudio/qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2`: usado para ejecución rápida y curación de contexto.
 
 ## Agentes Activos
 
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
-| architect-executor | lmstudio/qwen3.6-27b | allow | allow |
+| architect-executor | lmstudio/qwen3.6-35b-a3b | allow | allow |
 | context-curator | lmstudio/qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2 | deny | deny |
-| documentation | lmstudio/google/gemma-4-e2b | allow | deny |
+| documentation | lmstudio/qwen3.6-35b-a3b | allow | deny |
 | executor | lmstudio/qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2 | allow | allow |
-| final-validation | openai/gpt-5.5 | deny | allow |
-| planner | lmstudio/qwen/qwen3.6-35b-a3b | allow | deny |
-| refactor | lmstudio/qwen3.6-27b | allow | allow |
-| requirements-analyst | lmstudio/qwen/qwen3.6-35b-a3b | allow | deny |
-| reviewer | lmstudio/google/gemma-4-26b-a4b | deny | allow |
-| security-reviewer | lmstudio/qwen3.6-27b | deny | allow |
-| spec-remediator | lmstudio/qwen3.6-27b | allow | deny |
-| spec-validator | openai/gpt-5.5 | allow limitado | deny |
-| task-decomposer | lmstudio/qwen3.6-27b | allow | deny |
-| test-architect | lmstudio/qwen3.6-27b | allow | allow |
+| final-validation | lmstudio/qwen3.6-35b-a3b | deny | allow |
+| planner | lmstudio/qwen3.6-35b-a3b | allow | deny |
+| refactor | lmstudio/qwen3.6-35b-a3b | allow | allow |
+| requirements-analyst | lmstudio/qwen3.6-35b-a3b | allow | deny |
+| reviewer | lmstudio/qwen3.6-35b-a3b | deny | allow |
+| security-reviewer | lmstudio/qwen3.6-35b-a3b | deny | allow |
+| spec-remediator | lmstudio/qwen3.6-35b-a3b | allow | deny |
+| spec-validator | lmstudio/qwen3.6-35b-a3b | allow limitado | deny |
+| task-decomposer | lmstudio/qwen3.6-35b-a3b | allow | deny |
+| test-architect | lmstudio/qwen3.6-35b-a3b | allow | allow |
 
-Agentes criticos de validacion:
+## Skills
 
-- `spec-validator`
-- `final-validation`
+(Mismo listado de 20 skills operativas).
 
-Por ahora esos son los unicos asignados a `openai/gpt-5.5`.
+## Flujo SDD y Robustez
+
+Regla del "The Three-Point Update" (Mandatoria para Validator):
+1. Spec status: `validated-not-executed`.
+2. Shared context status: `validated-not-executed`.
+3. Bloque `## Spec Validator Approval` único con `verdict: ready`.
+
+Optimizaciones 2026-05-12:
+- **Executor Pre-flight Check**: Verificación de rutas con `ls` antes de escribir.
+- **Context Curator Compaction**: Limpieza de archivos `.working/` y compactación a `MEMORY.md`.
+- **Planner Async Contracts**: Idempotencia y reintentos obligatorios para n8n/queues.
+- **Reviewer Retro-Validation**: Validación obligatoria contra la Master Spec global.
+
+## Mantenimiento
+
+- Retención: Máximo 25 backups por categoría.
+- Actualización: Cualquier cambio en agentes debe sincronizar `resumen-configuracion-ia.txt`, `agentes-y-modelos.md` y generar un backup fechado.
+
 
 ## Skills
 
@@ -234,7 +229,7 @@ Flujo incremental pendiente por probar:
 : Valida coherencia contra spec, OpenAPI, migraciones, config/realm, task board y shared context. Puede editar solo reportes y metadatos de estado/lifecycle autorizados.
 
 `spec-remediator`
-: Corrige hallazgos mecanicos o drift seguro uno por uno. No toma decisiones de diseno, no llama a Task Decomposer ni Executor.
+: Corrige hallazgos mecanicos o drift seguro uno por uno. No toma decisiones de diseno, no llama a Task Decomposer ni Executor. Debe pedir validacion exclusivamente a `spec-validator` con `lmstudio/qwen3.6-27b`; si la validacion ocurre con otro modelo, debe bloquear con `Blocked: wrong validator model`.
 
 `task-decomposer`
 : Crea task boards atomicos desde specs validadas. Debe bloquear si faltan fuentes canonicas o hay terminos obsoletos.
@@ -254,6 +249,7 @@ agents/backup-20260511-115129/
 agents/backup-20260511-120114/
 agents/backup-20260511-130320/
 agents/backup-20260511-140434/
+agents/backup-20260511-164320/
 ```
 
 Backups de skills:

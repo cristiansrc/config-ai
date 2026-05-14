@@ -15,31 +15,32 @@ Escalamiento de Modelos (Tier Routing)
 - Configuracion activa de OpenCode: /home/cristiansrc/.config/opencode/opencode.json.
 - Agentes activos de OpenCode: /home/cristiansrc/.config/opencode/agents/.
 - Archivo canonico de agentes/modelos: /home/cristiansrc/Documentos/config-ai/agents/agentes-y-modelos.md.
-- Backup actual de agentes: /home/cristiansrc/Documentos/config-ai/agents/backup-20260511-140434/.
-- Backup actual de skills: /home/cristiansrc/Documentos/config-ai/skill/backup-20260511-130320/.
-- Agentes criticos de validacion: openai/gpt-5.5.
+- Backup actual de agentes y skills: /home/cristiansrc/Documentos/config-ai/backups/manual-backup-20260513/.
+- Agentes criticos de validacion (temporal): lmstudio/qwen/qwen3.6-35b-a3b.
 - Revision pendiente: evaluar si otro agente necesita GPT 5.5; por ahora solo se asigna a final-validation y spec-validator.
-- La skill model-tier-routing fue alineada con LM Studio/Qwen/GPT-5.5; ya no debe recomendar Ollama ni Qwopus como configuracion activa.
-- Modelos LM Studio agregados a OpenCode: lmstudio/qwen3.6-27b con contexto 145858 y lmstudio/qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2 con contexto 262144.
-- Perfil persistente LM Studio para lmstudio/qwen3.6-27b: context length 145858, GPU offload ratio 1.0 (64/64 capas), CPU thread pool size 6, K cache q4_0, V cache q4_0, flash attention activo. Estimacion operativa esperada: alrededor de 15 GB en RAM/VRAM segun LM Studio.
+- La skill model-tier-routing fue alineada con LM Studio/Qwen/GPT-5.2; se recomienda Qwen 3.6 35B para tareas de planificación y lógica profunda.
+- Modelos LM Studio optimizados en OpenCode: lmstudio/qwen/qwen3.6-35b-a3b (Contexto 152563) y lmstudio/google/gemma-4-e4b (Contexto 131072).
+- Se eliminaron modelos obsoletos (Gemma 4 26B, Qwen 27B, Qwen 3.5 9B) para mejorar la velocidad de carga y estabilidad.
+- Perfil persistente LM Studio para Qwen 3.6 35B: MoE con 3B activos, GPU offload ratio 26/64 capas, K/V cache Q4_0 activo. Velocidad observada: ~40 tok/s constantes con alta eficiencia energética.
 
 Modelos por Agente
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
-| architect-executor | lmstudio/qwen3.6-27b | allow | allow |
-| context-curator | lmstudio/qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2 | deny | deny |
-| documentation | lmstudio/google/gemma-4-e2b | allow | deny |
-| executor | lmstudio/qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2 | allow | allow |
-| final-validation | openai/gpt-5.5 | deny | allow |
-| planner | lmstudio/qwen/qwen3.6-35b-a3b | allow | deny |
-| refactor | lmstudio/qwen3.6-27b | allow | allow |
-| requirements-analyst | lmstudio/qwen/qwen3.6-35b-a3b | allow | deny |
-| reviewer | lmstudio/google/gemma-4-26b-a4b | deny | allow |
-| security-reviewer | lmstudio/qwen3.6-27b | deny | allow |
-| spec-remediator | lmstudio/qwen3.6-27b | allow | deny |
-| spec-validator | openai/gpt-5.5 | allow limitado | deny |
-| task-decomposer | lmstudio/qwen3.6-27b | allow | deny |
-| test-architect | lmstudio/qwen3.6-27b | allow | allow |
+| architect-executor | opencode-go/qwen3.5-plus | allow | allow |
+| devops-architect | opencode-go/qwen3.5-plus | allow | allow |
+| context-curator | opencode-go/qwen3.5-plus | deny | deny |
+| documentation | opencode-go/qwen3.5-plus | allow | deny |
+| executor | lmstudio/google/gemma-4-e4b | allow | allow |
+| final-validation | opencode-go/qwen3.5-plus | deny | allow |
+| planner | opencode-go/qwen3.5-plus | allow | deny |
+| refactor | opencode-go/qwen3.5-plus | allow | allow |
+| requirements-analyst | opencode-go/qwen3.5-plus | allow | deny |
+| reviewer | opencode-go/qwen3.5-plus | deny | allow |
+| security-reviewer | opencode-go/qwen3.5-plus | deny | allow |
+| spec-remediator | opencode-go/qwen3.5-plus | allow | deny |
+| spec-validator | opencode-go/qwen3.5-plus | allow limitado | deny |
+| task-decomposer | opencode-go/qwen3.5-plus | allow | deny |
+| test-architect | opencode-go/qwen3.5-plus | allow | allow |
 
 Ecosistema de Skills (20 Skills Instaladas)
 Directorio activo: /home/cristiansrc/.config/opencode/skills
@@ -97,11 +98,14 @@ Política de Estado de Specs
 - Planner debe asegurar un `.gitignore` en la raiz del repositorio activo cuando cree o actualice specs. Debe cubrir archivos no versionables de todo el proyecto: artefactos temporales de specs como `docs/specs/.working/`, secretos/env, logs, dependencias, outputs de build, coverage/tests, runtime local, IDE/OS y artefactos generados por stacks Java/Spring, Node/React/Angular, Python, n8n o Docker segun aplique. No debe ignorar specs incrementales, OpenAPI, migraciones ni documentacion versionable.
 - Spec Validator debe bloquear cambios directos sobre specs ya ejecutadas.
 
-Política del Executor
-- Executor usa qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2 para priorizar velocidad en implementación de specs ya validadas.
+Política de Idioma
+- Todos los agentes deben comunicarse exclusivamente en español con el usuario.
+- Las especificaciones y documentación técnica pueden mantenerse en inglés si así lo requiere el estándar del proyecto, pero la interacción y reportes deben ser en español.
+- Executor usa lmstudio/google/gemma-4-e4b para priorizar velocidad en implementación de specs ya validadas.
+- Está autorizado para procesar secuencialmente TODO el task board en una sola sesión sin pedir confirmación entre tareas.
+- Solo debe detenerse si la documentación es insuficiente, hay un drift técnico bloqueante con OpenAPI/migraciones, o si ha terminado todas las tareas del plan.
 - Durante codificación no debe pedir aprobación después de cada archivo creado o modificado.
-- Solo debe detenerse para preguntar si hay duda bloqueante, contradicción, decisión faltante, acción insegura o cambio de alcance requerido.
-- Si no hay bloqueo, debe completar implementación, tests/verificación y luego reportar archivos cambiados, resultados y riesgos residuales.
+- Debe reportar el resumen final, archivos cambiados y resultados de verificación solo al concluir el plan completo o al quedar bloqueado.
 
 Optimización del Proceso SDD
 - Planner debe producir un set consistente por incremento: spec/delta, OpenAPI si aplica, contrato de migraciones, contrato de integración/configuración y Decomposition Contract.
@@ -120,17 +124,41 @@ Optimización del Proceso SDD
 - Frases narrativas como `Ready for Task Decomposer`, `Artifacts aligned` o `all findings resolved` no cuentan como aprobación.
 - Spec Validator puede editar solo reportes de validación y metadatos de estado/lifecycle: `spec-validation.txt`, `spect-vaidation.txt` si ya se está usando, `Current status`, `Spec Validator Approval`, status principal de spec y estados del task board. No puede editar contratos técnicos, OpenAPI, migraciones, tareas ni código.
 - Al terminar cada validación, Spec Validator debe actualizar el reporte de validación, mover findings viejos a `Superseded findings` cuando ya no apliquen y dejar estados coherentes con `ready` o `not ready`.
+- Regla del "The Three-Point Update" (Mandatoria para Spec Validator cuando el veredicto es `ready`):
+  1. Actualizar el archivo de spec primario: `## Status: validated-not-executed`.
+  2. Actualizar el Contexto Compartido: `Current status: validated-not-executed`.
+  3. Actualizar el Contexto Compartido: Escribir el bloque `## Spec Validator Approval` con `verdict: ready` (debe ser único).
+- Optimizaciones de Robustez y Eficiencia (2026-05-12):
+  * Executor: "Mandatory Pre-flight Check" antes de escribir código (validar archivos/rutas con `ls`).
+  * Context Curator: "Compactación de Contexto" y limpieza de archivos temporales al cerrar incrementos.
+  * Planner: "Contratos de Integración Mandatorios" (Idempotencia, Reintentos, Compensación) para n8n/Async.
+  * Reviewer: "Retro-Validación" obligatoria contra la Master Spec para evitar regresiones arquitectónicas.
+- Task Decomposer y Executor deben bloquearse si estos 3 puntos no son exactos (sin alias como `ready` o `approved`).
 - Si cualquier review summary o Spec Validator dice `not ready`, la siguiente acción obligatoria es Planner corrections + nueva validación.
 - Queda prohibido usar `Known Technical Debt`, `Override Approved by User` o `fix post-increment` para saltarse drift entre spec, OpenAPI o migraciones, salvo aprobación explícita del usuario registrada en shared context.
 - Solo debe existir un shared context activo por incremento; contexts anteriores deben marcarse `superseded` o históricos.
 - Los checklists de consistencia deben verificar archivos reales e incluir evidencia de ruta, campo/endpoint/columna revisada y resultado observado.
 - Cada ruta en `Canonical artifacts` debe existir realmente; el agente debe leer archivos o listar directorios antes de marcar consistencia.
 - El task board solo puede usar estados `todo`, `in_progress`, `done` o `blocked`; si hay `Blocker:` o estado superior `blocked`, no pueden quedar tareas de implementación ejecutables en `todo`.
+- Skill `observability-standard`: Estándares de logs JSON, métricas y trazabilidad con OpenTelemetry.
+- Skill `docker-standard`: Empaquetamiento seguro (Multi-stage, No root) y docker-compose local.
+- Skill `testing-strategy`: Estrategia multi-stack con Unit, Integración (Testcontainers) y E2E.
+- Skill `fastapi-stack`: Patrones avanzados de FastAPI (Async, Depends, Pydantic V2).
+- Skill `openapi-standard`: Estándar global de contratos (OpenAPI 3.1) y respuestas de error universales.
+- Skill `java-stack`: Mejores prácticas de Java 2026 (Virtual Threads, Records, Pattern Matching).
+- Skill `kotlin-stack`: Mejores prácticas de Kotlin 2026 (Coroutines, KSP2, Serialization, Context Params).
+- Skill `springboot-stack`: Convenciones de Spring Boot (Resources, Migrations, Virtual Threads config).
+- Skill `react-stack`: Convenciones de React 2026 (FSD, React Query, Zustand, React 19) y sincronización de OpenAPI.
+- Skill `angular-stack`: Convenciones de Angular 2026 (Standalone, Signals, Zoneless) y sincronización de OpenAPI.
+- Skill `nodejs-stack`: Clean Architecture para Node.js, validación con Zod y desacoplamiento de infraestructura.
+- Skill `python-stack`: Arquitectura Hexagonal para FastAPI, Pydantic V2 y gestión de dependencias moderna.
+- Skill `n8n-stack`: Estrategia GitOps para workflows, modularidad y prohibición de secretos en JSON.
 - La ruta de migraciones Flyway debe coincidir con la configuración real: `src/main/resources/db/migration` para classpath o `db/migration` solo si Flyway usa `filesystem:db/migration`.
 - OpenAPI y spec deben usar el mismo schema de errores REST. Para Spring Boot, la estructura estándar es `timestamp`, `status`, `error`, `code`, `message`, `path`, `trace_id` y `details`.
 - Después de compaction o sesión resumida, Planner, Spec Validator, Task Decomposer y Executor deben rehidratar contexto desde disco: shared context, spec, OpenAPI, migraciones/config, task board y último reporte de validación. El resumen compacto del chat solo es una pista.
 - Si un reporte viejo o resumen contradice archivos actuales, se marca como `superseded` y se usan los archivos actuales.
-- Nuevo agente `spec-remediator`: usa qwen3.6-27b para corregir hallazgos de Spec Validator uno por uno. Planner sigue siendo dueño de specs, arquitectura, alcance y contratos. Spec Remediator solo corrige hallazgos mecánicos o drift con fuente autoritativa inequívoca; decisiones de diseño se enrutan al Planner/User.
+- Nuevo agente `spec-remediator`: usa qwen3.6-35b-a3b para corregir hallazgos de Spec Validator uno por uno. Planner sigue siendo dueño de specs, arquitectura, alcance y contratos. Spec Remediator solo corrige hallazgos mecánicos o drift con fuente autoritativa inequívoca; decisiones de diseño se enrutan al Planner/User.
+- Spec Remediator debe solicitar validaciones exclusivamente al agente `spec-validator` configurado con `lmstudio/qwen/qwen3.6-35b-a3b`. Si la validacion se ejecuta con otro modelo, debe detenerse con `Blocked: wrong validator model` y no usar ese resultado como aprobacion.
 - Spec Remediator primero solicita validación completa, clasifica hallazgos (`mechanical`, `contract-drift`, `design-decision`, `migration-risk`, `validator/process-bug`, `user-decision`), toma el primer hallazgo seguro, aplica una corrección mínima, pide validación solo de ese hallazgo y continúa. Máximo 4 intentos por hallazgo; si no puede resolverlo o reaparece un hallazgo ya resuelto, detiene el flujo y escribe reporte en `/home/cristiansrc/Documentos/config-ai/bugs/`.
 - `spec-remediator` no puede llamar a Task Decomposer ni Executor; solo trabaja contra Planner/Spec Validator y artefactos SDD.
 - Estos artefactos se crean por proyecto/incremento durante el flujo SDD; no debe existir un task board activo global por defecto.
