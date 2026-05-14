@@ -2,20 +2,20 @@
 
 Repositorio local de referencia para la configuracion de IA usada con OpenCode, LM Studio, agentes especializados, skills SDD y respaldos operativos.
 
-Ultima actualizacion documentada: 2026-05-12.
+Ultima actualizacion documentada: 2026-05-14.
 
 ## Objetivo
 
 Esta carpeta consolida el estado canonico del entorno de IA local:
 
 - OpenCode como orquestador de agentes.
-- LM Studio como proveedor local OpenAI-compatible.
+- Proveedores: `opencode-go` para modelos cloud de alto rendimiento y LM Studio para modelos locales.
 - Modelos locales y modelos cloud distribuidos por criticidad.
 - Skills de arquitectura, SDD, calidad, seguridad, documentacion y Git-Ops.
 - Backups versionados de agentes, skills y configuracion de OpenCode.
 - Politicas operativas para evitar drift entre specs, OpenAPI, migraciones, task boards y codigo.
 
-El entorno esta orientado a trabajo senior con Arquitectura Hexagonal, Spec-Driven Development incremental y automatización de Git-Ops. El sistema ahora incluye validaciones de estado estrictas ("The Three-Point Update") y pre-comprobaciones de archivos para evitar fallos de ejecución.
+El entorno esta orientado a trabajo senior con Arquitectura Hexagonal, Spec-Driven Development incremental y automatización de Git-Ops. El sistema incluye validaciones de estado estrictas ("The Three-Point Update"), pre-comprobaciones de archivos y estándares multi-stack (Java/Spring, Python/FastAPI).
 
 ## Estructura
 
@@ -28,94 +28,83 @@ config-ai/
 |-- agents/
 |   |-- agentes-y-modelos.md
 |   |-- backup-20260511-164320/
-|   |-- backup-20260512-164535/
-|   |-- backup-20260512-164910/
 |   `-- backup-20260512-165346/
 |-- skill/
-|   |-- backup-20260511-130320/
-|   `-- backup-20260512-165623/
-|-- opencode-backup-20260511-130320/
-|   `-- opencode.json
-`-- opencode-backup-20260511-134933.json
+|   |-- backup-20260512-165623/
+|   `-- backup-20260514/  <-- (Nuevo Backup con 29 skills)
+|-- opencode/
+|   `-- opencode.json (Referencia)
+`-- backups/
+    `-- manual-backup-20260513/
 ```
 
 ## Archivos Principales
 
 `resumen-configuracion-ia.txt`
-: Fuente principal de estado operativo. Resume hardware, modelos, agentes, skills, politicas SDD, mantenimiento, flujo incremental y proximos alcances. Incluye las nuevas reglas de "The Three-Point Update" y Pre-flight Checks.
+: Fuente principal de estado operativo. Resume hardware, modelos, agentes, skills (29 activas), politicas SDD, mantenimiento, flujo incremental y convenciones globales (Auditoría, Soft Delete, snake_case).
 
 `agents/agentes-y-modelos.md`
-: Registro canonico de agentes activos, modelo asignado, permisos de edicion y permisos de bash. Refleja la transición al modelo `qwen3.6-35b-a3b`.
+: Registro canonico de agentes activos. Refleja la transición hacia proveedores optimizados (`opencode-go`) y modelos de la familia Qwen 3.6 Plus y DeepSeek V4 Pro.
 
-`deuda-tecnica-n8n.md`
-: Deuda tecnica pendiente para implementar una revision externa de PRs con n8n.
-
-`spect-vaidation.txt`
-: Reporte historico de validacion SDD para `ms-ticket-user`. El nombre conserva el typo historico `spect-vaidation`.
-
-`opencode-backup-*`
-: Respaldos de `opencode.json`.
-
-## Configuracion Activa Externa
-
-Los archivos activos no viven todos dentro de este repositorio. Esta carpeta documenta y respalda la configuracion, pero las rutas efectivas son:
-
-```text
-OpenCode config: /home/cristiansrc/.config/opencode/opencode.json
-OpenCode agents: /home/cristiansrc/.config/opencode/agents/
-OpenCode skills: /home/cristiansrc/.config/opencode/skills/
-OpenCode env: /home/cristiansrc/.config/opencode/.env
-LM Studio defaults: /home/cristiansrc/.lmstudio/.internal/user-concrete-model-default-config/
-```
-
-## Hardware y LM Studio
+## Hardware y Modelos
 
 - GPU: NVIDIA RTX 4080 de 16 GB.
-- Modos operativos: `ai-game-mode` y `ai-work-mode`.
-- OpenCode consume LM Studio mediante API OpenAI-compatible en `http://127.0.0.1:1234/v1`.
+- OpenCode consume modelos mediante el proveedor `opencode-go` (Cloud) y `lmstudio` (Local).
 
-Perfil persistente importante:
+Modelos Cloud Destacados (`opencode-go`):
+- `qwen3.6-plus`: Razonamiento central, planeación y validación final.
+- `deepseek-v4-pro`: Validación de specs y tareas críticas de arquitectura/seguridad.
+- `deepseek-v4-flash`: Ejecución rápida y tareas de remediación.
 
-```text
-Modelo: lmstudio/qwen3.6-35b-a3b
-Context length: 145858
-GPU offload ratio: 1.0 (64/64 capas)
-KV cache: q4_0, Flash attention: true
-Velocidad: ~40 tok/s constantes
-```
+Modelos Locales Destacados (`lmstudio`):
+- `qwen/qwen3.6-35b-a3b`: Backup local de alta capacidad.
 
-## Modelos
+## Skills (29 Skills Instaladas)
 
-Modelo default global de OpenCode:
-`lmstudio/google/gemma-4-e4b`
+Nuestras skills están enlazadas por symlink desde OpenCode hacia `shared-ai-services/skills`.
 
-Modelos locales destacados:
+1. `architecture/hexagonal-architecture` (Actualizada: Dominio puro, Ports & Adapters).
+2. `architecture/openapi-first`
+3. `architecture/spec-driven-development`
+4. `architecture/restful-standard` (Nueva: Pluralización, kebab-case, snake_case).
+5. `orchestration/context-pinning`
+6. `orchestration/context-curation`
+7. `orchestration/model-tier-routing`
+8. `backend/flyway-migrations` (Actualizada: Multi-motor, Repetibles).
+9. `backend/repository-dto-patterns`
+10. `backend/rest-error-response-standards` (Actualizada: Alineación con snake_case).
+11. `backend/postgresql-standard` (Nueva: JSONB, Auditoría, Soft Delete).
+12. `backend/mysql-standard` (Nueva: InnoDB, utf8mb4).
+13. `backend/oracle-standard` (Nueva: Identity, VARCHAR2 CHAR).
+14. `backend/sqlserver-standard` (Nueva: NVARCHAR, PascalCase).
+15. `backend/jpa-stack` (Nueva: Soft Delete nativo, AuditingEntityListener).
+16. `backend/python-stack` (Nueva: uv, ruff, typing).
+17. `backend/fastapi-stack` (Nueva: Pydantic V2, Hexagonal Python).
+18. `security/security-standards`
+19. `security/keycloak-standard` (Nueva: IAM, Authorization Code + PKCE).
+20. `quality/bug-fixing-workflow`
+21. `quality/pre-flight-check`
+22. `quality/refactor-hexagonal-bridge`
+23. `quality/refactor-patterns`
+24. `quality/code-review-checklist`
+25. `quality/testing-strategy`
+26. `documentation/documentation-lifecycle`
+27. `documentation/documentation-standards`
+28. `frontend/frontend-architecture`
+29. `git-ops`
 
-- `lmstudio/qwen3.6-35b-a3b`: usado para arquitectura, planificación, validación, remediación y tareas críticas.
-- `lmstudio/qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2`: usado para ejecución rápida y curación de contexto.
+## Convenciones Globales Obligatorias
 
-## Agentes Activos
+1. **Auditoría y Soft Delete**: Todas las tablas de negocio deben incluir `created_at`, `updated_at` y `deleted` (Boolean). Las eliminaciones físicas están prohibidas por defecto.
+2. **Naming Consistente**: Uso de `snake_case` desde la base de datos hasta el JSON de la API.
+3. **Desacoplamiento**: El Dominio es agnóstico a frameworks y tecnología.
+4. **OpenAPI First**: El contrato es la única fuente de verdad para la interfaz.
 
-| Agente | Modelo | Editar | Bash |
-|---|---|---:|---:|
-| architect-executor | lmstudio/qwen3.6-35b-a3b | allow | allow |
-| context-curator | lmstudio/qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2 | deny | deny |
-| documentation | lmstudio/qwen3.6-35b-a3b | allow | deny |
-| executor | lmstudio/qwen3.5-9b-claude-4.6-opus-reasoning-distilled-v2 | allow | allow |
-| final-validation | lmstudio/qwen3.6-35b-a3b | deny | allow |
-| planner | lmstudio/qwen3.6-35b-a3b | allow | deny |
-| refactor | lmstudio/qwen3.6-35b-a3b | allow | allow |
-| requirements-analyst | lmstudio/qwen3.6-35b-a3b | allow | deny |
-| reviewer | lmstudio/qwen3.6-35b-a3b | deny | allow |
-| security-reviewer | lmstudio/qwen3.6-35b-a3b | deny | allow |
-| spec-remediator | lmstudio/qwen3.6-35b-a3b | allow | deny |
-| spec-validator | lmstudio/qwen3.6-35b-a3b | allow limitado | deny |
-| task-decomposer | lmstudio/qwen3.6-35b-a3b | allow | deny |
-| test-architect | lmstudio/qwen3.6-35b-a3b | allow | allow |
+## Mantenimiento
 
-## Skills
-
-(Mismo listado de 20 skills operativas).
+- Retención: Máximo 25 backups por categoría.
+- Backups: Si se modifican agentes o skills, crear un nuevo backup en `agents/` o `skill/`.
+- Sincronización: Cualquier cambio debe impactar simultáneamente en `resumen-configuracion-ia.txt` y `agentes-y-modelos.md`.
 
 ## Flujo SDD y Robustez
 
