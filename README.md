@@ -39,7 +39,7 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 
 ---
 
-## 📚 Ecosistema de Skills (37 Skills)
+## 📚 Ecosistema de Skills (47 Skills)
 
 Las skills están organizadas por dominios técnicos y arquitectónicos:
 
@@ -51,8 +51,10 @@ Las skills están organizadas por dominios técnicos y arquitectónicos:
 
 ### 💻 Backend Stack
 *   **springboot-stack / java-stack / kotlin-stack**: Estándares para el ecosistema JVM.
-*   **fastapi-stack / python-stack**: Patrones avanzados para Python.
-*   **nodejs-stack**: Arquitectura limpia para entornos Node.
+*   **springboot-java-rest-error-response-standards / springboot-kotlin-rest-error-response-standards**: Contratos de errores REST para Spring Boot.
+*   **fastapi-stack / python-stack / fastapi-rest-error-response-standards**: Patrones avanzados para Python y contratos de errores REST.
+*   **nodejs-stack**: Arquitectura limpia para entornos Node.js con TypeScript.
+*   **openapi-standard / restful-standard**: Convenciones globales de contrato y semántica REST.
 *   **jpa-stack / repository-dto-patterns**: Gestión de persistencia y transferencia de datos.
 
 ### 🗄️ Bases de Datos y Migraciones

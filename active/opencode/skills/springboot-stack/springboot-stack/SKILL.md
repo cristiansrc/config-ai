@@ -20,7 +20,7 @@ description: Convenciones de Spring Boot 2026 (Virtual Threads, Records, Pattern
 1.  **Virtual Threads**: Habilitar `spring.threads.virtual.enabled=true` por defecto en proyectos Java.
 2.  **Constructor Injection**: Usar siempre inyección por constructor sobre `@Autowired` en campos.
 3.  **Observability**: Integración nativa con Micrometer y OpenTelemetry para trazas y métricas.
-4.  **Error Handling**: Usar `@RestControllerAdvice` para centralizar el manejo de excepciones (Alineado con skill `rest-error-response-standards`).
+4.  **Error Handling**: Usar `@RestControllerAdvice` para centralizar el manejo de excepciones, alineado con `springboot-java-rest-error-response-standards` o `springboot-kotlin-rest-error-response-standards` segun el lenguaje activo.
 
 ## Comportamiento Obligatorio
 1.  **Sincronización**: El agente Executor debe asegurar que `docs/api/openapi.yaml` se copie a `src/main/resources/openapi.yaml` si hay cambios.

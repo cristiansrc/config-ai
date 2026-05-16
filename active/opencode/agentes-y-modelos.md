@@ -1,17 +1,20 @@
 # Agentes y Modelos OpenCode
 
-Ultima actualizacion: 2026-05-14
+Ultima actualizacion: 2026-05-16
 
 Fuente activa:
 - Configuracion: `/home/cristiansrc/.config/opencode/opencode.json`
 - Agentes: `/home/cristiansrc/.config/opencode/agents/`
 - Skills: `/home/cristiansrc/.config/opencode/skills/`
-- Backup de agentes: `/home/cristiansrc/Documentos/config-ai/backups/full-backup-20260514-final/agents/`
-- Backup de skills: `/home/cristiansrc/Documentos/config-ai/backups/full-backup-20260514-final/skills/`
+- Backup de agentes: `/home/cristiansrc/Documentos/config-ai/archive/full-backup-20260514-final/agents/`
+- Backup de skills: `/home/cristiansrc/Documentos/config-ai/archive/full-backup-20260514-final/skills/`
 
 Regla de mantenimiento:
 - Cualquier cambio en agentes, modelos, permisos o skills debe actualizar este archivo y `/home/cristiansrc/Documentos/config-ai/resumen-configuracion-ia.txt` en la misma sesion.
 - Idioma obligatorio: Todas las respuestas e interacciones de los agentes con el usuario deben ser en ESPAÑOL.
+- Politica de idioma de agentes: La definicion operativa, responsabilidades, reglas y guias de cada agente deben estar en ESPAÑOL. Se mantienen en INGLES los nombres de agentes/skills, estados canonicos, headings, rutas, comandos, campos de protocolo y tokens exactos como `ready`, `blocked`, `validated-not-executed`, `## Spec Validator Approval` o `Blocked: ...`.
+- Contratos de error por stack: Spring Boot Java usa `springboot-java-rest-error-response-standards`, Spring Boot Kotlin usa `springboot-kotlin-rest-error-response-standards` y FastAPI usa `fastapi-rest-error-response-standards`.
+- Convenciones de stack: `nodejs-stack`, `python-stack`, `fastapi-stack`, `springboot-stack`, `java-stack` y `kotlin-stack` son la fuente de verdad para reglas tecnicas de cada runtime.
 - Cambio operativo vigente: Planner puede crear o actualizar unicamente el `.gitignore` raiz del repositorio activo ademas de specs/OpenAPI, para excluir artefactos no versionables de specs y codigo generado sin ocultar artefactos canonicos.
 - Cambio operativo vigente (temporal): Spec Remediator debe invocar validaciones solo mediante `spec-validator` con `opencode-go/deepseek-v4-pro`; cualquier validacion ejecutada con otro modelo debe bloquearse como `Blocked: wrong validator model`.
 - Estructura de Solution Workspace (OPCIONAL): La pertenencia a un Solution Workspace está condicionada a que la carpeta padre del proyecto se llame exactamente `projects/`.

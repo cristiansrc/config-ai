@@ -5,7 +5,16 @@ description: Ciclo de vida de desarrollo basado en especificaciones (Master Spec
 
 # Spec-Driven Development (SDD) Incremental
 
-Esta skill define el estándar para la creación y evolución de especificaciones técnicas en sistemas existentes.
+Esta skill define el estándar para la creación y evolución de especificaciones técnicas en sistemas existentes. Su objetivo es impedir que Planner, Spec Validator, Task Decomposer o Executor avancen con artefactos ambiguos, contradictorios o no verificados en disco.
+
+## 0. Roles y Ownership
+- `requirements-analyst`: levanta requerimientos funcionales cuando la solicitud aun no está lista para SDD formal. No escribe OpenAPI, migraciones, specs incrementales formales, task boards ni código.
+- `planner`: dueño de specs, contratos OpenAPI, decisiones técnicas, restricciones de arquitectura y shared context durante planificación.
+- `spec-validator`: dueño del veredicto de readiness. Puede actualizar reportes de validación y metadatos de lifecycle/status, pero no debe corregir decisiones técnicas.
+- `spec-remediator`: corrige hallazgos mecánicos o drift con fuente autoritativa inequívoca. No invoca Task Decomposer ni Executor.
+- `task-decomposer`: dueño exclusivo del task board y de la atomización de tareas después de `validated-not-executed`.
+- `executor`: implementa desde task board/spec aprobados; no toma decisiones de arquitectura ni reinterpreta contratos.
+- `final-validation`: valida cumplimiento final contra intención original, specs, contratos, seguridad, tests y documentación.
 
 ## 1. Proyectos Nuevos (Greenfield)
 El agente debe generar una `Master Spec` inicial que cubra el objetivo, contratos, modelo de datos y reglas de negocio globales.
@@ -16,8 +25,10 @@ Para añadir características a un sistema existente:
 2. **Impacto:** Describir qué partes de la `Master Spec` se ven afectadas o extendidas.
 3. **Contrato:** Actualizar el `openapi.yaml` antes de tocar el código.
 4. **Validación:** El `spec-validator` debe asegurar que el incremento no rompa reglas core.
-5. **Contexto Compartido:** Mantener un único archivo activo en `docs/specs/.working/<increment>-sdd-context.md`.
-6. **Task Board:** Crear `docs/specs/tasks/<increment>-task-board.md` solo cuando el incremento esté `validated-not-executed`.
+5. **Contexto Compartido:** Mantener un único archivo activo en `docs/specs/.working/<increment-name>-sdd-context.md`.
+6. **Task Board:** Crear `docs/specs/tasks/<increment-name>-task-board.md` solo cuando el incremento esté `validated-not-executed`.
+
+**Placeholder Guard:** reemplazar siempre `<increment-name>` por el nombre real del incremento (ej. `user-auth`, `invoice-export`). Si el nombre no es claro, preguntar al usuario. Nunca crear archivos con placeholders literales.
 
 ## 3. Modificación de Funcionalidades Existentes
 Cuando se cambia el comportamiento actual:
@@ -30,6 +41,9 @@ Cuando se cambia el comportamiento actual:
 - **Contratos API:** Definición exacta de endpoints (vía OpenAPI).
 - **Modelo de Datos:** Cambios en tablas, índices o entidades (vía Flyway).
 - **Lógica de Dominio:** Cambios en Use Cases y Domain Services.
+- **Integraciones:** Sistemas externos, colas, workflows, retries, timeouts e idempotencia cuando aplique.
+- **Seguridad:** AuthN/AuthZ, permisos, tenant/user boundary, datos sensibles, rate limits y auditoría.
+- **Operación:** Logs, métricas, trazas, health checks, configuración y despliegue local.
 - **Estrategia de Test y Cobertura:** 
     - Definir herramientas (JaCoCo, pytest-cov, etc.).
     - Configurar exclusiones (DTOs, Configs).
@@ -54,11 +68,13 @@ Cuando se cambia el comportamiento actual:
 - Excepción pre-descomposición: un task board bloqueado únicamente por `Awaiting Spec Validator approval` no invalida la spec por sí mismo si todas sus tareas de implementación están `blocked`. Debe tratarse como artefacto pendiente/stale que `task-decomposer` reescribirá o desbloqueará después de `verdict: ready`.
 - Antes del primer `verdict: ready`, el task board no debe ser evidencia obligatoria de readiness de la spec. Si aparece, debe listarse como `Pending execution artifact` o histórico, no como contrato canónico requerido.
 - La spec no puede tener afirmaciones de ciclo de vida contradictorias: si el encabezado dice `planning` o `draft`, ningún footer o resumen puede decir `validated-not-executed`, `Listo para Task Decomposer` o equivalente.
+- Si Planner cambia specs, OpenAPI, migraciones, reglas de transacción, seguridad, integración, task-board prerequisites o runtime config después de un `verdict: ready`, ese ready queda invalidado. El shared context debe registrar `invalidated_by_changes_since` con la razón y volver a `Spec Validator review`.
+- `ready with minor changes` no autoriza descomposición ni ejecución. Solo `verdict: ready` exacto autoriza avanzar.
 
 ## 5.1 Alcance de Búsqueda en Filesystem
 - Nunca buscar artefactos desde la raíz del filesystem `/`.
 - Toda búsqueda debe limitarse al repositorio activo o a rutas canónicas explícitas del shared context.
-- **Jerarquía de Solución**: Si el repositorio actual se encuentra dentro de una carpeta `proyectos/` (Patrón Solution Workspace), el agente DEBE intentar leer la `Master Spec` de solución y el `system-landscape.md` en el nivel superior (ej: `../../docs/architecture/` o `../../docs/specs/`) para asegurar alineación con la macro-arquitectura.
+- **Jerarquía de Solución**: Solo aplica cuando el repositorio actual está dentro de una carpeta llamada exactamente `projects/`. Si el padre no es `projects`, el proyecto es STANDALONE y no debe forzarse documentación enterprise ni Master Spec global.
 - Shared contexts: buscar solo en `<repo>/docs/specs/.working/`.
 - Task boards: buscar solo en `<repo>/docs/specs/tasks/`.
 - OpenAPI: buscar solo en `<repo>/docs/api/`, `<repo>/src/main/resources/` o ruta canónica.
@@ -98,3 +114,18 @@ El shared context debe incluir, como mínimo:
 - `## Next action`
 
 Si falta `## Artifact evidence` o `## Spec Validator Approval`, el incremento no está listo para descomposición ni ejecución.
+
+## 8. Formato Mínimo de Task Board
+El task board debe ser creado o reescrito por `task-decomposer` después de `validated-not-executed` y debe incluir:
+- Ruta absoluta de spec aprobada y shared context usado.
+- Estado superior: `todo`, `in_progress`, `done` o `blocked`.
+- Tareas atómicas con id estable, owner esperado, dependencias, archivos/áreas permitidas, pasos de implementación y verificación.
+- Criterios de bloqueo explícitos: `Blocked:` con decisión faltante, artefacto inconsistente o dependencia externa.
+- Registro de ejecución: changed files, verification result y notas de implementación.
+
+No debe contener tareas genéricas como "implementar backend" o "crear frontend". Si no se puede descomponer en tareas ejecutables sin decisiones de arquitectura, debe quedar `blocked` y volver a Planner/Spec Validator.
+
+## 9. Cierre y Consolidación
+- Al terminar un incremento, actualizar la Master Spec o documentación consolidada solo con decisiones durables.
+- Marcar artefactos temporales obsoletos como `superseded` o archivarlos para evitar que contaminen futuras búsquedas.
+- El estado final debe distinguir entre `implemented`, `closed` y `superseded`; no reutilizar `validated-not-executed` para incrementos ya ejecutados.

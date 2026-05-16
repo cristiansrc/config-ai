@@ -1,5 +1,5 @@
 Resumen de Sesión - Configuración de IA (OpenCode + LM Studio + Agentes)
-Última actualización: 2026-05-14
+Última actualización: 2026-05-16
 
 Objetivo
 Consolidación de un entorno de IA de nivel senior basado en Arquitectura Hexagonal, SDD Incremental y automatización de Git-Ops. El sistema ahora soporta el ciclo de vida completo: creación, incremento, modificación y corrección de bugs.
@@ -24,6 +24,7 @@ Escalamiento de Modelos (Tier Routing)
 - Backup actual de agentes y skills: /home/cristiansrc/Documentos/config-ai/archive/full-backup-20260514-final/.
 - Agentes criticos de validacion: opencode-go/deepseek-v4-pro.
 - La configuración ha migrado hacia el proveedor `opencode-go`, optimizando el uso de modelos Qwen 3.6 Plus para razonamiento central y DeepSeek V4 Pro/Flash para tareas especializadas.
+- Politica de idioma de agentes: definiciones operativas en ESPAÑOL; convenciones tecnicas, nombres de agentes/skills, estados canonicos, headings, rutas, comandos y tokens exactos en INGLES.
 - Perfil persistente LM Studio para Qwen 3.6 35B (Backup local): MoE con 3B activos, GPU offload ratio 26/64 capas, K/V cache Q4_0 activo. Velocidad observada: ~40 tok/s constantes con alta eficiencia energética.
 
 Modelos por Agente
@@ -45,10 +46,11 @@ Modelos por Agente
 | task-decomposer | opencode-go/qwen3.5-plus | allow | deny |
 | test-architect | opencode-go/qwen3.5-plus | allow | allow |
 
-Ecosistema de Skills (37 Skills Instaladas)
+Ecosistema de Skills (47 Skills Activas Resueltas)
 Directorio activo: /home/cristiansrc/.config/opencode/skills
 Origen canonico: /home/cristiansrc/Documentos/Proyectos/shared-ai-services/skills
-Las skills estan enlazadas por symlink desde OpenCode hacia shared-ai-services.
+Las skills canonicas estan enlazadas por symlink desde OpenCode hacia shared-ai-services cuando aplica; algunas skills stack/globales estan instaladas como directorios locales directos en OpenCode.
+Conteo actual: 38 skills canonicas en shared-ai-services + 9 skills stack/globales locales adicionales en OpenCode = 47 skills activas resolviendo `SKILL.md`.
 
 1.  architecture/hexagonal-architecture.
 2.  architecture/openapi-first.
@@ -58,7 +60,7 @@ Las skills estan enlazadas por symlink desde OpenCode hacia shared-ai-services.
 6.  orchestration/model-tier-routing.
 7.  backend/flyway-migrations (Gestion de esquemas multi-motor).
 8.  backend/repository-dto-patterns.
-9.  backend/rest-error-response-standards.
+9.  backend/springboot-java-rest-error-response-standards / backend/springboot-kotlin-rest-error-response-standards / backend/fastapi-rest-error-response-standards.
 10. quality/bug-fixing-workflow (Protocolo de Reproduccion/Fix).
 11. quality/pre-flight-check (Validacion real con Tests/Docker).
 12. quality/refactor-hexagonal-bridge (Migracion de legado).
@@ -87,6 +89,18 @@ Las skills estan enlazadas por symlink desde OpenCode hacia shared-ai-services.
 35. backend/rabbitmq-standard.
 36. backend/kafka-standard.
 37. backend/amazon-sqs-standard.
+38. backend/springboot-stack.
+
+Skills stack/globales locales adicionales activas en OpenCode:
+- angular-stack.
+- docker-standard.
+- java-stack.
+- kotlin-stack.
+- n8n-stack.
+- nodejs-stack.
+- observability-standard.
+- openapi-standard.
+- react-stack.
 
 Convenciones canonicas de skills
 - Master Spec consolidada: docs/specs/master_spec.md.
@@ -146,12 +160,12 @@ Pruebas y Cobertura Global
 - OpenAPI y spec deben usar el mismo schema de errores REST. Para Spring Boot, la estructura estándar es `timestamp`, `status`, `error`, `code`, `message`, `path`, `trace_id` y `details`.
 - Después de compaction o sesión resumida, Planner, Spec Validator, Task Decomposer y Executor deben rehidratar contexto desde disco: shared context, spec, OpenAPI, migraciones/config, task board y último reporte de validación. El resumen compacto del chat solo es una pista.
 - Si un reporte viejo o resumen contradice archivos actuales, se marca como `superseded` y se usan los archivos actuales.
-- Nuevo agente `spec-remediator`: usa qwen3.6-35b-a3b para corregir hallazgos de Spec Validator uno por uno. Planner sigue siendo dueño de specs, arquitectura, alcance y contratos. Spec Remediator solo corrige hallazgos mecánicos o drift con fuente autoritativa inequívoca; decisiones de diseño se enrutan al Planner/User.
-- Spec Remediator debe solicitar validaciones exclusivamente al agente `spec-validator` configurado con `lmstudio/qwen/qwen3.6-35b-a3b`. Si la validacion se ejecuta con otro modelo, debe detenerse con `Blocked: wrong validator model` y no usar ese resultado como aprobacion.
-- Spec Remediator primero solicita validación completa, clasifica hallazgos (`mechanical`, `contract-drift`, `design-decision`, `migration-risk`, `validator/process-bug`, `user-decision`), toma el primer hallazgo seguro, aplica una corrección mínima, pide validación solo de ese hallazgo y continúa. Máximo 4 intentos por hallazgo; si no puede resolverlo o reaparece un hallazgo ya resuelto, detiene el flujo y escribe reporte en `/home/cristiansrc/Documentos/config-ai/logs/bugs/`.
+- Nuevo agente `spec-remediator`: usa opencode-go/deepseek-v4-flash para corregir hallazgos de Spec Validator uno por uno. Planner sigue siendo dueño de specs, arquitectura, alcance y contratos. Spec Remediator solo corrige hallazgos mecánicos o drift con fuente autoritativa inequívoca; decisiones de diseño se enrutan al Planner/User.
+- Spec Remediator debe solicitar validaciones exclusivamente al agente `spec-validator` configurado con `opencode-go/deepseek-v4-pro`. Si la validacion se ejecuta con otro modelo, debe detenerse con `Blocked: wrong validator model` y no usar ese resultado como aprobacion.
+- Spec Remediator primero solicita validación completa, clasifica hallazgos (`mechanical`, `contract-drift`, `design-decision`, `migration-risk`, `validator/process-bug`, `user-decision`), toma el primer hallazgo seguro, aplica una corrección mínima, pide validación solo de ese hallazgo y continúa. Máximo 4 intentos por hallazgo; si no puede resolverlo o reaparece un hallazgo ya resuelto, detiene el flujo y escribe reporte en `<active-repo>/docs/specs/.working/<increment-name>-remediator-bug-report.md`.
 - `spec-remediator` no puede llamar a Task Decomposer ni Executor; solo trabaja contra Planner/Spec Validator y artefactos SDD.
 - Estos artefactos se crean por proyecto/incremento durante el flujo SDD; no debe existir un task board activo global por defecto.
-- Nuevo agente `requirements-analyst`: usa lmstudio/qwen/qwen3.6-35b-a3b antes de Planner para levantar requerimientos cuando la solicitud aun no esta lista para SDD formal.
+- Nuevo agente `requirements-analyst`: usa opencode-go/qwen3.6-plus antes de Planner para levantar requerimientos cuando la solicitud aun no esta lista para SDD formal.
 - Entregable de requirements-analyst: `docs/specs/requirements/<increment-name>-requirements-brief.md` o, si el proyecto usa contexto temporal, `docs/specs/.working/<increment-name>-requirements-brief.md`.
 - **Placeholder Guard**: Los agentes deben reemplazar `<increment-name>` con el nombre real de la funcionalidad (ej. `user-auth`) y preguntar al usuario si no lo conocen. Queda prohibido el uso literal de marcadores de posición en nombres de archivos.
 - El requirements brief debe incluir estado `requirements-discovery`, objetivo, contexto, actores, roles/permisos, alcance, no objetivos, flujos, entidades funcionales, integraciones, seguridad, restricciones operativas, edge cases, criterios de aceptacion, preguntas abiertas y handoff para Planner.

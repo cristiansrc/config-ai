@@ -25,7 +25,7 @@ Guía para la implementación de un Gateway robusto, seguro y escalable como pun
 - **Timeout**: Definir tiempos de espera (`connect-timeout`, `read-timeout`) por ruta o globales para evitar bloqueos por servicios lentos.
 
 ## Observabilidad y Trazabilidad
-- **Correlation ID**: Implementar un filtro global que asegure la presencia de un `X-Trace-Id` (o `trace_id`) en cada petición y respuesta (alineado con `rest-error-response-standards`).
+- **Correlation ID**: Implementar un filtro global que asegure la presencia de un `X-Trace-Id` (o `trace_id`) en cada peticion y respuesta, alineado con la skill de error response del stack activo.
 - **Logs de Acceso**: Configurar logs detallados que incluyan ruta de origen, servicio de destino, status code y tiempo de respuesta.
 - **Metrics**: Exponer métricas a través de Actuator para monitoreo con Prometheus/Grafana.
 
