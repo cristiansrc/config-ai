@@ -1,106 +1,88 @@
-# config-ai
+# AI Configuration Ecosystem (config-ai)
 
-Repositorio local de referencia para la configuración de IA usada con OpenCode, LM Studio, agentes especializados, skills SDD y respaldos operativos.
-
-Última actualización documentada: 2026-05-14.
-
-## Objetivo
-
-Esta carpeta consolida el estado canónico del entorno de IA local:
-
-- **OpenCode** como orquestador de agentes senior.
-- **Jerarquía Arquitectónica**: Niveles Enterprise (Macro), Solution (Meso) y Project (Micro).
-- **Solution Workspace**: Gestión multi-repo bajo un contexto global.
-- **SDD Incremental**: Ciclo de vida basado en especificaciones y validación estricta.
-- **Ecosistema Senior**: 34 habilidades alineadas con estándares de industria 2026.
-
-## Estructura de Respaldo
-
-```text
-config-ai/
-|-- README.md
-|-- resumen-configuracion-ia.txt
-|-- agents/
-|   `-- agentes-y-modelos.md
-|-- backups/
-|   `-- full-backup-20260514-final/ <-- (Estado actual consolidado)
-`-- opencode/
-    `-- opencode.json (Referencia operativa)
-```
-
-## Agentes y Responsabilidades
-
-| Agente | Nivel | Misión Operativa | Skill de Referencia |
-|---|---|---|---|
-| **enterprise-architect** | Macro | Diseña el System Landscape y fronteras DDD. | `enterprise-architecture-standard` |
-| **solution-architect** | Meso | Selecciona patrones GoF y estructura local. | `design-patterns-standard` |
-| **planner** | Micro | Planifica incrementos SDD y diseña contratos API. | `spec-driven-development` |
-| **requirements-analyst** | Pre-SDD | Levanta requerimientos y reduce ambigüedad. | `requirements-gathering` |
-| **spec-validator** | Gate | Valida consistencia y otorga veredicto 'ready'. | `spec-driven-development` |
-| **spec-remediator** | Fix | Corrige hallazgos de validación iterativamente. | `spec-remediation` |
-| **task-decomposer** | Prep | Atomiza especificaciones en tareas atómicas. | `spec-driven-development` |
-| **executor** | Dev | Implementa código verificado y pre-flight checks. | `springboot-stack` / `fastapi-stack` |
-| **reviewer** | Audit | Detecta bugs, drift y deuda técnica. | `code-review-checklist` |
-| **security-reviewer** | Cyber | Valida postura de seguridad y cumplimiento. | `security-standards` |
-| **final-validation** | QA | Garantiza calidad final y cobertura del 85%. | `testing-strategy` |
-| **devops-architect** | Ops | Gestiona IaC, Docker y CI/CD. | `docker-standard` |
-| **context-curator** | Info | Optimiza la ventana de contexto y reduce ruido. | `context-curation` |
-
-## Ecosistema de Skills (34 Skills Activas)
-
-Nuestras skills definen el "Cómo" de cada tarea técnica:
-
-### 🏗️ Arquitectura y Diseño
-1. `hexagonal-architecture`: Puertos y Adaptadores (Clean Architecture).
-2. `openapi-first`: Diseño basado en contratos (Single Source of Truth).
-3. `spec-driven-development`: Ciclo de vida incremental y Gates de validación.
-4. `restful-standard`: Estándares REST (snake_case, pluralización, kebab-case).
-5. `enterprise-architecture-standard`: Visión Macro, Modelo C4 y Solution Workspace.
-6. `design-patterns-standard`: Patrones GoF aplicados a stacks modernos.
-7. `requirements-gathering`: Estructura de Requirements Brief y descubrimiento.
-8. `spec-remediation`: Proceso de corrección granular de hallazgos.
-
-### 🔙 Stacks y Frameworks
-9. `springboot-stack`: Convenciones Spring Boot 2026 y Virtual Threads.
-10. `fastapi-stack`: Alto rendimiento con Python y Pydantic V2.
-11. `jpa-stack`: Persistencia senior, Auditoría y Soft Delete nativo.
-12. `python-stack`: Estándares de lenguaje (uv, ruff, mypy).
-13. `nodejs-stack`: Clean Architecture para Node.js y Zod.
-14. `spring-cloud-gateway`: Resiliencia, Token Relay y seguridad de borde.
-15. `react-stack`: Convenciones React 19 y Feature Sliced Design.
-16. `angular-stack`: Standalone Components y Signals.
-
-### 🗄️ Gestión de Datos
-17. `flyway-migrations`: Evolución de esquemas multi-motor (Postgres, MySQL, Oracle, SQL).
-18. `postgresql-standard`: Optimización, JSONB y Triggers de Auditoría.
-19. `mysql-standard`: InnoDB y soporte Unicode completo.
-20. `oracle-standard`: Convenciones Identity y VARCHAR2 CHAR.
-21. `sqlserver-standard`: PascalCase y tipos de datos T-SQL senior.
-22. `repository-dto-patterns`: Desacoplamiento de persistencia y transporte.
-
-### ✅ Calidad, Seguridad y Ops
-23. `testing-strategy`: Umbral del 85% de cobertura mandatorio.
-24. `bug-fixing-workflow`: Protocolo de reproducción empírica.
-25. `pre-flight-check`: Validación técnica previa a commits.
-26. `security-standards`: OWASP, JWT y protección de secretos.
-27. `keycloak-standard`: Gestión de identidad y flujos OIDC/PKCE.
-28. `git-ops`: Automatización de ramas y commits semánticos.
-29. `observability-standard`: Logs JSON, OpenTelemetry y trazas.
-30. `docker-standard`: Empaquetamiento seguro y multi-stage.
-
-### 📖 Documentación y Orquestación
-31. `documentation-lifecycle`: Consolidación automática en Master Spec.
-32. `documentation-standards`: Estándares de README y diagramas.
-33. `context-pinning`: Protección de archivos críticos y Master Spec.
-34. `context-curation`: Estrategias de filtrado de información.
-
-## Políticas Globales Mandatorias
-
-1. **Auditoría Permanente**: Campos `created_at`, `updated_at` y `deleted` en toda tabla de negocio.
-2. **Borrado Lógico**: Prohibida la eliminación física (Soft Delete gestionado por `jpa-stack`/FastAPI).
-3. **Calidad Bloqueante**: Mínimo 85% de cobertura en archivos testables.
-4. **Naming Universal**: `snake_case` en BBDD, Atributos JSON y variables.
-5. **Idioma**: Interacción con el usuario exclusivamente en **Español**.
+Este repositorio centraliza la inteligencia, estándares y configuraciones de los agentes de IA para un entorno de desarrollo senior basado en Arquitectura Hexagonal y SDD Incremental.
 
 ---
-*Fábrica de Software Senior - Configuración 2026*
+
+## 📁 Estructura del Proyecto
+
+El ecosistema está organizado para garantizar limpieza, trazabilidad y seguridad:
+
+*   **`active/`**: Configuraciones en uso real por los agentes.
+    *   `opencode/`: Agentes y Skills activos para OpenCode.
+    *   `gemini/`: Agentes y Skills activos para Gemini CLI.
+*   **`logs/`**: Historial operativo y técnico.
+    *   `bugs/`: Reportes de errores generados por `spec-remediator` o fallos de validación.
+    *   `deuda-tecnica-n8n.md`: Seguimiento de mejoras pendientes.
+*   **`archive/`**: Almacén histórico y seguridad.
+    *   `snapshots/`: Backups comprimidos (`.tar.gz`) (Últimos 25 snapshots).
+    *   `agents/` / `skills/`: Versiones previas de componentes específicos.
+
+---
+
+## 🤖 Definición de Agentes y Responsabilidades
+
+| Agente | Responsabilidad Principal | Modelo |
+|---|---|---|
+| **requirements-analyst** | Levanta requerimientos funcionales (`requirements-brief.md`). | qwen3.6-plus |
+| **planner** | Arquitectura, diseño técnico y contratos OpenAPI (SDD). | qwen3.6-plus |
+| **spec-validator** | Validación estricta de consistencia y veredictos de 'ready'. | deepseek-v4-pro |
+| **spec-remediator** | Corrección iterativa de hallazgos mecánicos o de contrato. | deepseek-v4-flash |
+| **task-decomposer** | Atomización de tareas para el ejecutor. | qwen3.5-plus |
+| **executor** | Implementación técnica y verificación pre-vuelo. | deepseek-v4-flash |
+| **final-validation** | Garantía de calidad final y cumplimiento de cobertura mínima. | qwen3.6-plus |
+| **solution-architect** | Selección de patrones de diseño GoF y estructuras de alto nivel. | qwen3.6-plus |
+| **enterprise-architect** | Visión macro, microservicios y System Landscape. | qwen3.6-plus |
+| **reviewer** | Revisión de código y lógica. | qwen3.5-plus |
+| **security-reviewer** | Auditoría de seguridad y estándares OWASP. | deepseek-v4-pro |
+| **test-architect** | Diseño de estrategias de prueba y automatización. | qwen3.5-plus |
+
+---
+
+## 📚 Ecosistema de Skills (34 Skills)
+
+Las skills están organizadas por dominios técnicos y arquitectónicos:
+
+### 🏗️ Arquitectura y Metodología
+*   **hexagonal-architecture**: Implementación de Puertos y Adaptadores.
+*   **spec-driven-development**: Ciclo de vida Master Spec e Incrementos.
+*   **openapi-first**: Diseño de APIs basado en contratos.
+*   **requirements-gathering**: Protocolo de levantamiento de necesidades.
+
+### 💻 Backend Stack
+*   **springboot-stack / java-stack / kotlin-stack**: Estándares para el ecosistema JVM.
+*   **fastapi-stack / python-stack**: Patrones avanzados para Python.
+*   **nodejs-stack**: Arquitectura limpia para entornos Node.
+*   **jpa-stack / repository-dto-patterns**: Gestión de persistencia y transferencia de datos.
+
+### 🗄️ Bases de Datos y Migraciones
+*   **flyway-migrations**: Gestión de esquemas multi-motor.
+*   **postgresql / mysql / oracle / sqlserver-standard**: Configuraciones específicas por motor.
+
+### 🎨 Frontend
+*   **react-stack / angular-stack**: Convenciones de FSD, React 19, Angular Signals y Standalone.
+*   **frontend-architecture**: Arquitectura limpia para SPAs.
+
+### 🔐 Seguridad y Calidad
+*   **security-standards / keycloak-standard**: JWT, OAuth2, RBAC y protección de identidad.
+*   **testing-strategy**: Estrategia Unit, Integration (Testcontainers) y E2E.
+*   **pre-flight-check**: Validación técnica obligatoria antes de commits.
+*   **bug-fixing-workflow**: Protocolo riguroso de reproducción y fix.
+
+### 🔄 Orquestación y DevOps
+*   **git-ops**: Automatización de ramas, commits semánticos y PRs.
+*   **model-tier-routing**: Escalamiento de modelos según complejidad.
+*   **context-pinning / context-curation**: Gestión de contexto y protección de Master Spec.
+*   **n8n-stack**: Estrategia de automatización de workflows.
+
+---
+
+## 🛠️ Reglas Operativas Críticas
+
+1.  **Aislamiento de Proyecto**: Los agentes tienen PROHIBIDO escribir o buscar fuera del repositorio activo (`<active-repo>`).
+2.  **Placeholder Guard**: El marcador `<increment-name>` debe resolverse dinámicamente o preguntar al usuario; nunca usarse literal.
+3.  **Cobertura Mínima**: 85% obligatorio en archivos testables.
+4.  **Flujo SDD**: `Requirements Analyst` ➔ `Planner` ➔ `Spec Validator` ➔ `Spec Remediator` ➔ `Task Decomposer` ➔ `Executor` ➔ `Final Validation`.
+
+---
+*Última actualización de estructura y roles: 2026-05-16*
