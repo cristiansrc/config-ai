@@ -62,12 +62,14 @@ Se revisaron y mejoraron 23 skills aplicando consistentemente:
 
 ## Estado actual
 - **Todas las 47 skills revisadas** y marcadas en el backlog.
-- El backlog esta completo en todas las prioridades (P0-P6).
+- **Agente duplicado `spec-validation` eliminado** (era alias obsoleto redirigido a `spec-validator`).
+- **18 agentes simplificados**: eliminadas reglas tecnicas duplicadas en skills, anadida seccion "Skills de Referencia", unificado idioma.
+- Principio aplicado: Agentes definen QUE y RESPONSABILIDAD; Skills definen COMO.
 - Snapshot sincronizado con `sync-ai-configs.sh`.
 
 ## Falta por hacer
-- Validacion cruzada final entre skills para verificar consistencia de terminologia y referencias.
-- Probar `requirements-analyst` con una funcionalidad real y validar que el `requirements-brief.md` reduce ambiguedad para Planner.
+- Validacion cruzada final entre agentes y skills para verificar consistencia de terminologia y referencias.
+- Probar `requirements-analyst` con una funcionalidad real.
 - Probar el Bug Fixing Workflow con un fallo real/simulado.
 
 ## Referencias utiles
