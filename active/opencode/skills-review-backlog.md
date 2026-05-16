@@ -46,11 +46,11 @@ Objetivo: revisar las 47 skills activas de OpenCode una por una, mejorar mejores
 - [x] python-stack
 - [x] fastapi-stack
 - [x] nodejs-stack
-- [ ] spring-cloud-gateway
+- [x] spring-cloud-gateway
 
 ## Prioridad P3 - Datos, Mensajeria e Integraciones
 
-- [ ] flyway-migrations
+- [x] flyway-migrations
 - [ ] postgresql-standard
 - [ ] mysql-standard
 - [ ] oracle-standard
