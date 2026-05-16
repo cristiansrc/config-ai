@@ -45,7 +45,7 @@ Modelos por Agente
 | task-decomposer | opencode-go/qwen3.5-plus | allow | deny |
 | test-architect | opencode-go/qwen3.5-plus | allow | allow |
 
-Ecosistema de Skills (34 Skills Instaladas)
+Ecosistema de Skills (37 Skills Instaladas)
 Directorio activo: /home/cristiansrc/.config/opencode/skills
 Origen canonico: /home/cristiansrc/Documentos/Proyectos/shared-ai-services/skills
 Las skills estan enlazadas por symlink desde OpenCode hacia shared-ai-services.
@@ -84,6 +84,9 @@ Las skills estan enlazadas por symlink desde OpenCode hacia shared-ai-services.
 32. architecture/spec-remediation.
 33. architecture/design-patterns-standard.
 34. architecture/enterprise-architecture-standard.
+35. backend/rabbitmq-standard.
+36. backend/kafka-standard.
+37. backend/amazon-sqs-standard.
 
 Convenciones canonicas de skills
 - Master Spec consolidada: docs/specs/master_spec.md.

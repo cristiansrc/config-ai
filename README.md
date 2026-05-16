@@ -39,7 +39,7 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 
 ---
 
-## 📚 Ecosistema de Skills (34 Skills)
+## 📚 Ecosistema de Skills (37 Skills)
 
 Las skills están organizadas por dominios técnicos y arquitectónicos:
 
