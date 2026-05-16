@@ -105,6 +105,13 @@ Optimización del Proceso SDD (Fuente: skill/spec-driven-development)
 - Cada ruta en `Canonical artifacts` debe existir realmente; el agente debe leer archivos o listar directorios antes de marcar consistencia.
 - El task board solo puede usar estados `todo`, `in_progress`, `done` o `blocked`; si hay `Blocker:` o estado superior `blocked`, no pueden quedar tareas de implementación ejecutables en `todo`.
 
+Estructura de Solution Workspace (Jerarquía 'projects/' - OPCIONAL)
+- Condicionalidad: Solo se activa la visión global si el proyecto reside en una subcarpeta llamada `projects/`. Si no, es un proyecto STANDALONE (sin docs enterprise).
+- Git-Ops Global: El `enterprise-architect` ignora `projects/` en el `.gitignore` raíz para evitar versionar subproyectos en el repo de solución.
+- Creación On-Demand: La carpeta `projects/` se crea automáticamente al iniciar el trabajo en un entorno de solución.
+- Frontera Técnica: Se prohíbe el uso de 'proyectos' (español) en lógica de agentes; solo se reconoce `projects/`.
+- Estándar de Gestión de Paquetes: Prohibición total de `npm`. Uso obligatorio de `pnpm` en todos los proyectos JavaScript/TypeScript (Node, React, Angular) por razones de seguridad y rendimiento. Se deben ignorar/eliminar archivos `package-lock.json` en favor de `pnpm-lock.yaml`.
+
 Pruebas y Cobertura Global
 - **Mínimo Aceptable**: 85% por archivo testable.
 - **Ideal**: 100%.
@@ -136,7 +143,8 @@ Pruebas y Cobertura Global
 - `spec-remediator` no puede llamar a Task Decomposer ni Executor; solo trabaja contra Planner/Spec Validator y artefactos SDD.
 - Estos artefactos se crean por proyecto/incremento durante el flujo SDD; no debe existir un task board activo global por defecto.
 - Nuevo agente `requirements-analyst`: usa lmstudio/qwen/qwen3.6-35b-a3b antes de Planner para levantar requerimientos cuando la solicitud aun no esta lista para SDD formal.
-- Entregable de requirements-analyst: `docs/specs/requirements/<increment-or-feature>-requirements-brief.md` o, si el proyecto usa contexto temporal, `docs/specs/.working/<increment-or-feature>-requirements-brief.md`.
+- Entregable de requirements-analyst: `docs/specs/requirements/<increment-name>-requirements-brief.md` o, si el proyecto usa contexto temporal, `docs/specs/.working/<increment-name>-requirements-brief.md`.
+- **Placeholder Guard**: Los agentes deben reemplazar `<increment-name>` con el nombre real de la funcionalidad (ej. `user-auth`) y preguntar al usuario si no lo conocen. Queda prohibido el uso literal de marcadores de posición en nombres de archivos.
 - El requirements brief debe incluir estado `requirements-discovery`, objetivo, contexto, actores, roles/permisos, alcance, no objetivos, flujos, entidades funcionales, integraciones, seguridad, restricciones operativas, edge cases, criterios de aceptacion, preguntas abiertas y handoff para Planner.
 - `requirements-analyst` no debe escribir OpenAPI, migraciones, task boards, specs incrementales formales ni codigo. Tampoco debe tomar decisiones tecnicas profundas; debe preparar informacion y marcar decisiones pendientes para Planner/User.
 
