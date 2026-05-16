@@ -51,36 +51,36 @@ Objetivo: revisar las 47 skills activas de OpenCode una por una, mejorar mejores
 ## Prioridad P3 - Datos, Mensajeria e Integraciones
 
 - [x] flyway-migrations
-- [ ] postgresql-standard
-- [ ] mysql-standard
-- [ ] oracle-standard
-- [ ] sqlserver-standard
-- [ ] rabbitmq-standard
-- [ ] kafka-standard
-- [ ] amazon-sqs-standard
-- [ ] n8n-stack
+- [x] postgresql-standard
+- [x] mysql-standard
+- [x] oracle-standard
+- [x] sqlserver-standard
+- [x] rabbitmq-standard
+- [x] kafka-standard
+- [x] amazon-sqs-standard
+- [x] n8n-stack
 
 ## Prioridad P4 - Frontend
 
-- [ ] frontend-architecture
-- [ ] react-stack
-- [ ] angular-stack
+- [x] frontend-architecture
+- [x] react-stack
+- [x] angular-stack
 
 ## Prioridad P5 - Operacion, Seguridad y Documentacion
 
-- [ ] security-standards
-- [ ] keycloak-standard
-- [ ] docker-standard
-- [ ] observability-standard
-- [ ] git-ops
-- [ ] documentation-standards
-- [ ] documentation-lifecycle
+- [x] security-standards
+- [x] keycloak-standard
+- [x] docker-standard
+- [x] observability-standard
+- [x] git-ops
+- [x] documentation-standards
+- [x] documentation-lifecycle
 
 ## Prioridad P6 - Orquestacion
 
-- [ ] context-curation
-- [ ] context-pinning
-- [ ] model-tier-routing
+- [x] context-curation
+- [x] context-pinning
+- [x] model-tier-routing
 
 ## Proceso Por Skill
 
@@ -93,4 +93,4 @@ Objetivo: revisar las 47 skills activas de OpenCode una por una, mejorar mejores
 
 ## Siguiente Sugerencia
 
-Continuar con `spring-cloud-gateway`, porque queda como el siguiente stack backend pendiente despues de cerrar `nodejs-stack`.
+Todas las skills (47) han sido revisadas. Próximo paso: validación cruzada final y sincronización con `sync-ai-configs.sh`.
