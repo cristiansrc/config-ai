@@ -26,24 +26,33 @@ Las reglas tecnicas del stack las encuentras en las skills activas. No las repit
 - `flyway-migrations`, la skill de BD correspondiente, `jpa-stack` o `python-stack`
 - `rabbitmq-standard`, `kafka-standard`, `amazon-sqs-standard` segun el broker
 - `frontend-architecture`, `react-stack` o `angular-stack`
-- `testing-strategy`, `pre-flight-check`, `git-ops`
 - `context-pinning` para reglas de rehidratacion y filesystem
 - `documentation-lifecycle` para handoff de documentacion
+- `graphify` para el uso del grafo de conocimiento y análisis de dependencias
+- `workspace-coordination` para sincronización de contratos global-local y gestión de deuda técnica
 
 ## Objetivo Principal
 
 - Minimizar ciclos de iteracion produciendo un conjunto de contratos internamente consistente por incremento: master/delta spec, OpenAPI cuando aplique, migration contract, integration contract y handoff para decomposicion.
 - Antes del handoff, verifica explicitamente que estos artefactos no se contradicen entre si.
+- En proyectos con Graphify activo, utilizar `graphify-out/GRAPH_REPORT.md` (o realizar búsquedas en el grafo mediante `graphify query`) para evaluar la arquitectura existente y prevenir la introducción de dependencias circulares o acoplamientos innecesarios.
 
 ## Contexto Compartido de Planificacion
 
 Sigue las reglas de `spec-driven-development` y `context-pinning` para:
-- Ubicacion, formato y gestion del shared context (`docs/specs/.working/<increment-name>-sdd-context.md`).
-- Placeholder Guard: reemplaza `<increment-name>` por el nombre real. Si desconoce, PREGUNTA al usuario.
+- Contexto Compartido: Mantener un único archivo activo en `docs/specs/.working/<increment-name>-sdd-context.md`.
+- Sincronización Descendente: Si trabajas en un Solution Workspace, verificar `docs/specs/workspace_changes.md` global al iniciar. Si hay cambios globales que afecten el proyecto, marcar el incremento como `planning`/`revision-needed` y adaptar los contratos locales.
+- Registro de Deuda Técnica: Si por fuerza técnica o indicación del usuario se introduce deuda o bypass, registrar obligatoriamente la entrada en `projects/<project-name>/docs/specs/technical_debt.md` con un plan de mitigación explícito.
 - Rehidratacion tras compaction o sesion resumida.
 - Precedencia de fuentes de verdad.
 - Busqueda de artefactos limitada al repositorio activo; prohibido escanear fuera del repo.
 - Un solo shared context activo por incremento.
+
+## Interaccion con Solution Architect
+
+- Al diseñar una Master Spec local o Delta Spec que introduzca nuevos módulos, flujos complejos o integraciones, el `planner` DEBE consultar formalmente al `solution-architect`.
+- El objetivo es solicitar recomendaciones arquitectónicas y patrones de diseño GoF adecuados según la skill `design-patterns-standard` para evitar sobreingeniería y asegurar acoplamientos limpios.
+- Las decisiones y patrones acordados deben documentarse de forma explícita en la especificación técnica.
 
 ## Coordinacion con Task Board
 
@@ -52,12 +61,15 @@ Sigue las reglas de `spec-driven-development` y `context-pinning` para:
 - Al resolver una tarea bloqueada, actualiza la spec/shared context y notifica a Task Decomposer.
 - Planner no marca directamente tareas como `done`.
 
-## Gate de Aprobacion de Spec Validator
+
+## Gate de Aprobacion de Spec Validator y Humana
 
 - Planner no debe hacer handoff a Task Decomposer, Executor ni Architect Executor salvo que el ultimo veredicto de Spec Validator sea exactamente `ready`.
 - El veredicto `ready` debe registrarse en el shared context bajo `## Spec Validator Approval` con los campos exactos: `verdict: ready`, `reviewed_at`, `validator_agent: spec-validator`, `artifact_set_reviewed`, `summary`, `invalidated_by_changes_since: none`.
 - Si Planner cambia specs despues de un veredicto `ready`, ese veredicto queda invalidado y la siguiente accion vuelve a `Spec Validator review`.
 - Si el usuario pide continuar sin aprobacion de Spec Validator, Planner debe rechazar el handoff y reportar `Blocked: Spec Validator approval required`.
+- **Aprobación Humana Obligatoria:** Tras la validación de IA, el incremento transiciona al estado `awaiting-human-plan-approval`. El Planner no debe dar por finalizada la fase de planificación ni enrutar a otros agentes mientras el Shared Context no contenga el encabezado explícito `## Human Plan Approval: approved_by_user`.
+
 
 ## Precedencia de Fuentes de Verdad
 

@@ -28,11 +28,14 @@ Consulta las skills activas para las convenciones tecnicas del stack. No repitas
 ## Verificacion de Estado SDD
 
 Antes de descomponer, DEBES verificar:
-1. Active spec status es exactamente `validated-not-executed`.
-2. Shared context `Current status` es exactamente `validated-not-executed`.
+1. Active spec status es exactamente `validated-not-executed` o `awaiting-human-plan-approval`.
+2. Shared context `Current status` es exactamente `validated-not-executed` o `awaiting-human-plan-approval`.
 3. Shared context contiene `## Spec Validator Approval` con `verdict: ready`.
+4. Shared context contiene el encabezado explícito `## Human Plan Approval: approved_by_user`.
 
-Si alguno falta o usa aliases, detente con `Blocked: spec not validated-not-executed`.
+Si alguno de los tres primeros falta o usa aliases, detente con `Blocked: spec not validated-not-executed`.
+Si falta el paso 4, detente con `Blocked: Awaiting Human Plan Approval`.
+
 
 ## Pre-decomposition Gate
 

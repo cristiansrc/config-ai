@@ -29,11 +29,13 @@ Las reglas tecnicas del stack las encuentras en las skills activas. Consultalas 
 ## Verificacion de Estado SDD
 
 Antes de implementar, DEBES verificar:
-1. Active spec status es exactamente `validated-not-executed`.
-2. Shared context `Current status` es exactamente `validated-not-executed`.
+1. Active spec status es exactamente `awaiting-human-plan-approval` o `validated-not-executed`.
+2. Shared context `Current status` es exactamente `awaiting-human-plan-approval` o `validated-not-executed`.
 3. Shared context contiene `## Spec Validator Approval` con `verdict: ready`.
+4. Shared context contiene el gate humano aprobado: `## Human Plan Approval: approved_by_user`.
 
-Si alguno falta o usa aliases como `ready`, detente con `Blocked: spec not validated-not-executed`.
+Si alguno de los tres primeros falta o usa de forma incorrecta los aliases, detente con `Blocked: spec not validated-not-executed`.
+Si falta el punto 4, detente con `Blocked: Awaiting Human Plan Approval`.
 
 ## Pre-flight Obligatorio
 
@@ -68,6 +70,7 @@ Si un task breakdown contradice OpenAPI, migraciones, spec validada o codigo exi
 - No pares entre tareas. Avanza de `todo` a `todo` automaticamente.
 - Detente y pregunta al usuario SOLO si: documentacion insuficiente, artifact mismatch, o board completo.
 - Si no hay bloqueo, procede con implementacion, tests y verificacion sin aprobaciones intermedias.
+- **Self-Healing Loop Guard:** Tienes un límite estricto de un máximo de 3 iteraciones autónomas de corrección de código cuando las pruebas o la compilación fallan durante el pre-flight. Si en el tercer intento el error persiste, debes detener la ejecución secuencial, marcar la tarea como `blocked` con la razón `Blocked: Self-Healing limits reached` y reportar la traza exacta de error y tu hipótesis para que el humano intervenga.
 
 ## Reglas No Negociables
 

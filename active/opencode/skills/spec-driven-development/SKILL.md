@@ -27,6 +27,7 @@ Para añadir características a un sistema existente:
 4. **Validación:** El `spec-validator` debe asegurar que el incremento no rompa reglas core.
 5. **Contexto Compartido:** Mantener un único archivo activo en `docs/specs/.working/<increment-name>-sdd-context.md`.
 6. **Task Board:** Crear `docs/specs/tasks/<increment-name>-task-board.md` solo cuando el incremento esté `validated-not-executed`.
+7. **Grafo de Dependencias:** Si Graphify está configurado, usar `graphify-out/GRAPH_REPORT.md` para mapear dependencias y prever impactos en la estructura de la solución.
 
 **Placeholder Guard:** reemplazar siempre `<increment-name>` por el nombre real del incremento (ej. `user-auth`, `invoice-export`). Si el nombre no es claro, preguntar al usuario. Nunca crear archivos con placeholders literales.
 
@@ -56,6 +57,11 @@ Cuando se cambia el comportamiento actual:
 - Solo se permite descomposición cuando el último veredicto de `spec-validator` es `ready` y el estado es `validated-not-executed`.
 - La aprobación debe existir en el shared context como heading exacto `## Spec Validator Approval`.
 - El bloque de aprobación debe contener exactamente: `verdict: ready`, `reviewed_at`, `validator_agent: spec-validator`, `artifact_set_reviewed`, `summary` e `invalidated_by_changes_since: none`.
+- **Solution Workspace Gate:** En Solution Workspaces (bajo `projects/`), si la especificación modifica contratos OpenAPI expuestos, esquemas de bases de datos compartidas o integraciones entre servicios, es obligatorio que el agente `enterprise-spec-validator` apruebe la alineación global otorgando el veredicto de `Workspace Aligned` en la Master Spec global del Workspace antes de descomponer o ejecutar.
+- **Gate de Aprobación Humana de Plan:** Se prohíbe a `task-decomposer` o `executor` iniciar cualquier tarea de implementación si en el Shared Context no existe el encabezado explícito `## Human Plan Approval: approved_by_user`. Si falta, el estado queda bloqueado en `awaiting-human-plan-approval`.
+- **Gate de Aprobación Humana de QA (Cierre):** Se prohíbe realizar fusiones a ramas estables (`develop`, `qa`, `master`) si en el Shared Context no existe el encabezado explícito `## Human QA Approval: approved_by_user`. Si falta, el estado queda bloqueado en `awaiting-human-qa-approval`.
+
+
 - Frases narrativas como `Ready for Task Decomposer`, `Artifacts aligned`, `all findings resolved` o `Current readiness validated-not-executed` no son aprobación válida.
 - Si cualquier review summary o validator output dice `not ready`, la siguiente acción es corrección por Planner y nueva validación, no implementación ni descomposición.
 - No se permite declarar una inconsistencia como resuelta sin verificar el archivo autoritativo real.
@@ -98,6 +104,7 @@ Todo checklist de consistencia debe incluir:
 - Ningún artefacto puede marcarse `pass` si el agente no leyó o listó el archivo/directorio real en el ciclo actual.
 - Ningún artefacto puede marcarse `pass` si la evidencia contradice el contenido actual del archivo.
 - Las rutas canónicas deben distinguir archivos y directorios. Una ruta inexistente en `Canonical artifacts` bloquea la preparación.
+- Si Graphify está configurado en el proyecto, el reporte de dependencias (`graphify-out/GRAPH_REPORT.md`) debe incluirse en los `Canonical artifacts` del shared context y verificarse su estado de actualización.
 - El shared context no debe duplicar headings obligatorios como `## Spec Validator Approval` o `## Next action`; duplicarlos vuelve ambiguo el estado real.
 
 ## 7. Shared Context Mínimo
@@ -129,3 +136,5 @@ No debe contener tareas genéricas como "implementar backend" o "crear frontend"
 - Al terminar un incremento, actualizar la Master Spec o documentación consolidada solo con decisiones durables.
 - Marcar artefactos temporales obsoletos como `superseded` o archivarlos para evitar que contaminen futuras búsquedas.
 - El estado final debe distinguir entre `implemented`, `closed` y `superseded`; no reutilizar `validated-not-executed` para incrementos ya ejecutados.
+- Al cerrar un incremento, transferir las lecciones aprendidas o bugs técnicos recurrentes al registro de memoria `MEMORY.md` (local o global) para evitar que los agentes los vuelvan a cometer en futuras tareas.
+

@@ -24,6 +24,8 @@ Consulta las skills activas para los estandares tecnicos del stack. No repitas r
 - Skills de error response para estructura de errores REST.
 - `openapi-standard` y `restful-standard` para contratos API.
 - `security-standards` y `keycloak-standard` para reglas de seguridad.
+- `workspace-coordination` para validar sincronización global-local y auditoría de deudas técnicas.
+- `graphify` para el uso de grafos de dependencias estructurales.
 
 ## Objetivo Principal
 
@@ -48,11 +50,11 @@ Consulta las skills activas para los estandares tecnicos del stack. No repitas r
 
 - Si el verdict es `not ready`: establecer spec como `draft` o `planning`, shared context como `revision-needed`, y `Next action` como `Planner corrections`.
 - Si el verdict es `ready` (The Three-Point Update):
-  1. Spec principal: `## Status: validated-not-executed`.
-  2. Shared context: `Current status: validated-not-executed`.
+  1. Spec principal: `## Status: awaiting-human-plan-approval` (anteriormente `validated-not-executed`).
+  2. Shared context: `Current status: awaiting-human-plan-approval`.
   3. Shared context: bloque `## Spec Validator Approval` con `verdict: ready`, `reviewed_at`, `validator_agent: spec-validator`, `artifact_set_reviewed`, `summary`, `invalidated_by_changes_since: none`.
-  4. Task board (si existe): estado superior como `todo`.
-  5. `Next action` como `Task Decomposer` o `Executor`.
+  4. `Next action` como `Awaiting Human Plan Approval` (para obligar al gate de validación humana).
+
 - Prohibido usar aliases como `validator-approved`, `ready` o `ready-for-decomposition`.
 
 ## Validaciones Obligatorias
@@ -74,6 +76,10 @@ Valida los outputs de Planner contra:
 - Mismatch de REST error response contra la skill configurada para el stack activo.
 - Claims falsos de resolucion sin evidencia en archivos autoritativos.
 - Artefacto canonico faltante: cualquier ruta listada en `Canonical artifacts` que no exista.
+- Desalineación o desactualización del contrato del proyecto local frente a los cambios descritos en `docs/specs/workspace_changes.md` del Workspace.
+- Introducción o detección de deuda técnica no documentada y registrada en el archivo local `projects/<project-name>/docs/specs/technical_debt.md`.
+- Manipulación manual o alteración del bloque de estado de IA (`## Current status` o `## Spec Validator Approval`) por parte del humano. Si detectas cambios manuales no firmados por el agente, reportar severidad `blocker` y bloquear el incremento en estado `corrupted-state`.
+
 
 ## Definiciones de Severidad
 

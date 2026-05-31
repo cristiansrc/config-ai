@@ -1,5 +1,5 @@
 Resumen de Sesión - Configuración de IA (OpenCode + LM Studio + Agentes)
-Última actualización: 2026-05-16
+Última actualización: 2026-05-22
 
 Objetivo
 Consolidación de un entorno de IA de nivel senior basado en Arquitectura Hexagonal, SDD Incremental y automatización de Git-Ops. El sistema ahora soporta el ciclo de vida completo: creación, incremento, modificación y corrección de bugs.
@@ -34,6 +34,8 @@ Modelos por Agente
 | devops-architect | opencode-go/qwen3.5-plus | allow | allow |
 | context-curator | opencode-go/deepseek-v4-flash | deny | deny |
 | documentation | opencode-go/minimax-m2.7 | allow | deny |
+| enterprise-architect | opencode-go/qwen3.6-plus | allow | deny |
+| enterprise-spec-validator | opencode-go/deepseek-v4-pro | allow | deny |
 | executor | opencode-go/deepseek-v4-flash | allow | allow |
 | final-validation | opencode-go/qwen3.6-plus | deny | allow |
 | planner | opencode-go/qwen3.6-plus | allow | deny |
@@ -45,12 +47,15 @@ Modelos por Agente
 | spec-validator | opencode-go/deepseek-v4-pro | allow limitado | deny |
 | task-decomposer | opencode-go/qwen3.5-plus | allow | deny |
 | test-architect | opencode-go/qwen3.5-plus | allow | allow |
+| functional-test-planner | opencode-go/qwen3.6-plus | allow | deny |
+| functional-tester-agent | opencode-go/qwen3.6-plus | allow | allow |
 
-Ecosistema de Skills (47 Skills Activas Resueltas)
+
+Ecosistema de Skills (50 Skills Activas Resueltas)
 Directorio activo: /home/cristiansrc/.config/opencode/skills
 Origen canonico: /home/cristiansrc/Documentos/Proyectos/shared-ai-services/skills
 Las skills canonicas estan enlazadas por symlink desde OpenCode hacia shared-ai-services cuando aplica; algunas skills stack/globales estan instaladas como directorios locales directos en OpenCode.
-Conteo actual: 38 skills canonicas en shared-ai-services + 9 skills stack/globales locales adicionales en OpenCode = 47 skills activas resolviendo `SKILL.md`.
+Conteo actual: 42 skills canonicas en shared-ai-services/locales = 51 skills activas resolviendo `SKILL.md`.
 
 1.  architecture/hexagonal-architecture.
 2.  architecture/openapi-first.
@@ -90,10 +95,14 @@ Conteo actual: 38 skills canonicas en shared-ai-services + 9 skills stack/global
 36. backend/kafka-standard.
 37. backend/amazon-sqs-standard.
 38. backend/springboot-stack.
+39. quality/functional-testing-standard (Planeación, ejecución, reporte y remediación de pruebas UI/E2E).
+40. orchestration/graphify (Optimización de contexto mediante grafos).
+41. orchestration/workspace-coordination (Coordinación de Solution Workspace y control de Deuda Técnica).
 
 Skills stack/globales locales adicionales activas en OpenCode:
 - angular-stack.
 - docker-standard.
+- golang-stack.
 - java-stack.
 - kotlin-stack.
 - n8n-stack.
@@ -109,17 +118,25 @@ Convenciones canonicas de skills
 - Keycloak: Configuración siguiendo el estándar `keycloak-standard`.
 - Auditoría y Soft Delete: Obligatorio en todas las tablas de negocio. Gestionado por `jpa-stack` o Mixins equivalentes en FastAPI.
 - Pruebas y Cobertura: Mínimo 85% por archivo testable. Ver `testing-strategy`.
+- Graphify: En repositorios con Graphify activo, es obligatorio ejecutar `graphify --update` antes de cerrar tareas y commits, y leer `graphify-out/GRAPH_REPORT.md` para la planeación y análisis de impacto arquitectónico.
+- Coordinación y Deuda Técnica: En entornos multi-proyecto, los cambios de arquitectura global deben sincronizarse entre la Master Spec del Workspace y las locales de los proyectos. Toda deuda técnica introducida debe registrarse en `technical_debt.md` y propagarse al grafo.
+
 
 Políticas de Especialización por Agente
 - **requirements-analyst**: Responsable de levantar requerimientos funcionales siguiendo `requirements-gathering`. Produce el `requirements-brief.md`.
 - **solution-architect**: Responsable de la selección de patrones de diseño GoF y estructuras de alto nivel siguiendo `design-patterns-standard`.
 - **enterprise-architect**: Responsable de la visión macro, fronteras de microservicios y System Landscape siguiendo `enterprise-architecture-standard`.
+- **enterprise-spec-validator**: Responsable de validar la alineación y consistencia global entre la Master Spec de Workspace y los proyectos, y auditar la deuda técnica global.
 - **planner**: Responsable de la arquitectura, diseño técnico y contratos OpenAPI siguiendo `spec-driven-development` y `restful-standard`.
+
 - **spec-validator**: Responsable de la validación de consistencia y veredictos de 'ready' siguiendo `spec-driven-development`.
 - **spec-remediator**: Responsable de la corrección iterativa de hallazgos siguiendo `spec-remediation`.
 - **task-decomposer**: Responsable de la atomización de tareas siguiendo los contratos de descomposición definidos en `spec-driven-development`.
 - **executor**: Responsable de la implementación técnica y verificación pre-vuelo siguiendo los estándares del stack correspondiente (`springboot-stack`, `fastapi-stack`).
 - **final-validation**: Responsable de la garantía de calidad final y cumplimiento de cobertura mínima.
+- **functional-test-planner**: Responsable de analizar specs de proyectos y workspace y diseñar planes de pruebas funcionales detallados.
+- **functional-tester-agent**: Responsable de ejecutar planes de pruebas funcionales y reportar/corregir fallos.
+
 
 Optimización del Proceso SDD (Fuente: skill/spec-driven-development)
 - Planner y Spec Validator deben usar el Shared Context para asegurar trazabilidad.

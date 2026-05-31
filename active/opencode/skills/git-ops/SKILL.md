@@ -24,10 +24,10 @@ Antes de realizar cambios, el agente debe asegurarse de estar en la rama correct
 Los mensajes deben ser claros y seguir el estándar `tipo(scope): descripcion`.
 
 - **Tipos:** `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`.
-- **Scope:** El módulo o capa afectada (ej. `api`, `auth`, `ui`, `db`).
+- **Scope:** Debe ser exactamente el identificador del incremento activo (ej. `user-auth`, `invoice-export`) o el sub-módulo técnico si el incremento abarca múltiples áreas. Prohibido usar marcadores genéricos.
 - **Descripción:** En minúsculas, tiempo presente, máximo 50 caracteres.
 
-**Ejemplo:** `feat(auth): implement JWT token rotation`
+**Ejemplo:** `feat(user-auth): implement JWT token rotation`
 
 ## 3. Flujo de Trabajo Operativo
 
@@ -48,10 +48,13 @@ Generar el mensaje basado en el análisis de los cambios realizados. Si hay duda
 
 ### Paso D: Publicación y PR (GitHub)
 Si la tarea incluye el cierre de la implementación:
-1. `git push origin <branch-name>`.
-2. Utilizar el MCP de GitHub (`github_create_pull_request`) para abrir el PR.
-3. El título del PR debe ser el mismo que el del commit principal.
-4. El cuerpo del PR debe incluir un resumen de los cambios y mencionar si cierra algún issue (ej. `Closes #123`).
+1. **Verificación de Gate Humano:** Antes de empujar a ramas estables (`develop`, `qa`, `master`) o de abrir un PR, validar que el Shared Context contenga el encabezado explícito `## Human QA Approval: approved_by_user`. Si falta, detener la operación y reportar bloqueo.
+2. **Git Hook Guard:** Verificar que el pre-push hook local de Git esté instalado en el repositorio activo (`.git/hooks/pre-push` copiado desde [pre-push-hook-template.sh](file:///home/cristiansrc/Documentos/config-ai/pre-push-hook-template.sh) y con permisos de ejecución). Queda prohibido hacer bypass (`--no-verify`) o alterar el hook.
+3. `git push origin <branch-name>`.
+4. Utilizar el MCP de GitHub (`github_create_pull_request`) para abrir el PR.
+5. El título del PR debe ser el mismo que el del commit principal.
+6. El cuerpo del PR debe incluir un resumen de los cambios y mencionar si cierra algún issue (ej. `Closes #123`).
+
 
 ## 4. Integración con SDD
 

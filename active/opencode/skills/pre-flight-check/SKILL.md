@@ -53,13 +53,26 @@ Si la tarea cambia migraciones, entidades, repositorios, queries, índices o con
 - Si cambian `Dockerfile`, `docker-compose.yml`, infraestructura o workflows, ejecutar validación equivalente: `docker compose config`, build de imagen, health checks locales o export/validación de workflow.
 - No aprobar cambios de despliegue sin validar que no exponen secretos, puertos inseguros o contenedores root cuando el estándar lo prohíbe.
 
+### Grafo de Conocimiento (Graphify)
+Si el proyecto cuenta con Graphify (directorio `graphify-out/` o archivo `graph.json` presente en el repositorio):
+- Es obligatorio ejecutar `graphify --update` antes de dar por completado el Pre-flight Check. Esto asegura la coherencia del grafo y que `graphify-out/GRAPH_REPORT.md` refleje las modificaciones recientes.
+- Si el comando de actualización falla, el Pre-flight Check se marcará como `blocked` o `fail`.
+
+### Deuda Técnica
+- Si el cambio de código requiere introducir bypasses de arquitectura, atajos temporales o reducción temporal de cobertura de tests, el agente executor debe registrar formalmente la entrada de deuda técnica en `projects/<project-name>/docs/specs/technical_debt.md` (o el archivo equivalente local).
+- El Pre-flight Check fallará si se detectan parches técnicos que no estén debidamente documentados y aprobados en el registro de deuda técnica.
+
+
+
 ## 4. Protocolo de Fallo
 Si un pre-flight falla:
 1. Analizar el log relevante.
 2. Corregir la causa raíz si está dentro del alcance de la tarea.
 3. Re-ejecutar la verificación fallida y cualquier verificación afectada por la corrección.
-4. Si la falla requiere decisión de Planner/User o está fuera del alcance, marcar `blocked` con evidencia.
-5. No marcar tarea como `done` ni pedir commit/PR mientras existan verificaciones obligatorias en `fail` o `blocked`.
+4. **Límite de Auto-Sanación (Self-Healing Loop Guard):** El agente tiene un límite máximo de 3 iteraciones autónomas de corrección y verificación de pre-flight. Si en el tercer intento la falla persiste, el agente debe detener el proceso, marcar la tarea como `blocked` y elevar un reporte detallado con las trazas y la hipótesis del fallo para el desarrollador humano.
+5. Si la falla requiere decisión de Planner/User o está fuera del alcance, marcar `blocked` con evidencia.
+6. No marcar tarea como `done` ni pedir commit/PR mientras existan verificaciones obligatorias en `fail` o `blocked`.
+
 
 ## 5. Excepciones Permitidas
 Puede omitirse verificación completa solo cuando:

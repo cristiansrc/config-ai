@@ -1,6 +1,6 @@
 # Agentes y Modelos OpenCode
 
-Ultima actualizacion: 2026-05-16
+Ultima actualizacion: 2026-05-22
 
 Fuente activa:
 - Configuracion: `/home/cristiansrc/.config/opencode/opencode.json`
@@ -14,7 +14,8 @@ Regla de mantenimiento:
 - Idioma obligatorio: Todas las respuestas e interacciones de los agentes con el usuario deben ser en ESPAÑOL.
 - Politica de idioma de agentes: La definicion operativa, responsabilidades, reglas y guias de cada agente deben estar en ESPAÑOL. Se mantienen en INGLES los nombres de agentes/skills, estados canonicos, headings, rutas, comandos, campos de protocolo y tokens exactos como `ready`, `blocked`, `validated-not-executed`, `## Spec Validator Approval` o `Blocked: ...`.
 - Contratos de error por stack: Spring Boot Java usa `springboot-java-rest-error-response-standards`, Spring Boot Kotlin usa `springboot-kotlin-rest-error-response-standards` y FastAPI usa `fastapi-rest-error-response-standards`.
-- Convenciones de stack: `nodejs-stack`, `python-stack`, `fastapi-stack`, `springboot-stack`, `java-stack` y `kotlin-stack` son la fuente de verdad para reglas tecnicas de cada runtime.
+- Convenciones de stack: `nodejs-stack`, `python-stack`, `fastapi-stack`, `springboot-stack`, `java-stack`, `kotlin-stack` y `golang-stack` son la fuente de verdad para reglas tecnicas de cada runtime.
+- Estándar de Testing Funcional: `functional-testing-standard` define la estrategia de planeación, reporte y corrección de pruebas UI/E2E en frontends utilizando Puppeteer MCP o frameworks locales.
 - Cambio operativo vigente: Planner puede crear o actualizar unicamente el `.gitignore` raiz del repositorio activo ademas de specs/OpenAPI, para excluir artefactos no versionables de specs y codigo generado sin ocultar artefactos canonicos.
 - Cambio operativo vigente (temporal): Spec Remediator debe invocar validaciones solo mediante `spec-validator` con `opencode-go/deepseek-v4-pro`; cualquier validacion ejecutada con otro modelo debe bloquearse como `Blocked: wrong validator model`.
 - Estructura de Solution Workspace (OPCIONAL): La pertenencia a un Solution Workspace está condicionada a que la carpeta padre del proyecto se llame exactamente `projects/`.
@@ -23,6 +24,8 @@ Regla de mantenimiento:
   - Gestión de Git (Enterprise Architect): El `enterprise-architect` debe configurar el `.gitignore` de la raíz del Workspace para ignorar el contenido de `projects/` (`projects/**`), ya que los proyectos se versionan independientemente.
   - Inicialización: La carpeta `projects/` debe ser creada automáticamente por el agente al detectar que se inicia un flujo de Solution Workspace si aún no existe.
 - Gestión de Paquetes JS/TS: Queda ESTRICTAMENTE PROHIBIDO el uso de `npm` para cualquier tarea (Node, React, Angular, etc.). Se debe utilizar exclusivamente `pnpm`. Esto responde a requerimientos de seguridad y eficiencia. Los agentes deben fallar si detectan un `package-lock.json` y proponer la migración a `pnpm-lock.yaml`. Se deben seguir las mejores prácticas de pnpm para la gestión de dependencias.
+- Soporte de Contexto mediante Grafos (Graphify): Para optimizar el contexto de los agentes, reducir el consumo de tokens y asegurar la trazabilidad arquitectónica, se utiliza Graphify en los proyectos compatibles. Los agentes deben consultar y actualizar el grafo de conocimiento según define la skill `graphify`.
+
 
 Perfil LM Studio persistente:
 - `lmstudio/qwen/qwen3.6-35b-a3b`: context length `152563`, GPU offload ratio `26/64` capas, K/V cache `Q4_0`. OpenCode declara el mismo limite de contexto para que no intente usar el valor anterior.
@@ -36,6 +39,7 @@ Perfil LM Studio persistente:
 | executor              | opencode-go/deepseek-v4-flash | allow             | allow | Implementa código verificado siguiendo los estándares del stack correspondiente (`springboot-stack`, `fastapi-stack`, etc.).                      |
 | final-validation      | opencode-go/qwen3.6-plus      | deny              | allow | Garantiza la calidad final y cobertura mínima siguiendo `testing-strategy` y `pre-flight-check`.                                                  |
 | enterprise-architect  | opencode-go/qwen3.6-plus      | allow             | deny  | Define el System Landscape, fronteras de microservicios y flujos globales siguiendo `enterprise-architecture-standard`.                           |
+| enterprise-spec-validator| opencode-go/deepseek-v4-pro  | allow             | deny  | Valida la coherencia global del Solution Workspace, contratos de integración y deuda técnica global siguiendo `workspace-coordination`.          |
 | solution-architect    | opencode-go/qwen3.6-plus      | allow             | deny  | Elige patrones de diseño siguiendo `design-patterns-standard`. Colabora con `enterprise-architect` para alinear el diseño local con el global.    |
 | planner               | opencode-go/qwen3.6-plus      | allow             | deny  | Planifica incrementos SDD y diseña contratos. Consulta a `solution-architect` para decisiones de patrones complejos.                              |
 | refactor              | opencode-go/qwen3.5-plus      | allow             | allow | Refactoriza código existente siguiendo `refactor-patterns` y `refactor-hexagonal-bridge`.                                                         |
@@ -46,3 +50,6 @@ Perfil LM Studio persistente:
 | spec-validator        | opencode-go/deepseek-v4-pro   | allow limitado    | deny  | Valida la consistencia de los artefactos SDD siguiendo `spec-driven-development`.                                                                 |
 | task-decomposer       | opencode-go/qwen3.5-plus      | allow             | deny  | Descompone especificaciones en tareas atómicas siguiendo los contratos de `spec-driven-development`.                                              |
 | test-architect        | opencode-go/qwen3.5-plus      | allow             | allow | Diseña la estrategia de pruebas y genera casos de test siguiendo `testing-strategy`.                                                              |
+| functional-test-planner| opencode-go/qwen3.6-plus     | allow             | deny  | Analiza las specs a nivel de workspace/proyectos y diseña planes de pruebas funcionales y flujos de usuario estructurados siguiendo `functional-testing-standard`. |
+| functional-tester-agent| opencode-go/qwen3.6-plus     | allow             | allow | Diseña, ejecuta y valida pruebas funcionales y UI/E2E en frontends. Automatiza la detección, reporte y corrección mecánica de errores siguiendo `functional-testing-standard`. |
+

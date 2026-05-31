@@ -1,6 +1,6 @@
 # Agentes y Modelos Gemini CLI
 
-Ultima actualizacion: 2026-05-12
+Ultima actualizacion: 2026-05-22
 
 Fuente activa:
 - Agentes: `/home/cristiansrc/Documentos/config-ai/gemini/agents/`
@@ -24,3 +24,5 @@ Fuente activa:
 | spec-validator | gemini-3-pro-preview | allow | deny | Validacion de specs SDD. |
 | task-decomposer | gemini-3-flash-preview | allow | deny | Descomposicion de tareas. |
 | test-architect | gemini-3-pro-preview | allow | allow | Diseno de pruebas automatizadas. |
+| functional-test-planner | gemini-3-pro-preview | allow | deny | Analisis de specs y diseno de planes de pruebas funcionales. |
+| functional-tester-agent | gemini-3-pro-preview | allow | allow | Diseno, ejecucion y validacion de pruebas funcionales y UI/E2E en frontends. |
