@@ -13,12 +13,13 @@ En consonancia con la Arquitectura Hexagonal y las convenciones de la comunidad 
 
 *   `/cmd/<app-name>/main.go`: Puntos de entrada del ejecutable. Lógica mínima; solo arranca la configuración, inicializa dependencias y levanta servidores.
 *   `/internal`: Todo el código de negocio del microservicio. Go prohíbe que otros módulos importen desde esta carpeta, garantizando fronteras de encapsulación.
-    *   `/internal/domain`: Modelos de dominio y reglas de negocio puras. No debe importar librerías externas de bases de datos o transporte (cero dependencias externas).
-    *   `/internal/ports`: Interfaces (contratos) de entrada (Use Cases, Handlers) y salida (Repositories, API clients).
-    *   `/internal/adapters`: Implementaciones de infraestructura.
-        *   `/internal/adapters/http`: Controladores REST, routers (ej: Fiber, Gin, Chi).
-        *   `/internal/adapters/repository`: Persistencia SQL (`pgx`, `sqlc`, `gorm`).
-        *   `/internal/adapters/client`: Adaptadores de servicios externos o clientes de mensajería (Kafka, gRPC).
+    *   `/internal/domain`: Modelos de dominio (entidades, value objects), reglas de negocio puras y errores centinela (ej: `errors.go`). Cero dependencias externas.
+    *   `/internal/application`: Orquestación de la lógica del negocio.
+        *   `/internal/application/ports`: Interfaces (contratos) de entrada (casos de uso) y de salida (repositorios, clientes de APIs externas). En Go, se prefiere omitir el sufijo `Port` en los nombres de interfaz si residen físicamente en esta carpeta.
+        *   `/internal/application/usecase`: Implementaciones concretas de los casos de uso.
+    *   `/internal/adapters`: Implementaciones concretas de infraestructura (adaptadores).
+        *   `/internal/adapters/driving`: Adaptadores que inician acciones (controladores HTTP en Fiber/Gin/Chi, workers, CLI).
+        *   `/internal/adapters/driven`: Implementaciones de los puertos de salida (persistencia SQLC/GORM, clientes gRPC/HTTP externos).
 *   `/pkg`: Código auxiliar reutilizable que *sí* puede ser importado por otros repositorios (ej: wrappers de logger, utilidades de criptografía).
 *   `/api`: Contratos OpenAPI y esquemas de payload.
 
@@ -27,6 +28,7 @@ En consonancia con la Arquitectura Hexagonal y las convenciones de la comunidad 
 ### A. Manejo de Errores (Error Handling)
 *   **Prohibido ignorar errores:** Nunca uses `_ = funcion()` si retorna un error. Valida siempre con `if err != nil`.
 *   **Prohibido usar Panic en producción:** Excepto durante el inicio de la aplicación para fallos irrecuperables (como puertos de red ocupados o fallos en conexión a la base de datos). Para lógica de negocio, retorna siempre `error`.
+*   **Sentinel Errors como Excepciones de Dominio:** Modela los errores de negocio como variables de error centinela (`errors.New`) en la capa de dominio (`domain/errors.go`). Mapea y traduce estos errores a respuestas HTTP o del sistema en la capa de adaptadores de entrada (`driving adapters`) utilizando `errors.Is(err, ErrSentinel)`.
 *   **Envoltura de errores (Error Wrapping):** Envuelve los errores para proveer contexto sin perder el error raíz: `fmt.Errorf("contexto: %w", err)`.
 *   **Uso de Sentinel Errors:** Define errores semánticos en la capa de dominio utilizando `errors.New` y verifícalos con `errors.Is(err, errSentinel)` o `errors.As`.
 

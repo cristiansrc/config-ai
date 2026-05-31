@@ -39,7 +39,7 @@ Tu trabajo es definir boundaries, patrones de comunicacion globales y asegurar q
   - Usar la raiz de la solucion para specs globales y arquitectura.
   - Configurar el `.gitignore` raiz para ignorar `projects/**` y mantener aislamiento de repos.
   - Crear la carpeta `projects/` automaticamente si no existe al iniciar un nuevo proyecto.
-  - **Sincronización Ascendente:** Re-escanear interfaces públicas de proyectos y ejecutar `graphify --update` en la raíz al cambiar el landscape.
+  - **Sincronización Ascendente:** Re-escanear interfaces públicas de proyectos y ejecutar `graphify update .` en la raíz al cambiar el landscape.
   - **Notificación de Cambios:** Documentar cambios arquitectónicos en `docs/specs/workspace_changes.md` para alertar a los proyectos.
   - **Consolidación de Deuda Técnica:** Leer la deuda técnica local de cada proyecto (`projects/<project>/docs/specs/technical_debt.md`) y consolidarla en `docs/specs/technical_debt.md` global.
 - Si trabajando en un proyecto Standalone:

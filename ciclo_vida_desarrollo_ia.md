@@ -45,10 +45,10 @@ El flujo varía si trabajamos en un **proyecto Greenfield** (nuevo) o **Brownfie
 ### A. Flujo de Inicialización (Sistema Nuevo o Sin Specs/Grafos)
 1.  **Si el Workspace no existe (Standalone):**
     *   `planner` inicializa la Master Spec en `docs/specs/master_spec.md` y crea los contratos `openapi.yaml`.
-    *   Se corre `graphify install --project` y `graphify --update` en el repositorio para generar por primera vez la carpeta `graphify-out/` con `GRAPH_REPORT.md`.
+    *   Se corre `graphify install --project` y `graphify update .` en el repositorio para generar por primera vez la carpeta `graphify-out/` con `GRAPH_REPORT.md`.
 2.  **Si el Workspace existe:**
     *   `enterprise-architect` inicializa la Master Spec global de la solución en la raíz `docs/specs/master_spec.md` y crea `docs/specs/workspace_changes.md`.
-    *   Se corre `graphify install` y `graphify --update` en la raíz de la solución para indexar la estructura multi-proyecto global.
+    *   Se corre `graphify install` y `graphify update .` en la raíz de la solución para indexar la estructura multi-proyecto global.
 
 ---
 
@@ -119,7 +119,7 @@ El desarrollo de cualquier incremento (nueva característica o refactorización)
 #### Fase 6: Implementación, Testing y Verificación Pre-flight
 *   **Agentes:** `executor` / `architect-executor` (Obreros), `test-architect` (Consultor).
 *   **Acciones:** Implementar código, tests unitarios e integración. Escribir registros de deuda técnica local en `technical_debt.md` si aplica.
-*   **Pre-flight check obligatorio:** Compilar, pasar tests locales y ejecutar `graphify --update`.
+*   **Pre-flight check obligatorio:** Compilar, pasar tests locales y ejecutar `graphify update .`.
 *   **Estado:** `in_progress` -> `done`.
 
 #### Fase 7: Validación de Calidad y Cobertura (Final Validation)
