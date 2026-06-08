@@ -14,7 +14,7 @@ Un agente debe asumir que un proyecto tiene Graphify configurado si se cumple al
 
 ## 2. Comandos Operativos del CLI
 Cuando la herramienta está disponible, el agente puede interactuar con ella mediante la consola de comandos usando las siguientes llamadas:
-* **Actualización del Grafo:** `graphify update .` para re-indexar de forma incremental los archivos modificados.
+* **Actualización del Grafo:** `graphify --update` o `graphify .` (en Windows) para re-indexar de forma incremental los archivos modificados.
 * **Consulta Semántica/Estructural:** `graphify query "<pregunta>"` para consultar dependencias o buscar cómo se comunican las entidades en base al grafo, evitando la lectura extensiva de archivos fuente en paralelo.
 * **Verificación de Relaciones:** `graphify export callflow-html` para exportar el mapa de llamadas e identificar dependencias circulares.
 
@@ -24,7 +24,7 @@ Cuando la herramienta está disponible, el agente puede interactuar con ella med
   * Utilizar `graphify query` para rastrear los adaptadores, servicios o entidades de persistencia asociados al flujo que se desea planificar.
 * **Executor:**
   * Para implementar código de forma precisa sin abrir archivos de forma masiva, usar el grafo para encontrar los archivos con dependencias directas o el punto exacto de integración de puertos y adaptadores.
-  * Tras realizar modificaciones del código, es obligatorio ejecutar `graphify update .` antes de proceder al Pre-flight Check.
+  * Tras realizar modificaciones del código, es obligatorio ejecutar `graphify --update` antes de proceder al Pre-flight Check.
 * **Spec Validator y Final Validation:**
   * Verificar que el grafo y el reporte del grafo estén actualizados y sin drift con respecto a los archivos de código fuente creados o modificados.
 

@@ -35,22 +35,6 @@ Guía mandatoria para asegurar calidad mediante pruebas automáticas, cobertura 
 - **Código Generado**: Clientes OpenAPI generados, stubs o artefactos autogenerados sin lógica manual.
 - **Bootstrap Simple**: Entrypoints sin lógica propia, salvo que configuren comportamiento crítico.
 
-## 🎯 Configuración de Exclusiones en Sonar
-Para evitar que Sonar penalice el Quality Gate con archivos no testeables, cada proyecto debe configurar explícitamente exclusiones en el archivo `sonar-project.properties` (o en su sección equivalente de Gradle/Maven/CI).
-
-### 1. Exclusión de Análisis (`sonar.exclusions`)
-Archivos completamente omitidos del análisis de bugs, smell y cobertura (código generado y estáticos):
-*   Código generado: `**/generated/**`, `**/*_grpc.pb.go`, `**/stubs/**`
-*   Migraciones de bases de datos: `**/db/migration/**`, `**/migrations/**`
-*   Archivos estáticos y configuración: `**/*.json`, `**/*.yaml`, `**/*.yml`, `**/*.xml`
-
-### 2. Exclusión de Cobertura (`sonar.coverage.exclusions`)
-Archivos analizados por vulnerabilidades/bugs pero omitidos en el cálculo de cobertura de pruebas:
-*   Interfaces / Puertos: `**/ports/**`, `**/application/ports/**`, `**/ports.py`, `**/*_port.go`
-*   Modelos de datos simples / DTOs / Schemas: `**/dto/**`, `**/schemas/**`, `**/*_dto.go`, `**/request/**`, `**/response/**`
-*   Entidades de persistencia sin lógica: `**/persistence/models/**`, `**/entity/**`, `**/*_entity.go`
-*   Excepciones y Bootstrap: `**/exceptions/**`, `**/exceptions.py`, `**/config/**`, `**/wiring/**`, `**/main.go`, `**/app.py`
-
 ## Pirámide de Pruebas
 - **Unit Tests**: Dominio, use cases, validators, mappers manuales y utilities. Deben ser rápidos y determinísticos.
 - **Integration Tests**: DB, repositories, Flyway, Testcontainers, HTTP clients, queues, n8n/webhooks y adapters externos.

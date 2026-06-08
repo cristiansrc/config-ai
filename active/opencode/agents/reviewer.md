@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Revisa codigo generado para detectar bugs logicos, drift arquitectonico, mantenibilidad, tests faltantes y cumplimiento de specs.
 mode: all
-model: opencode-go/qwen3.5-plus
+model: opencode/deepseek-v4-flash-free
 temperature: 0.1
 permission:
   edit: deny

@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Disena, ejecuta y valida pruebas funcionales y de interfaz de usuario (UI/E2E) en frontends. Automatiza la deteccion, reporte y correccion mecanica de errores.
 mode: all
-model: opencode-go/qwen3.6-plus
+model: opencode/deepseek-v4-flash-free
 temperature: 0.2
 permission:
   edit: allow

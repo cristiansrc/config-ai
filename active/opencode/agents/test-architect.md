@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Diseña y genera pruebas automatizadas, edge cases, checks de integracion y estrategia de validacion para proyectos web.
 mode: all
-model: opencode-go/qwen3.5-plus
+model: opencode/deepseek-v4-flash-free
 temperature: 0.2
 permission:
   edit: allow

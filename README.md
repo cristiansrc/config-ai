@@ -24,19 +24,19 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 
 | Agente | Responsabilidad Principal | Modelo |
 |---|---|---|
-| **requirements-analyst** | Levanta requerimientos funcionales (`requirements-brief.md`). | qwen3.6-plus |
-| **planner** | Arquitectura, diseño técnico y contratos OpenAPI (SDD). | qwen3.6-plus |
-| **spec-validator** | Validación estricta de consistencia local y veredictos de 'ready'. | deepseek-v4-pro |
-| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global. | deepseek-v4-pro |
-| **spec-remediator** | Corrección iterativa de hallazgos mecánicos o de contrato. | deepseek-v4-flash |
-| **task-decomposer** | Atomización de tareas para el ejecutor. | qwen3.5-plus |
-| **executor** | Implementación técnica y verificación pre-vuelo. | deepseek-v4-flash |
-| **final-validation** | Garantía de calidad final y cumplimiento de cobertura mínima. | qwen3.6-plus |
-| **solution-architect** | Selección de patrones de diseño GoF y estructuras locales. | qwen3.6-plus |
-| **enterprise-architect** | Visión macro, microservicios, System Landscape y Workspace. | qwen3.6-plus |
-| **reviewer** | Revisión de código y lógica. | qwen3.5-plus |
-| **security-reviewer** | Auditoría de seguridad y estándares OWASP. | deepseek-v4-pro |
-| **test-architect** | Diseño de estrategias de prueba y automatización. | qwen3.5-plus |
+| **requirements-analyst** | Levanta requerimientos funcionales (`requirements-brief.md`). | opencode/deepseek-v4-flash-free |
+| **planner** | Arquitectura, diseño técnico y contratos OpenAPI (SDD). | opencode/deepseek-v4-flash-free |
+| **spec-validator** | Validación estricta de consistencia local y veredictos de 'ready'. | opencode/deepseek-v4-flash-free |
+| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global. | opencode/deepseek-v4-flash-free |
+| **spec-remediator** | Corrección iterativa de hallazgos mecánicos o de contrato. | opencode/deepseek-v4-flash-free |
+| **task-decomposer** | Atomización de tareas para el ejecutor. | opencode/deepseek-v4-flash-free |
+| **executor** | Implementación técnica y verificación pre-vuelo. | opencode/deepseek-v4-flash-free |
+| **final-validation** | Garantía de calidad final y cumplimiento de cobertura mínima. | opencode/deepseek-v4-flash-free |
+| **solution-architect** | Selección de patrones de diseño GoF y estructuras locales. | opencode/deepseek-v4-flash-free |
+| **enterprise-architect** | Visión macro, microservicios, System Landscape y Workspace. | opencode/deepseek-v4-flash-free |
+| **reviewer** | Revisión de código y lógica. | opencode/deepseek-v4-flash-free |
+| **security-reviewer** | Auditoría de seguridad y estándares OWASP. | opencode/deepseek-v4-flash-free |
+| **test-architect** | Diseño de estrategias de prueba y automatización. | opencode/deepseek-v4-flash-free |
 
 ---
 

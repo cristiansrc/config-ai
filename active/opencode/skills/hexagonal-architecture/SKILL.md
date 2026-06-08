@@ -51,20 +51,16 @@ Guía para implementar una arquitectura limpia que protege la lógica de negocio
 - **Input (Driving)**: `UseCase` (ej: `ProcessPaymentUseCase`).
 - **Output (Driven)**: `Port` (ej: `PaymentGatewayPort`).
 - Los nombres de puertos deben expresar capacidad de negocio, no tecnología. Preferir `PaymentGatewayPort` sobre `StripeClientPort` salvo que el proveedor sea parte explícita del dominio.
-- **Aclaración Go**: En Go, se permite omitir el sufijo `Port` en las interfaces (ej: usar `ProductRepository` o `PaymentGateway`) si estas residen físicamente en el paquete `application/ports`, manteniendo la pureza idiomática del lenguaje.
-- **Aclaración Python**: Las interfaces se definen mediante clases abstractas (`abc.ABC`) o protocolos (`typing.Protocol`), y se les puede omitir el sufijo `Port` si están ubicadas en el paquete `application/ports`.
 
 ### Inyección de Dependencias
 - Usar **Inyección por Constructor** siempre.
 - El dominio no debe usar contenedor de dependencias.
-- En stacks con DI, el wiring técnico pertenece a infraestructura o configuración de framework. En Go, la inyección es explícita por constructor en el punto de entrada `main.go`. En Python/FastAPI, se prohíbe usar `Depends` en la capa de aplicación o dominio; se usa `Depends` solo en los routers de la API para instanciar/inyectar las clases vía constructor clásico.
+- En stacks con DI, el wiring técnico pertenece a infraestructura o configuración de framework.
 - Las reglas específicas sobre `@Service`, `@Component`, providers, modules o decorators pertenecen a la skill del stack activo.
 
 ### Manejo de Errores
 - Las excepciones de dominio deben ser capturadas en la capa de infraestructura por un `GlobalExceptionHandler` o equivalente (ver la skill de error response del stack activo) para transformarlas en respuestas HTTP adecuadas.
 - Las excepciones o errores de dominio deben expresar lenguaje de negocio.
-- **Aclaración Go**: Dado que Go no maneja excepciones, las "excepciones de dominio" se implementan como errores centinela (`errors.New`) en la capa de dominio. Los adaptadores de entrada (`driving adapters`) deben capturarlos y realizar la traducción a códigos HTTP correspondientes mediante `errors.Is`.
-- **Aclaración Python**: Las excepciones de dominio deben heredar de la clase base `Exception` pura de Python, sin dependencias de frameworks. Queda estrictamente prohibido lanzar `HTTPException` o usar códigos HTTP dentro de la lógica de dominio o aplicación. La traducción ocurre en handlers globales registrados en FastAPI.
 - La traducción a HTTP, gRPC, eventos, jobs o UI errors ocurre en adapters.
 - No filtrar errores técnicos hacia dominio ni convertir business errors en excepciones genéricas sin semántica.
 
@@ -75,7 +71,6 @@ Guía para implementar una arquitectura limpia que protege la lógica de negocio
 - Los mappers viven en application o infrastructure según el origen/destino, nunca dentro del dominio puro.
 - Java puede usar MapStruct como estándar según `java-stack`.
 - Kotlin debe preferir capacidades del lenguaje y usar MapStruct solo cuando lo justifique `kotlin-stack`.
-- **Aclaración Python**: No se deben usar modelos `pydantic.BaseModel` como entidades de dominio si hay comportamiento. Tampoco existe un mapper automático estándar; se usan funciones de mapeo explícitas y testeadas en los adaptadores correspondientes.
 - Los DTOs de transporte no deben cruzar hacia dominio.
 
 ## Reglas de Bloqueo

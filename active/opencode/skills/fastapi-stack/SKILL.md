@@ -4,8 +4,8 @@ Este skill define las convenciones especificas para el desarrollo de APIs rapida
 
 ## Estandares Tecnicos
 - **Asincronia**: Uso obligatorio de `async def` para endpoints y operaciones de I/O.
-- **Inyeccion de Dependencias**: Usar el sistema nativo de `Depends` **exclusivamente** en los controladores/routers (borde HTTP de infraestructura) para resolver dependencias y pasarlas a los casos de uso. Queda prohibido usar `Depends` dentro de `app/application` o `app/domain`.
-- **Pydantic V2**: Validacion estricta de schemas de entrada/salida en el borde HTTP. No usar schemas de API (Pydantic) como dominio por defecto (usar clases de Python o dataclasses).
+- **Inyeccion de Dependencias**: Usar el sistema nativo de `Depends` para servicios, bases de datos y seguridad.
+- **Pydantic V2**: Validacion estricta de schemas de entrada/salida en el borde HTTP. No usar schemas de API como dominio por defecto.
 
 ## Estructura de Endpoints
 - Usar `APIRouter` por modulo/entidad.
@@ -24,17 +24,11 @@ Este skill define las convenciones especificas para el desarrollo de APIs rapida
 - No filtrar `Session`, `AsyncSession`, `Query`, `select()` o builders de SQL hacia application/domain.
 - Los tests de persistencia deben validar mappings, queries criticas, constraints y transacciones.
 
-## Estructura de Infraestructura
-- **Driving (Input)**:
-  - `app/infrastructure/driving/web/routes.py`: routers de FastAPI.
-  - `app/infrastructure/driving/web/schemas.py`: esquemas DTO Pydantic.
-  - `app/infrastructure/driving/web/handlers.py`: Exception Handlers globales.
-- **Driven (Output)**:
-  - `app/infrastructure/driven/persistence/models.py`: modelos ORM SQLAlchemy.
-  - `app/infrastructure/driven/persistence/repositories.py`: adaptadores de repositorio.
-  - `app/infrastructure/driven/persistence/mappers.py`: conversión entre ORM y dominio.
-  - `app/infrastructure/driven/client/`: clientes HTTP/gRPC de APIs externas.
-- **Migrations**: `migrations/` (Alembic).
+## Estructura de Persistencia
+- `app/infrastructure/persistence/models`: ORM models.
+- `app/infrastructure/persistence/repositories`: adapters de repositorio.
+- `app/infrastructure/persistence/mappers`: conversion entre ORM y modelos internos.
+- `migrations/`: Alembic.
 
 ## Comportamiento del Agente
 - El Executor debe generar documentacion automatica de Swagger habilitando `/docs` en desarrollo.

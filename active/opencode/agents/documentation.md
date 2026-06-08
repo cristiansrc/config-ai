@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Creates project documentation, README content, API docs, deployment notes, diagrams, and functional documentation.
 mode: all
-model: opencode-go/minimax-m2.7
+model: opencode/deepseek-v4-flash-free
 temperature: 0.25
 permission:
   edit: allow

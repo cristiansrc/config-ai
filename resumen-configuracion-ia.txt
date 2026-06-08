@@ -30,25 +30,25 @@ Escalamiento de Modelos (Tier Routing)
 Modelos por Agente
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
-| architect-executor | opencode-go/deepseek-v4-pro | allow | allow |
-| devops-architect | opencode-go/qwen3.5-plus | allow | allow |
-| context-curator | opencode-go/deepseek-v4-flash | deny | deny |
-| documentation | opencode-go/minimax-m2.7 | allow | deny |
-| enterprise-architect | opencode-go/qwen3.6-plus | allow | deny |
-| enterprise-spec-validator | opencode-go/deepseek-v4-pro | allow | deny |
-| executor | opencode-go/deepseek-v4-flash | allow | allow |
-| final-validation | opencode-go/qwen3.6-plus | deny | allow |
-| planner | opencode-go/qwen3.6-plus | allow | deny |
-| refactor | opencode-go/qwen3.5-plus | allow | allow |
-| requirements-analyst | opencode-go/qwen3.6-plus | allow | deny |
-| reviewer | opencode-go/qwen3.5-plus | deny | allow |
-| security-reviewer | opencode-go/deepseek-v4-pro | deny | allow |
-| spec-remediator | opencode-go/deepseek-v4-flash | allow | deny |
-| spec-validator | opencode-go/deepseek-v4-pro | allow limitado | deny |
-| task-decomposer | opencode-go/qwen3.5-plus | allow | deny |
-| test-architect | opencode-go/qwen3.5-plus | allow | allow |
-| functional-test-planner | opencode-go/qwen3.6-plus | allow | deny |
-| functional-tester-agent | opencode-go/qwen3.6-plus | allow | allow |
+| architect-executor | opencode/deepseek-v4-flash-free | allow | allow |
+| devops-architect | opencode/deepseek-v4-flash-free | allow | allow |
+| context-curator | opencode/deepseek-v4-flash-free | deny | deny |
+| documentation | opencode/deepseek-v4-flash-free | allow | deny |
+| enterprise-architect | opencode/deepseek-v4-flash-free | allow | deny |
+| enterprise-spec-validator | opencode/deepseek-v4-flash-free | allow | deny |
+| executor | opencode/deepseek-v4-flash-free | allow | allow |
+| final-validation | opencode/deepseek-v4-flash-free | deny | allow |
+| planner | opencode/deepseek-v4-flash-free | allow | deny |
+| refactor | opencode/deepseek-v4-flash-free | allow | allow |
+| requirements-analyst | opencode/deepseek-v4-flash-free | allow | deny |
+| reviewer | opencode/deepseek-v4-flash-free | deny | allow |
+| security-reviewer | opencode/deepseek-v4-flash-free | deny | allow |
+| spec-remediator | opencode/deepseek-v4-flash-free | allow | deny |
+| spec-validator | opencode/deepseek-v4-flash-free | allow limitado | deny |
+| task-decomposer | opencode/deepseek-v4-flash-free | allow | deny |
+| test-architect | opencode/deepseek-v4-flash-free | allow | allow |
+| functional-test-planner | opencode/deepseek-v4-flash-free | allow | deny |
+| functional-tester-agent | opencode/deepseek-v4-flash-free | allow | allow |
 
 
 Ecosistema de Skills (50 Skills Activas Resueltas)

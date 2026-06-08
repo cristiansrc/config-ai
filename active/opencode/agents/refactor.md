@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Refactors implemented code for maintainability, readability, modularity, and consistency without changing behavior.
 mode: all
-model: opencode-go/qwen3.5-plus
+model: opencode/deepseek-v4-flash-free
 temperature: 0.2
 permission:
   edit: allow

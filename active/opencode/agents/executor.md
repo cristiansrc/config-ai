@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Implements code from approved specs and task breakdowns using the repository's existing patterns.
 mode: all
-model: opencode-go/deepseek-v4-flash
+model: opencode/deepseek-v4-flash-free
 temperature: 1.0
 permission:
   edit: allow

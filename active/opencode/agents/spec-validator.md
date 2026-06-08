@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Valida specs SDD contra ambiguedad, inconsistencia, riesgo arquitectonico, restricciones faltantes y readiness de implementacion.
 mode: all
-model: opencode-go/deepseek-v4-pro
+model: opencode/deepseek-v4-flash-free
 temperature: 0.1
 permission:
   edit: allow

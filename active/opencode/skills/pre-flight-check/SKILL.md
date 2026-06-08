@@ -25,49 +25,37 @@ Cada pre-flight debe registrar:
 - Razón explícita si una verificación no pudo ejecutarse.
 
 ## 3. Verificaciones Por Stack
- 
+
 ### Spring Boot / Java / Kotlin
 - Build/compile: `./gradlew clean test` o `./mvnw clean test` según el proyecto.
 - Compile rápido si el repo es grande: `./gradlew compileJava`, `./gradlew compileKotlin` o `./mvnw test -DskipTests` solo como check intermedio, nunca como única verificación final.
 - Lint/format si existe: `./gradlew ktlintCheck`, `./gradlew checkstyleMain`, `./gradlew spotlessCheck`, `./mvnw spotless:check` o comando equivalente del proyecto.
-- **Doctor/Auditoría de Arquitectura y Lenguaje (ArchUnit & detekt):** Es obligatorio que la suite de pruebas unitarias incluya la validación de arquitectura de `ArchUnit` para verificar las dependencias de paquetes de la arquitectura hexagonal. Adicionalmente, ejecutar `./gradlew detekt` en proyectos Kotlin para verificar smells de código.
 - Cobertura si está configurada: `./gradlew jacocoTestReport jacocoTestCoverageVerification` o equivalente Maven.
- 
+
 ### Persistencia / Flyway / Testcontainers
 Si la tarea cambia migraciones, entidades, repositorios, queries, índices o config de DB:
 - Ejecutar tests de integración relevantes, por ejemplo `./gradlew test --tests "*IntegrationTest*"` o el comando definido por el proyecto.
-- Verificar que Flyway aplica migraciones desde la ruta real configurada (`src/main/resources/db/migration`, `db/migration` con `filesystem:`, u otra ruta explícitamente).
+- Verificar que Flyway aplica migraciones desde la ruta real configurada (`src/main/resources/db/migration`, `db/migration` con `filesystem:`, u otra ruta explícita).
 - Si Flyway o Testcontainers falla, el cierre queda `blocked`.
- 
+
 ### Node.js / React / Angular
 - Usar `pnpm`, no `npm`.
 - Instalar/verificar dependencias solo si el proyecto lo requiere y está permitido por el entorno.
 - Ejecutar según scripts existentes: `pnpm test`, `pnpm run lint`, `pnpm run typecheck`, `pnpm run build`, `pnpm run coverage`.
-- **Doctor/Auditoría de Frontend (React Doctor & Angular ESLint):**
-  - **React:** Si el proyecto usa React, es obligatorio ejecutar `npx -y react-doctor@latest .` antes de realizar el push. El score resultante debe ser mayor o igual a **85/100**.
-  - **Angular:** Ejecutar `npm run lint` validando las reglas estrictas de RxJS y señales (`eslint-plugin-rxjs`) para evitar fugas de memoria.
 - Si existe `package-lock.json`, detener y proponer migración a `pnpm-lock.yaml` antes de continuar.
- 
+
 ### Python / FastAPI
 - Ejecutar tests: `pytest`.
 - Cobertura si está configurada: `pytest --cov` o comando del proyecto.
-- **Doctor/Auditoría de Código (Ruff & Mypy):** Ejecutar obligatoriamente `ruff check .` y `mypy app/` (tipado estricto). No se permite pasar el pre-flight si hay errores de tipos reportados por Mypy en las firmas de FastAPI o Pydantic.
- 
-### Go / Golang
-- Ejecutar tests: `go test ./...`.
-- Cobertura si está configurada: `go test -coverprofile=coverage.out ./...`.
-- **Doctor/Auditoría de Arquitectura (golangci-lint):** Ejecutar obligatoriamente `golangci-lint run`. Debe verificar las reglas de `depguard` y `go-cleanarch` para validar que no haya imports cruzados prohibidos entre `domain`, `application` y `adapters`.
+- Lint/typecheck si existen: `ruff check`, `ruff format --check`, `mypy`, `pyright`.
 
 ### Docker / DevOps / n8n
 - Si cambian `Dockerfile`, `docker-compose.yml`, infraestructura o workflows, ejecutar validación equivalente: `docker compose config`, build de imagen, health checks locales o export/validación de workflow.
 - No aprobar cambios de despliegue sin validar que no exponen secretos, puertos inseguros o contenedores root cuando el estándar lo prohíbe.
- 
-### Auditoría de Calidad Global (Sonar Local)
-- Si el proyecto tiene configurado Sonar localmente, ejecutar el escaneo mediante `sonar-scanner` o el comando configurado. El pre-flight fallará localmente si se introducen nuevas issues de severidad *Bloqueante* o *Crítica*.
 
 ### Grafo de Conocimiento (Graphify)
 Si el proyecto cuenta con Graphify (directorio `graphify-out/` o archivo `graph.json` presente en el repositorio):
-- Es obligatorio ejecutar `graphify update .` antes de dar por completado el Pre-flight Check. Esto asegura la coherencia del grafo y que `graphify-out/GRAPH_REPORT.md` refleje las modificaciones recientes.
+- Es obligatorio ejecutar `graphify --update` antes de dar por completado el Pre-flight Check. Esto asegura la coherencia del grafo y que `graphify-out/GRAPH_REPORT.md` refleje las modificaciones recientes.
 - Si el comando de actualización falla, el Pre-flight Check se marcará como `blocked` o `fail`.
 
 ### Deuda Técnica

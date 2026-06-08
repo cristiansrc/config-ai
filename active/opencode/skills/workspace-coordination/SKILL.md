@@ -13,7 +13,7 @@ Esta skill define el protocolo técnico para coordinar las especificaciones y co
 * Al finalizar el desarrollo y validación de un proyecto local (directorio `projects/<project-name>/`):
   1. El `planner` local debe consolidar la especificación y los contratos OpenAPI.
   2. El `enterprise-architect` debe invocar la actualización de dependencias e interfaces del workspace.
-  3. Ejecutar `graphify update .` en la raíz del Solution Workspace para actualizar el grafo general del landscape.
+  3. Ejecutar `graphify --update` en la raíz del Solution Workspace para actualizar el grafo general del landscape.
 
 ### B. Sincronización Descendente (Workspace -> Proyecto)
 * El `enterprise-architect` documenta los cambios arquitectónicos globales en `docs/specs/workspace_changes.md`.
