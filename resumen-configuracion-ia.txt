@@ -34,8 +34,8 @@ Modelos por Agente
 | devops-architect | google/gemma-4-26b-a4b-it | allow | allow |
 | context-curator | opencode/qwen3.6-plus-free | deny | deny |
 | documentation | google/gemini-2.5-flash-lite | allow | deny |
-| enterprise-architect | opencode/claude-fable-5 | allow | deny |
-| enterprise-spec-validator | opencode/claude-fable-5 | allow | deny |
+| enterprise-architect | opencode/claude-haiku-4-5 | allow | deny |
+| enterprise-spec-validator | opencode/claude-haiku-4-5 | allow | deny |
 | executor | opencode/deepseek-v4-flash-free | allow | allow |
 | final-validation | google/gemini-3.1-pro-preview | deny | allow |
 | planner | opencode/claude-opus-4-5 | allow | deny |

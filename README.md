@@ -25,12 +25,12 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
 | Agente                        | Responsabilidad Principal                                                             | Modelo                            |
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
-| **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | opencode/claude-fable-5           |
+| **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | opencode/claude-haiku-4-5         |
 | **reviewer**                  | Revisión de código y lógica.                                                          | opencode/claude-opus-4-5          |
 | **requirements-analyst**      | Levanta requerimientos funcionales (`requirements-brief.md`).                         | opencode/qwen3.6-plus-free        |
 | **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode/claude-opus-4-5          |
 | **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | opencode/qwen3.6-plus-free        |
-| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode/claude-fable-5           |
+| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode/claude-haiku-4-5         |
 | **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode/deepseek-v4-flash-free   |
 | **task-decomposer**           | Atomización de tareas para el ejecutor.                                               | opencode/qwen3.6-plus-free        |
 | **executor**                  | Implementación técnica y verificación pre-vuelo.                                      | opencode/deepseek-v4-flash-free   |

@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Valida la consistencia global del Solution Workspace, contratos inter-servicios, System Landscape y la deuda técnica global.
 mode: all
-model: opencode/claude-fable-5
+model: opencode/claude-haiku-4-5
 temperature: 0.1
 permission:
   edit: allow

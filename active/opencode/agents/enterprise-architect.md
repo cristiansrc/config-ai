@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Define el System Landscape, fronteras de microservicios y flujos globales siguiendo `enterprise-architecture-standard`.
 mode: all
-model: opencode/claude-fable-5
+model: opencode/claude-haiku-4-5
 temperature: 0.2
 permission:
   edit: allow
