@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Reviews web projects for security risks, OWASP issues, auth/authz flaws, sensitive data handling, and secure architecture.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: gemini/gemma-4-26b-it
 temperature: 0.1
 permission:
   edit: deny

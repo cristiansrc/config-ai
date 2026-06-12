@@ -37,6 +37,19 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 | **reviewer** | Revisión de código y lógica. | opencode/deepseek-v4-flash-free |
 | **security-reviewer** | Auditoría de seguridad y estándares OWASP. | opencode/deepseek-v4-flash-free |
 | **test-architect** | Diseño de estrategias de prueba y automatización. | opencode/deepseek-v4-flash-free |
+| **context-curator** | Filtra y prepara el contexto de alta señal para evitar ruido a los Obreros. | opencode/deepseek-v4-flash-free |
+
+---
+
+## 🗣️ Asistentes Personales (HyprMind)
+
+Agentes que operan fuera del SDLC actuando como asistentes personales con capacidad de delegación.
+
+| Agente | Responsabilidad Principal | Modelo |
+|---|---|---|
+| **hyprmind-orchestrator** | Interfaz principal (V.I.E.R.N.E.S.) para interacción por voz y delegación de tareas. | opencode/deepseek-v4-flash-free |
+| **hyprmind-vision-analyst** | Ojo Biónico para análisis de imágenes, UI y capturas de pantalla de código. | opencode/qwen-3.6-plus |
+| **hyprmind-deep-thinker** | Analista profundo para problemas arquitectónicos o lógicos muy complejos. | opencode/qwen-3.6-plus |
 
 ---
 
@@ -80,6 +93,11 @@ Las skills están organizadas por dominios técnicos y arquitectónicos:
 *   **model-tier-routing**: Escalamiento de modelos según complejidad.
 *   **context-pinning / context-curation**: Gestión de contexto y protección de Master Spec.
 *   **n8n-stack**: Estrategia de automatización de workflows.
+
+### 🧠 Ecosistema HyprMind
+*   **hyprmind-delegation-protocol**: Protocolo estructurado de delegación hacia agentes SDD.
+*   **hyprmind-memory-manager**: Gestión de memoria conversacional con caducidad de 2 horas.
+*   **hyprmind-workspace-manager**: Protocolos para apertura automática de IDEs (IntelliJ, VS Code, etc) y visualización de documentos.
 
 ---
 

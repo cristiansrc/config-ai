@@ -3,7 +3,7 @@
 # Script de Sincronizacion y Backup IA (Nueva Estructura)
 # Mantiene la paridad de agentes/skills y aplica politica de 25 backups.
 
-BASE_DIR="/home/cristiansrc/Documentos/config-ai"
+BASE_DIR="/home/cristiansrc/Documentos/Proyectos/config-ai"
 ACTIVE_DIR="$BASE_DIR/active"
 ARCHIVE_DIR="$BASE_DIR/archive/snapshots"
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)

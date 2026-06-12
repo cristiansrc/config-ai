@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Valida la consistencia global del Solution Workspace, contratos inter-servicios, System Landscape y la deuda técnica global.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: gemini/gemini-2.5-flash
 temperature: 0.1
 permission:
   edit: allow

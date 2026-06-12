@@ -30,25 +30,28 @@ Escalamiento de Modelos (Tier Routing)
 Modelos por Agente
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
-| architect-executor | opencode/deepseek-v4-flash-free | allow | allow |
-| devops-architect | opencode/deepseek-v4-flash-free | allow | allow |
-| context-curator | opencode/deepseek-v4-flash-free | deny | deny |
-| documentation | opencode/deepseek-v4-flash-free | allow | deny |
-| enterprise-architect | opencode/deepseek-v4-flash-free | allow | deny |
-| enterprise-spec-validator | opencode/deepseek-v4-flash-free | allow | deny |
-| executor | opencode/deepseek-v4-flash-free | allow | allow |
-| final-validation | opencode/deepseek-v4-flash-free | deny | allow |
-| planner | opencode/deepseek-v4-flash-free | allow | deny |
-| refactor | opencode/deepseek-v4-flash-free | allow | allow |
-| requirements-analyst | opencode/deepseek-v4-flash-free | allow | deny |
-| reviewer | opencode/deepseek-v4-flash-free | deny | allow |
-| security-reviewer | opencode/deepseek-v4-flash-free | deny | allow |
-| spec-remediator | opencode/deepseek-v4-flash-free | allow | deny |
-| spec-validator | opencode/deepseek-v4-flash-free | allow limitado | deny |
-| task-decomposer | opencode/deepseek-v4-flash-free | allow | deny |
-| test-architect | opencode/deepseek-v4-flash-free | allow | allow |
-| functional-test-planner | opencode/deepseek-v4-flash-free | allow | deny |
-| functional-tester-agent | opencode/deepseek-v4-flash-free | allow | allow |
+| architect-executor | gemini/gemini-2.5-flash | allow | allow |
+| devops-architect | gemini/gemma-4-26b-it | allow | allow |
+| context-curator | gemini/gemini-2.5-flash-lite | deny | deny |
+| documentation | gemini/gemini-2.5-flash-lite | allow | deny |
+| enterprise-architect | gemini/gemma-4-31b-it | allow | deny |
+| enterprise-spec-validator | gemini/gemini-2.5-flash | allow | deny |
+| executor | gemini/gemini-2.5-flash | allow | allow |
+| final-validation | gemini/gemini-2.5-flash | deny | allow |
+| planner | gemini/gemini-2.5-pro | allow | deny |
+| refactor | gemini/gemma-4-31b-it | allow | allow |
+| requirements-analyst | gemini/gemini-2.5-flash | allow | deny |
+| reviewer | gemini/gemma-4-31b-it | deny | allow |
+| security-reviewer | gemini/gemma-4-26b-it | deny | allow |
+| spec-remediator | gemini/gemma-4-31b-it | allow | deny |
+| spec-validator | gemini/gemini-2.5-flash | allow limitado | deny |
+| task-decomposer | gemini/gemini-2.5-flash-lite | allow | deny |
+| test-architect | gemini/gemma-4-26b-it | allow | allow |
+| functional-test-planner | gemini/gemini-2.5-flash | allow | deny |
+| functional-tester-agent | gemini/gemini-2.5-flash | allow | allow |
+| hyprmind-orchestrator | gemini/gemini-2.5-flash | allow | allow |
+| hyprmind-vision-analyst | gemini/gemini-2.5-flash | deny | deny |
+| hyprmind-deep-thinker | gemini/gemini-2.5-pro | deny | deny |
 
 
 Ecosistema de Skills (50 Skills Activas Resueltas)

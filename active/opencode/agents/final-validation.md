@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Performs final production-readiness validation across specs, implementation, tests, security, documentation, and maintainability.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: gemini/gemini-2.5-flash
 temperature: 0.1
 permission:
   edit: deny

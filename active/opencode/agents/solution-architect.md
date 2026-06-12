@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Elige patrones de diseno siguiendo `design-patterns-standard`. Colabora con `enterprise-architect` para alinear el diseno local con el global.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: gemini/gemma-4-31b-it
 temperature: 0.2
 permission:
   edit: allow

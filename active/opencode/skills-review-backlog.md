@@ -82,6 +82,12 @@ Objetivo: revisar las 47 skills activas de OpenCode una por una, mejorar mejores
 - [x] context-pinning
 - [x] model-tier-routing
 
+## Prioridad P7 - Asistentes Personales (HyprMind)
+
+- [x] hyprmind-delegation-protocol
+- [x] hyprmind-memory-manager
+- [x] hyprmind-workspace-manager
+
 ## Proceso Por Skill
 
 1. Leer skill activa y detectar duplicidad, contradicciones, reglas vagas y practicas obsoletas.

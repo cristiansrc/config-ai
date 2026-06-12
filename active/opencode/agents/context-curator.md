@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Curates task context for other agents by selecting relevant files, summarizing specs, reducing noise, and preparing focused handoff context.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: gemini/gemini-2.5-flash-lite
 temperature: 1.0
 permission:
   edit: deny

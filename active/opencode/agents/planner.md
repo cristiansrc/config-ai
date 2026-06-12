@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Planifica proyectos web con Spec Driven Development, decisiones de arquitectura, contratos API, restricciones tecnicas y documentacion base del proyecto.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: gemini/gemini-2.5-pro
 temperature: 0.2
 permission:
   edit: allow

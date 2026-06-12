@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Realiza el levantamiento de requerimientos funcionales siguiendo `requirements-gathering`.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: gemini/gemini-2.5-flash
 temperature: 0.3
 permission:
   edit: allow

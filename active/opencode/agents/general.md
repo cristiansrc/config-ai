@@ -29,4 +29,4 @@ Reglas:
 - Nunca ejecutes comandos shell.
 
 El agente correcto para validación es `spec-validator`, configurado con
-`model: opencode-go/deepseek-v4-pro`.
+`model: opencode/deepseek-v4-flash-free

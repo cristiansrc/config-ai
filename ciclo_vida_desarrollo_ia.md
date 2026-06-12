@@ -27,6 +27,7 @@ Agentes especializados que asesoran, diseñan arquitectura y descomponen planes 
 *   [test-architect](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/test-architect.md): Diseña la estrategia de testing y genera casos de prueba unitarios y de integración.
 *   [functional-test-planner](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/functional-test-planner.md): Analiza las specs y diseña el plan detallado de pruebas funcionales de usuario.
 *   [task-decomposer](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/task-decomposer.md): Divide especificaciones validadas y aprobadas en un Task Board de tareas atómicas y secuenciales.
+*   [context-curator](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/context-curator.md): Prepara contexto de alta señal y maneja el ciclo de vida del SDD context.
 
 ### C. Validadores (Validators)
 Agentes con permiso de solo lectura de código que auditan la calidad, seguridad y consistencia de los artefactos:
@@ -35,6 +36,12 @@ Agentes con permiso de solo lectura de código que auditan la calidad, seguridad
 *   [reviewer](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/reviewer.md): Revisa el código implementado buscando bugs y architecture drift.
 *   [security-reviewer](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/security-reviewer.md): Audita políticas de seguridad (CORS, JWT, Keycloak, boundaries).
 *   [final-validation](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/final-validation.md): Valida el incremento completado, verificando cobertura de tests (>85%) y criterios de aceptación.
+
+### D. Asistentes Personales (Personal Assistants)
+Agentes externos al ciclo de desarrollo de software (SDLC) que operan como tu interfaz personal, pero con capacidad de interactuar y delegar trabajo a los agentes del SDLC.
+*   [hyprmind-orchestrator](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/hyprmind-orchestrator.md): (V.I.E.R.N.E.S.) Orquestador conversacional principal de tu sistema y manejador del workspace.
+*   [hyprmind-deep-thinker](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/hyprmind-deep-thinker.md): Filósofo y motor de razonamiento denso para discusiones complejas o diseño abstracto.
+*   [hyprmind-vision-analyst](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/hyprmind-vision-analyst.md): El "Ojo Biónico" que procesa y explica tus capturas de pantalla o interfaces visuales.
 
 ---
 

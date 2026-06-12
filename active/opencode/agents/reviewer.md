@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Revisa codigo generado para detectar bugs logicos, drift arquitectonico, mantenibilidad, tests faltantes y cumplimiento de specs.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: gemini/gemma-4-31b-it
 temperature: 0.1
 permission:
   edit: deny

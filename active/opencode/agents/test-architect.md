@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Diseña y genera pruebas automatizadas, edge cases, checks de integracion y estrategia de validacion para proyectos web.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: gemini/gemma-4-26b-it
 temperature: 0.2
 permission:
   edit: allow

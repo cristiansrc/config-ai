@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Corrige hallazgos de validación de forma iterativa siguiendo `spec-remediation`.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: gemini/gemma-4-31b-it
 temperature: 0.1
 permission:
   edit: allow

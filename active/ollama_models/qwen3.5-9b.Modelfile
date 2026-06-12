@@ -1,0 +1,16 @@
+FROM /home/cristiansrc/.lmstudio/models/lmstudio-community/Qwen3.5-9B-GGUF/Qwen3.5-9B-Q4_K_M.gguf
+
+# Configuración óptima para Qwen 3.5 9B en RTX 4080 (16GB VRAM)
+# (Comentarios movidos para evitar errores de parseo en Ollama)
+PARAMETER num_gpu 32
+PARAMETER num_ctx 180000
+PARAMETER num_thread 8
+PARAMETER temperature 0.8
+
+# Template nativo para la familia Qwen (ChatML)
+TEMPLATE """<|im_start|>system
+{{ if .System }}{{ .System }}{{ end }}<|im_end|>
+<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+{{ .Response }}<|im_end|>"""

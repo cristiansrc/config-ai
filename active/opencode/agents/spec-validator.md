@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Valida specs SDD contra ambiguedad, inconsistencia, riesgo arquitectonico, restricciones faltantes y readiness de implementacion.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: gemini/gemini-2.5-flash
 temperature: 0.1
 permission:
   edit: allow
