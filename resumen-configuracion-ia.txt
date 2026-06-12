@@ -38,7 +38,7 @@ Modelos por Agente
 | enterprise-spec-validator | opencode/claude-haiku-4-5 | allow | deny |
 | executor | opencode/deepseek-v4-flash-free | allow | allow |
 | final-validation | google/gemini-3.1-pro-preview | deny | allow |
-| planner | opencode/claude-opus-4-5 | allow | deny |
+| planner | google/gemini-3.1-pro-preview | allow | deny |
 | refactor | google/gemma-4-31b-it | allow | allow |
 | requirements-analyst | opencode/qwen3.6-plus-free | allow | deny |
 | reviewer | opencode/claude-opus-4-5 | deny | allow |

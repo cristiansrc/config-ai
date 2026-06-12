@@ -28,7 +28,7 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 | **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | opencode/claude-haiku-4-5         |
 | **reviewer**                  | Revisión de código y lógica.                                                          | opencode/claude-opus-4-5          |
 | **requirements-analyst**      | Levanta requerimientos funcionales (`requirements-brief.md`).                         | opencode/qwen3.6-plus-free        |
-| **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode/claude-opus-4-5          |
+| **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | google/gemini-3.1-pro-preview     |
 | **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | opencode/qwen3.6-plus-free        |
 | **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode/claude-haiku-4-5         |
 | **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode/deepseek-v4-flash-free   |
