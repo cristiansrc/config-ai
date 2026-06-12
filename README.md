@@ -22,7 +22,6 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 
 ## 🤖 Definición de Agentes y Responsabilidades
 
-|-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
 | Agente                        | Responsabilidad Principal                                                             | Modelo                            |
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
 | **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | opencode/claude-haiku-4-5         |
@@ -45,7 +44,6 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 | **refactor**                  | Refactoriza código existente siguiendo patrones limpios.                              | gemini/gemma-4-31b-it             |
 | **functional-test-planner**   | Diseña planes de pruebas funcionales y flujos de usuario estructurados.               | gemini/gemini-2.5-flash           |
 | **functional-tester-agent**   | Diseña, ejecuta y valida pruebas funcionales y UI/E2E en frontends.                   | gemini/gemini-2.5-flash           |
-|-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
 
 ---
 
@@ -53,13 +51,11 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 
 Agentes que operan fuera del SDLC actuando como asistentes personales con capacidad de delegación.
 
-|-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
 | Agente                        | Responsabilidad Principal                                                             | Modelo                            |
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
 | **hyprmind-orchestrator**     | Interfaz principal (V.I.E.R.N.E.S.) para interacción por voz y delegación de tareas.  | opencode/qwen3.6-plus-free        |
 | **hyprmind-vision-analyst**   | Ojo Biónico para análisis de imágenes, UI y capturas de pantalla de código.           | gemini/gemini-2.5-flash           |
 | **hyprmind-deep-thinker**     | Analista profundo para problemas arquitectónicos o lógicos muy complejos.             | opencode/claude-haiku-4.5         |
-|-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
 
 ---
 
