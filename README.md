@@ -57,7 +57,7 @@ Agentes que operan fuera del SDLC actuando como asistentes personales con capaci
 | Agente                        | Responsabilidad Principal                                                             | Modelo                            |
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
 | **hyprmind-orchestrator**     | Interfaz principal (V.I.E.R.N.E.S.) para interacción por voz y delegación de tareas.  | opencode/qwen3.6-plus-free        |
-| **hyprmind-vision-analyst**   | Ojo Biónico para análisis de imágenes, UI y capturas de pantalla de código.           | opencode/claude-opus-4-5          |
+| **hyprmind-vision-analyst**   | Ojo Biónico para análisis de imágenes, UI y capturas de pantalla de código.           | gemini/gemini-2.5-flash           |
 | **hyprmind-deep-thinker**     | Analista profundo para problemas arquitectónicos o lógicos muy complejos.             | opencode/claude-haiku-4.5         |
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
 

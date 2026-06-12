@@ -50,7 +50,7 @@ Modelos por Agente
 | functional-test-planner | google/gemini-2.5-flash | allow | deny |
 | functional-tester-agent | google/gemini-2.5-flash | allow | allow |
 | hyprmind-orchestrator | opencode/qwen3.6-plus-free | allow | allow |
-| hyprmind-vision-analyst | opencode/claude-opus-4-5 | deny | deny |
+| hyprmind-vision-analyst | gemini/gemini-2.5-flash | deny | deny |
 | hyprmind-deep-thinker | opencode/claude-haiku-4.5 | deny | deny |
 
 

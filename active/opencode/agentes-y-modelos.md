@@ -53,6 +53,6 @@ Perfil LM Studio persistente:
 | functional-test-planner| gemini/gemini-2.5-flash      | allow             | deny  | Analiza las specs a nivel de workspace/proyectos y diseña planes de pruebas funcionales y flujos de usuario estructurados siguiendo `functional-testing-standard`. |
 | functional-tester-agent| gemini/gemini-2.5-flash       | allow             | allow | Diseña, ejecuta y valida pruebas funcionales y UI/E2E en frontends. Automatiza la detección, reporte y corrección mecánica de errores siguiendo `functional-testing-standard`. |
 | hyprmind-orchestrator  | opencode/qwen3.6-plus-free    | allow             | allow | (V.I.E.R.N.E.S.) Orquestador conversacional principal de tu sistema y manejador del workspace. |
-| hyprmind-vision-analyst| opencode/claude-opus-4-5      | deny              | deny  | El "Ojo Biónico" que procesa y explica tus capturas de pantalla o interfaces visuales.                                                                             |
+| hyprmind-vision-analyst| gemini/gemini-2.5-flash       | deny              | deny  | El "Ojo Biónico" que procesa y explica tus capturas de pantalla o interfaces visuales.                                                                             |
 | hyprmind-deep-thinker  | opencode/claude-haiku-4.5     | deny              | deny  | Filósofo y motor de razonamiento denso para discusiones complejas o diseño abstracto.                                                                              |
 
