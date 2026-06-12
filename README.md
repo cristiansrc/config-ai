@@ -22,22 +22,30 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 
 ## 🤖 Definición de Agentes y Responsabilidades
 
-| Agente | Responsabilidad Principal | Modelo |
-|---|---|---|
-| **requirements-analyst** | Levanta requerimientos funcionales (`requirements-brief.md`). | opencode/deepseek-v4-flash-free |
-| **planner** | Arquitectura, diseño técnico y contratos OpenAPI (SDD). | opencode/deepseek-v4-flash-free |
-| **spec-validator** | Validación estricta de consistencia local y veredictos de 'ready'. | opencode/deepseek-v4-flash-free |
-| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global. | opencode/deepseek-v4-flash-free |
-| **spec-remediator** | Corrección iterativa de hallazgos mecánicos o de contrato. | opencode/deepseek-v4-flash-free |
-| **task-decomposer** | Atomización de tareas para el ejecutor. | opencode/deepseek-v4-flash-free |
-| **executor** | Implementación técnica y verificación pre-vuelo. | opencode/deepseek-v4-flash-free |
-| **final-validation** | Garantía de calidad final y cumplimiento de cobertura mínima. | opencode/deepseek-v4-flash-free |
-| **solution-architect** | Selección de patrones de diseño GoF y estructuras locales. | opencode/deepseek-v4-flash-free |
-| **enterprise-architect** | Visión macro, microservicios, System Landscape y Workspace. | opencode/deepseek-v4-flash-free |
-| **reviewer** | Revisión de código y lógica. | opencode/deepseek-v4-flash-free |
-| **security-reviewer** | Auditoría de seguridad y estándares OWASP. | opencode/deepseek-v4-flash-free |
-| **test-architect** | Diseño de estrategias de prueba y automatización. | opencode/deepseek-v4-flash-free |
-| **context-curator** | Filtra y prepara el contexto de alta señal para evitar ruido a los Obreros. | opencode/deepseek-v4-flash-free |
+|-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
+| Agente                        | Responsabilidad Principal                                                             | Modelo                            |
+|-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
+| **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | opencode/claude-fable-5           |
+| **reviewer**                  | Revisión de código y lógica.                                                          | opencode/claude-opus-4-5          |
+| **requirements-analyst**      | Levanta requerimientos funcionales (`requirements-brief.md`).                         | opencode/qwen3.6-plus-free        |
+| **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode/claude-opus-4-5          |
+| **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | opencode/qwen3.6-plus-free        |
+| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode/claude-fable-5           |
+| **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode/deepseek-v4-flash-free   |
+| **task-decomposer**           | Atomización de tareas para el ejecutor.                                               | opencode/qwen3.6-plus-free        |
+| **executor**                  | Implementación técnica y verificación pre-vuelo.                                      | opencode/deepseek-v4-flash-free   |
+| **final-validation**          | Garantía de calidad final y cumplimiento de cobertura mínima.                         | google/gemini-3.1-pro-preview     |
+| **solution-architect**        | Selección de patrones de diseño GoF y estructuras locales.                            | opencode/qwen3.6-plus-free        |
+| **security-reviewer**         | Auditoría de seguridad y estándares OWASP.                                            | opencode/qwen3.6-plus-free        |
+| **test-architect**            | Diseño de estrategias de prueba y automatización.                                     | opencode/deepseek-v4-flash-free   |
+| **context-curator**           | Filtra y prepara el contexto de alta señal para evitar ruido a los Obreros.           | opencode/qwen3.6-plus-free        |
+| **architect-executor**        | Implementa tareas de arquitectura local y lógica compleja.                             | gemini/gemini-2.5-flash           |
+| **devops-architect**          | Especialista en Infraestructura como Código y CI/CD.                                  | gemini/gemma-4-26b-it             |
+| **documentation**             | Gestiona el ciclo de vida de la documentación del proyecto.                           | gemini/gemini-2.5-flash-lite      |
+| **refactor**                  | Refactoriza código existente siguiendo patrones limpios.                              | gemini/gemma-4-31b-it             |
+| **functional-test-planner**   | Diseña planes de pruebas funcionales y flujos de usuario estructurados.               | gemini/gemini-2.5-flash           |
+| **functional-tester-agent**   | Diseña, ejecuta y valida pruebas funcionales y UI/E2E en frontends.                   | gemini/gemini-2.5-flash           |
+|-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
 
 ---
 
@@ -45,11 +53,13 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 
 Agentes que operan fuera del SDLC actuando como asistentes personales con capacidad de delegación.
 
-| Agente | Responsabilidad Principal | Modelo |
-|---|---|---|
-| **hyprmind-orchestrator** | Interfaz principal (V.I.E.R.N.E.S.) para interacción por voz y delegación de tareas. | opencode/deepseek-v4-flash-free |
-| **hyprmind-vision-analyst** | Ojo Biónico para análisis de imágenes, UI y capturas de pantalla de código. | opencode/qwen-3.6-plus |
-| **hyprmind-deep-thinker** | Analista profundo para problemas arquitectónicos o lógicos muy complejos. | opencode/qwen-3.6-plus |
+|-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
+| Agente                        | Responsabilidad Principal                                                             | Modelo                            |
+|-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
+| **hyprmind-orchestrator**     | Interfaz principal (V.I.E.R.N.E.S.) para interacción por voz y delegación de tareas.  | opencode/qwen3.6-plus-free        |
+| **hyprmind-vision-analyst**   | Ojo Biónico para análisis de imágenes, UI y capturas de pantalla de código.           | opencode/claude-opus-4-5          |
+| **hyprmind-deep-thinker**     | Analista profundo para problemas arquitectónicos o lógicos muy complejos.             | opencode/claude-haiku-4.5         |
+|-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
 
 ---
 

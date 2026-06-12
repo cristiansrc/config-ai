@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Elige patrones de diseno siguiendo `design-patterns-standard`. Colabora con `enterprise-architect` para alinear el diseno local con el global.
 mode: all
-model: gemini/gemma-4-31b-it
+model: opencode/qwen3.6-plus-free
 temperature: 0.2
 permission:
   edit: allow

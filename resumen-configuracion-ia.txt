@@ -17,41 +17,41 @@ Política de Backups y Retención
 - OpenCode carga el token de GitHub desde .env mediante el comando local del MCP github; no debe quedar hardcodeado en opencode.json ni backups.
 
 Escalamiento de Modelos (Tier Routing)
-- Modelo default global de OpenCode: opencode-go/qwen3.6-plus.
-- Configuracion activa de OpenCode: /home/cristiansrc/.config/opencode/opencode.json.
+- Modelo default global de OpenCode: gemini/gemini-2.5-flash.
+- Configuracion activa de OpenCode: /home/cristiansrc/.config/opencode/opencode.jsonc.
 - Agentes activos de OpenCode: /home/cristiansrc/.config/opencode/agents/.
 - Archivo canonico de agentes/modelos: /home/cristiansrc/Documentos/config-ai/active/opencode/agentes-y-modelos.md.
 - Backup actual de agentes y skills: /home/cristiansrc/Documentos/config-ai/archive/full-backup-20260514-final/.
-- Agentes criticos de validacion: opencode-go/deepseek-v4-pro.
-- La configuración ha migrado hacia el proveedor `opencode-go`, optimizando el uso de modelos Qwen 3.6 Plus para razonamiento central y DeepSeek V4 Pro/Flash para tareas especializadas.
+- Agentes criticos de validacion: gemini/gemini-2.5-flash.
+- La configuración ha migrado hacia el proveedor `gemini`, optimizando el uso de modelos de la serie Gemini 2.5 (e.g. flash, pro, gemma-4) para las tareas de desarrollo y validación especializada.
 - Politica de idioma de agentes: definiciones operativas en ESPAÑOL; convenciones tecnicas, nombres de agentes/skills, estados canonicos, headings, rutas, comandos y tokens exactos en INGLES.
 - Perfil persistente LM Studio para Qwen 3.6 35B (Backup local): MoE con 3B activos, GPU offload ratio 26/64 capas, K/V cache Q4_0 activo. Velocidad observada: ~40 tok/s constantes con alta eficiencia energética.
 
 Modelos por Agente
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
-| architect-executor | gemini/gemini-2.5-flash | allow | allow |
-| devops-architect | gemini/gemma-4-26b-it | allow | allow |
-| context-curator | gemini/gemini-2.5-flash-lite | deny | deny |
-| documentation | gemini/gemini-2.5-flash-lite | allow | deny |
-| enterprise-architect | gemini/gemma-4-31b-it | allow | deny |
-| enterprise-spec-validator | gemini/gemini-2.5-flash | allow | deny |
-| executor | gemini/gemini-2.5-flash | allow | allow |
-| final-validation | gemini/gemini-2.5-flash | deny | allow |
-| planner | gemini/gemini-2.5-pro | allow | deny |
-| refactor | gemini/gemma-4-31b-it | allow | allow |
-| requirements-analyst | gemini/gemini-2.5-flash | allow | deny |
-| reviewer | gemini/gemma-4-31b-it | deny | allow |
-| security-reviewer | gemini/gemma-4-26b-it | deny | allow |
-| spec-remediator | gemini/gemma-4-31b-it | allow | deny |
-| spec-validator | gemini/gemini-2.5-flash | allow limitado | deny |
-| task-decomposer | gemini/gemini-2.5-flash-lite | allow | deny |
-| test-architect | gemini/gemma-4-26b-it | allow | allow |
-| functional-test-planner | gemini/gemini-2.5-flash | allow | deny |
-| functional-tester-agent | gemini/gemini-2.5-flash | allow | allow |
-| hyprmind-orchestrator | gemini/gemini-2.5-flash | allow | allow |
-| hyprmind-vision-analyst | gemini/gemini-2.5-flash | deny | deny |
-| hyprmind-deep-thinker | gemini/gemini-2.5-pro | deny | deny |
+| architect-executor | google/gemini-2.5-flash | allow | allow |
+| devops-architect | google/gemma-4-26b-a4b-it | allow | allow |
+| context-curator | opencode/qwen3.6-plus-free | deny | deny |
+| documentation | google/gemini-2.5-flash-lite | allow | deny |
+| enterprise-architect | opencode/claude-fable-5 | allow | deny |
+| enterprise-spec-validator | opencode/claude-fable-5 | allow | deny |
+| executor | opencode/deepseek-v4-flash-free | allow | allow |
+| final-validation | google/gemini-3.1-pro-preview | deny | allow |
+| planner | opencode/claude-opus-4-5 | allow | deny |
+| refactor | google/gemma-4-31b-it | allow | allow |
+| requirements-analyst | opencode/qwen3.6-plus-free | allow | deny |
+| reviewer | opencode/claude-opus-4-5 | deny | allow |
+| security-reviewer | opencode/qwen3.6-plus-free | deny | allow |
+| spec-remediator | opencode/deepseek-v4-flash-free | allow | deny |
+| spec-validator | opencode/qwen3.6-plus-free | allow limitado | deny |
+| task-decomposer | opencode/qwen3.6-plus-free | allow | deny |
+| test-architect | opencode/deepseek-v4-flash-free | allow | allow |
+| functional-test-planner | google/gemini-2.5-flash | allow | deny |
+| functional-tester-agent | google/gemini-2.5-flash | allow | allow |
+| hyprmind-orchestrator | opencode/qwen3.6-plus-free | allow | allow |
+| hyprmind-vision-analyst | opencode/claude-opus-4-5 | deny | deny |
+| hyprmind-deep-thinker | opencode/claude-haiku-4.5 | deny | deny |
 
 
 Ecosistema de Skills (50 Skills Activas Resueltas)
@@ -180,12 +180,12 @@ Pruebas y Cobertura Global
 - OpenAPI y spec deben usar el mismo schema de errores REST. Para Spring Boot, la estructura estándar es `timestamp`, `status`, `error`, `code`, `message`, `path`, `trace_id` y `details`.
 - Después de compaction o sesión resumida, Planner, Spec Validator, Task Decomposer y Executor deben rehidratar contexto desde disco: shared context, spec, OpenAPI, migraciones/config, task board y último reporte de validación. El resumen compacto del chat solo es una pista.
 - Si un reporte viejo o resumen contradice archivos actuales, se marca como `superseded` y se usan los archivos actuales.
-- Nuevo agente `spec-remediator`: usa opencode-go/deepseek-v4-flash para corregir hallazgos de Spec Validator uno por uno. Planner sigue siendo dueño de specs, arquitectura, alcance y contratos. Spec Remediator solo corrige hallazgos mecánicos o drift con fuente autoritativa inequívoca; decisiones de diseño se enrutan al Planner/User.
-- Spec Remediator debe solicitar validaciones exclusivamente al agente `spec-validator` configurado con `opencode-go/deepseek-v4-pro`. Si la validacion se ejecuta con otro modelo, debe detenerse con `Blocked: wrong validator model` y no usar ese resultado como aprobacion.
+- Nuevo agente `spec-remediator`: usa gemini/gemini-2.5-flash para corregir hallazgos de Spec Validator uno por uno. Planner sigue siendo dueño de specs, arquitectura, alcance y contratos. Spec Remediator solo corrige hallazgos mecánicos o drift con fuente autoritativa inequívoca; decisiones de diseño se enrutan al Planner/User.
+- Spec Remediator debe solicitar validaciones exclusivamente al agente `spec-validator` configurado con `gemini/gemini-2.5-flash`. Si la validacion se ejecuta con otro modelo, debe detenerse con `Blocked: wrong validator model` y no usar ese resultado como aprobacion.
 - Spec Remediator primero solicita validación completa, clasifica hallazgos (`mechanical`, `contract-drift`, `design-decision`, `migration-risk`, `validator/process-bug`, `user-decision`), toma el primer hallazgo seguro, aplica una corrección mínima, pide validación solo de ese hallazgo y continúa. Máximo 4 intentos por hallazgo; si no puede resolverlo o reaparece un hallazgo ya resuelto, detiene el flujo y escribe reporte en `<active-repo>/docs/specs/.working/<increment-name>-remediator-bug-report.md`.
 - `spec-remediator` no puede llamar a Task Decomposer ni Executor; solo trabaja contra Planner/Spec Validator y artefactos SDD.
 - Estos artefactos se crean por proyecto/incremento durante el flujo SDD; no debe existir un task board activo global por defecto.
-- Nuevo agente `requirements-analyst`: usa opencode-go/qwen3.6-plus antes de Planner para levantar requerimientos cuando la solicitud aun no esta lista para SDD formal.
+- Nuevo agente `requirements-analyst`: usa gemini/gemini-2.5-flash antes de Planner para levantar requerimientos cuando la solicitud aun no esta lista para SDD formal.
 - Entregable de requirements-analyst: `docs/specs/requirements/<increment-name>-requirements-brief.md` o, si el proyecto usa contexto temporal, `docs/specs/.working/<increment-name>-requirements-brief.md`.
 - **Placeholder Guard**: Los agentes deben reemplazar `<increment-name>` con el nombre real de la funcionalidad (ej. `user-auth`) y preguntar al usuario si no lo conocen. Queda prohibido el uso literal de marcadores de posición en nombres de archivos.
 - El requirements brief debe incluir estado `requirements-discovery`, objetivo, contexto, actores, roles/permisos, alcance, no objetivos, flujos, entidades funcionales, integraciones, seguridad, restricciones operativas, edge cases, criterios de aceptacion, preguntas abiertas y handoff para Planner.

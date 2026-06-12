@@ -1,6 +1,6 @@
 # Agentes y Modelos OpenCode
 
-Ultima actualizacion: 2026-05-22
+Ultima actualizacion: 2026-06-12
 
 Fuente activa:
 - Configuracion: `/home/cristiansrc/.config/opencode/opencode.json`
@@ -17,7 +17,7 @@ Regla de mantenimiento:
 - Convenciones de stack: `nodejs-stack`, `python-stack`, `fastapi-stack`, `springboot-stack`, `java-stack`, `kotlin-stack` y `golang-stack` son la fuente de verdad para reglas tecnicas de cada runtime.
 - Estándar de Testing Funcional: `functional-testing-standard` define la estrategia de planeación, reporte y corrección de pruebas UI/E2E en frontends utilizando Puppeteer MCP o frameworks locales.
 - Cambio operativo vigente: Planner puede crear o actualizar unicamente el `.gitignore` raiz del repositorio activo ademas de specs/OpenAPI, para excluir artefactos no versionables de specs y codigo generado sin ocultar artefactos canonicos.
-- Cambio operativo vigente (temporal): Spec Remediator debe invocar validaciones solo mediante `spec-validator` con `opencode-go/deepseek-v4-pro`; cualquier validacion ejecutada con otro modelo debe bloquearse como `Blocked: wrong validator model`.
+- Cambio operativo vigente (temporal): Spec Remediator debe invocar validaciones solo mediante `spec-validator` con `gemini/gemini-2.5-flash`; cualquier validacion ejecutada con otro modelo debe bloquearse como `Blocked: wrong validator model`.
 - Estructura de Solution Workspace (OPCIONAL): La pertenencia a un Solution Workspace está condicionada a que la carpeta padre del proyecto se llame exactamente `projects/`.
   - Si el padre NO es `projects/`: El proyecto es STANDALONE; no requiere ni debe tener documentación enterprise ni Master Spec global.
   - Si el padre ES `projects/`: El proyecto es parte de una solución. Los agentes deben usar esta carpeta como frontera para distinguir contexto LOCAL de GLOBAL.
@@ -34,25 +34,25 @@ Perfil LM Studio persistente:
 |-----------------------|-------------------------------|-------------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------|
 | architect-executor    | gemini/gemini-2.5-flash       | allow             | allow | Implementa tareas de arquitectura local y lógica compleja siguiendo `hexagonal-architecture`.                                                     |
 | devops-architect      | gemini/gemma-4-26b-it         | allow             | allow | Especialista en Infraestructura como Código y CI/CD siguiendo `docker-standard` y `observability-standard`.                                       |
-| context-curator       | gemini/gemini-2.5-flash-lite  | deny              | deny  | Gestiona la ventana de contexto y reduce ruido siguiendo `context-curation` y `context-pinning`.                                                  |
+| context-curator       | opencode/qwen3.6-plus-free    | deny              | deny  | Gestiona la ventana de contexto y reduce ruido siguiendo `context-curation` y `context-pinning`.                                                  |
 | documentation         | gemini/gemini-2.5-flash-lite  | allow             | deny  | Gestiona el ciclo de vida de la documentación siguiendo `documentation-lifecycle` y `documentation-standards`.                                    |
-| executor              | gemini/gemini-2.5-flash       | allow             | allow | Implementa código verificado siguiendo los estándares del stack correspondiente (`springboot-stack`, `fastapi-stack`, etc.).                      |
-| final-validation      | gemini/gemini-2.5-flash       | deny              | allow | Garantiza la calidad final y cobertura mínima siguiendo `testing-strategy` y `pre-flight-check`.                                                  |
-| enterprise-architect  | gemini/gemma-4-31b-it         | allow             | deny  | Define el System Landscape, fronteras de microservicios y flujos globales siguiendo `enterprise-architecture-standard`.                           |
-| enterprise-spec-validator| gemini/gemini-2.5-flash     | allow             | deny  | Valida la coherencia global del Solution Workspace, contratos de integración y deuda técnica global siguiendo `workspace-coordination`.          |
-| solution-architect    | gemini/gemma-4-31b-it         | allow             | deny  | Elige patrones de diseño siguiendo `design-patterns-standard`. Colabora con `enterprise-architect` para alinear el diseño local con el global.    |
-| planner               | gemini/gemini-2.5-pro         | allow             | deny  | Planifica incrementos SDD y diseña contratos. Consulta a `solution-architect` para decisiones de patrones complejos.                              |
+| executor              | opencode/deepseek-v4-flash-free | allow             | allow | Implementa código verificado siguiendo los estándares del stack correspondiente (`springboot-stack`, `fastapi-stack`, etc.).                      |
+| final-validation      | google/gemini-3.1-pro-preview | deny              | allow | Garantiza la calidad final y cobertura mínima siguiendo `testing-strategy` y `pre-flight-check`.                                                  |
+| enterprise-architect  | opencode/claude-fable-5       | allow             | deny  | Define el System Landscape, fronteras de microservicios y flujos globales siguiendo `enterprise-architecture-standard`.                           |
+| enterprise-spec-validator| opencode/claude-fable-5     | allow             | deny  | Valida la coherencia global del Solution Workspace, contratos de integración y deuda técnica global siguiendo `workspace-coordination`.          |
+| solution-architect    | opencode/qwen3.6-plus-free    | allow             | deny  | Elige patrones de diseño siguiendo `design-patterns-standard`. Colabora con `enterprise-architect` para alinear el diseño local con el global.    |
+| planner               | opencode/claude-opus-4-5      | allow             | deny  | Planifica incrementos SDD y diseña contratos. Consulta a `solution-architect` para decisiones de patrones complejos.                              |
 | refactor              | gemini/gemma-4-31b-it         | allow             | allow | Refactoriza código existente siguiendo `refactor-patterns` y `refactor-hexagonal-bridge`.                                                         |
-| requirements-analyst  | gemini/gemini-2.5-flash       | allow             | deny  | Realiza el levantamiento de requerimientos funcionales siguiendo `requirements-gathering`.                                                        |
-| reviewer              | gemini/gemma-4-31b-it         | deny              | allow | Audita el código generado buscando drift y bugs siguiendo `code-review-checklist`.                                                                |
-| security-reviewer     | gemini/gemma-4-26b-it         | deny              | allow | Valida la postura de seguridad siguiendo `security-standards` y `keycloak-standard`.                                                              |
-| spec-remediator       | gemini/gemma-4-31b-it         | allow             | deny  | Corrige hallazgos de validación de forma iterativa siguiendo `spec-remediation`.                                                                  |
-| spec-validator        | gemini/gemini-2.5-flash       | allow limitado    | deny  | Valida la consistencia de los artefactos SDD siguiendo `spec-driven-development`.                                                                 |
-| task-decomposer       | gemini/gemini-2.5-flash-lite  | allow             | deny  | Descompone especificaciones en tareas atómicas siguiendo los contratos de `spec-driven-development`.                                              |
-| test-architect        | gemini/gemma-4-26b-it         | allow             | allow | Diseña la estrategia de pruebas y genera casas de test siguiendo `testing-strategy`.                                                              |
+| requirements-analyst  | opencode/qwen3.6-plus-free    | allow             | deny  | Realiza el levantamiento de requerimientos funcionales siguiendo `requirements-gathering`.                                                        |
+| reviewer              | opencode/claude-opus-4-5      | deny              | allow | Audita el código generado buscando drift y bugs siguiendo `code-review-checklist`.                                                                |
+| security-reviewer     | opencode/qwen3.6-plus-free    | deny              | allow | Valida la postura de seguridad siguiendo `security-standards` y `keycloak-standard`.                                                              |
+| spec-remediator       | opencode/deepseek-v4-flash-free | allow             | deny  | Corrige hallazgos de validación de forma iterativa siguiendo `spec-remediation`.                                                                  |
+| spec-validator        | opencode/qwen3.6-plus-free    | allow limitado    | deny  | Valida la consistencia de los artefactos SDD siguiendo `spec-driven-development`.                                                                 |
+| task-decomposer       | opencode/qwen3.6-plus-free    | allow             | deny  | Descompone especificaciones en tareas atómicas siguiendo los contratos de `spec-driven-development`.                                              |
+| test-architect        | opencode/deepseek-v4-flash-free | allow             | allow | Diseña la estrategia de pruebas y genera casas de test siguiendo `testing-strategy`.                                                              |
 | functional-test-planner| gemini/gemini-2.5-flash      | allow             | deny  | Analiza las specs a nivel de workspace/proyectos y diseña planes de pruebas funcionales y flujos de usuario estructurados siguiendo `functional-testing-standard`. |
 | functional-tester-agent| gemini/gemini-2.5-flash       | allow             | allow | Diseña, ejecuta y valida pruebas funcionales y UI/E2E en frontends. Automatiza la detección, reporte y corrección mecánica de errores siguiendo `functional-testing-standard`. |
-| hyprmind-orchestrator  | gemini/gemini-2.5-flash       | allow             | allow | (V.I.E.R.N.E.S.) Orquestador conversacional principal de tu sistema y manejador del workspace. |
-| hyprmind-vision-analyst| gemini/gemini-2.5-flash       | deny              | deny  | El "Ojo Biónico" que procesa y explica tus capturas de pantalla o interfaces visuales.                                                                             |
-| hyprmind-deep-thinker  | gemini/gemini-2.5-pro         | deny              | deny  | Filósofo y motor de razonamiento denso para discusiones complejas o diseño abstracto.                                                                              |
+| hyprmind-orchestrator  | opencode/qwen3.6-plus-free    | allow             | allow | (V.I.E.R.N.E.S.) Orquestador conversacional principal de tu sistema y manejador del workspace. |
+| hyprmind-vision-analyst| opencode/claude-opus-4-5      | deny              | deny  | El "Ojo Biónico" que procesa y explica tus capturas de pantalla o interfaces visuales.                                                                             |
+| hyprmind-deep-thinker  | opencode/claude-haiku-4.5     | deny              | deny  | Filósofo y motor de razonamiento denso para discusiones complejas o diseño abstracto.                                                                              |
 

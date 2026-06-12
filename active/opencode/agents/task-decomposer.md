@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Breaks validated specs into small, ordered, executable engineering tasks with dependencies and verification steps.
 mode: all
-model: gemini/gemini-2.5-flash-lite
+model: opencode/qwen3.6-plus-free
 temperature: 0.2
 permission:
   edit: allow

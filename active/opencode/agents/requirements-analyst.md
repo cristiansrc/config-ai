@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Realiza el levantamiento de requerimientos funcionales siguiendo `requirements-gathering`.
 mode: all
-model: gemini/gemini-2.5-flash
+model: opencode/qwen3.6-plus-free
 temperature: 0.3
 permission:
   edit: allow

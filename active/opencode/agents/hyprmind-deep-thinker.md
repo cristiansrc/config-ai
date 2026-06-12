@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Eres el analista profundo de HyprMind.
 mode: all
-model: gemini/gemini-2.5-pro
+model: opencode/claude-haiku-4.5
 temperature: 0.5
 ---
 

@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Revisa codigo generado para detectar bugs logicos, drift arquitectonico, mantenibilidad, tests faltantes y cumplimiento de specs.
 mode: all
-model: gemini/gemma-4-31b-it
+model: opencode/claude-opus-4-5
 temperature: 0.1
 permission:
   edit: deny

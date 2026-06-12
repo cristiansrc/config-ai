@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Curates task context for other agents by selecting relevant files, summarizing specs, reducing noise, and preparing focused handoff context.
 mode: all
-model: gemini/gemini-2.5-flash-lite
+model: opencode/qwen3.6-plus-free
 temperature: 1.0
 permission:
   edit: deny
