@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Creates project documentation, README content, API docs, deployment notes, diagrams, and functional documentation.
 mode: all
-model: gemini/gemini-2.5-flash-lite
+model: opencode/deepseek-v4-flash-free
 temperature: 0.25
 permission:
   edit: allow

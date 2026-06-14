@@ -30,28 +30,28 @@ Escalamiento de Modelos (Tier Routing)
 Modelos por Agente
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
-| architect-executor | google/gemini-2.5-flash | allow | allow |
-| devops-architect | google/gemma-4-26b-a4b-it | allow | allow |
-| context-curator | opencode/qwen3.6-plus-free | deny | deny |
-| documentation | google/gemini-2.5-flash-lite | allow | deny |
-| enterprise-architect | opencode/claude-haiku-4-5 | allow | deny |
-| enterprise-spec-validator | opencode/claude-haiku-4-5 | allow | deny |
+| architect-executor | opencode/deepseek-v4-flash-free | allow | allow |
+| devops-architect | opencode/deepseek-v4-flash-free | allow | allow |
+| context-curator | opencode-go/qwen3.7-plus | deny | deny |
+| documentation | opencode/deepseek-v4-flash-free | allow | deny |
+| enterprise-architect | google/gemini-3.1-pro-preview | allow | deny |
+| enterprise-spec-validator | google/gemini-3.1-pro-preview | allow | deny |
 | executor | opencode/deepseek-v4-flash-free | allow | allow |
-| final-validation | google/gemini-3.1-pro-preview | deny | allow |
+| final-validation | opencode-go/qwen3.7-plus | deny | allow |
 | planner | google/gemini-3.1-pro-preview | allow | deny |
-| refactor | google/gemma-4-31b-it | allow | allow |
-| requirements-analyst | opencode/qwen3.6-plus-free | allow | deny |
-| reviewer | opencode/claude-opus-4-5 | deny | allow |
-| security-reviewer | opencode/qwen3.6-plus-free | deny | allow |
+| refactor | opencode-go/deepseek-v4-pro | allow | allow |
+| requirements-analyst | opencode-go/qwen3.7-plus | allow | deny |
+| reviewer | opencode-go/qwen3.7-plus | deny | allow |
+| security-reviewer | opencode-go/qwen3.7-plus | deny | allow |
 | spec-remediator | opencode/deepseek-v4-flash-free | allow | deny |
-| spec-validator | opencode/qwen3.6-plus-free | allow limitado | deny |
-| task-decomposer | opencode/qwen3.6-plus-free | allow | deny |
+| spec-validator | google/gemini-3.1-pro-preview | allow limitado | deny |
+| task-decomposer | opencode-go/deepseek-v4-pro | allow | deny |
 | test-architect | opencode/deepseek-v4-flash-free | allow | allow |
-| functional-test-planner | google/gemini-2.5-flash | allow | deny |
-| functional-tester-agent | google/gemini-2.5-flash | allow | allow |
-| hyprmind-orchestrator | opencode/qwen3.6-plus-free | allow | allow |
-| hyprmind-vision-analyst | gemini/gemini-2.5-flash | deny | deny |
-| hyprmind-deep-thinker | opencode/claude-haiku-4.5 | deny | deny |
+| functional-test-planner | opencode/deepseek-v4-flash-free | allow | deny |
+| functional-tester-agent | opencode/deepseek-v4-flash-free | allow | allow |
+| hyprmind-orchestrator | opencode-go/qwen3.7-plus | allow | allow |
+| hyprmind-vision-analyst | opencode/deepseek-v4-flash-free | deny | deny |
+| hyprmind-deep-thinker | opencode-go/qwen3.7-plus | deny | deny |
 
 
 Ecosistema de Skills (50 Skills Activas Resueltas)

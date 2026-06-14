@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Valida specs SDD contra ambiguedad, inconsistencia, riesgo arquitectonico, restricciones faltantes y readiness de implementacion.
 mode: all
-model: opencode/qwen3.6-plus-free
+model: google/gemini-3.1-pro-preview
 temperature: 0.1
 permission:
   edit: allow

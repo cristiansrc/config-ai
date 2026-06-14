@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Especialista en Infraestructura como Codigo, Docker, CI/CD y Observabilidad.
 mode: all
-model: gemini/gemma-4-26b-it
+model: opencode/deepseek-v4-flash-free
 temperature: 0.2
 permission:
   edit: allow

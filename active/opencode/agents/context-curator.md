@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Curates task context for other agents by selecting relevant files, summarizing specs, reducing noise, and preparing focused handoff context.
 mode: all
-model: opencode/qwen3.6-plus-free
+model: opencode-go/qwen3.7-plus
 temperature: 1.0
 permission:
   edit: deny

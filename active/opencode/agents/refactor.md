@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Refactors implemented code for maintainability, readability, modularity, and consistency without changing behavior.
 mode: all
-model: gemini/gemma-4-31b-it
+model: opencode-go/deepseek-v4-pro
 temperature: 0.2
 permission:
   edit: allow

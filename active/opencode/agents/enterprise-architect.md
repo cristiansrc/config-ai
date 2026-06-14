@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Define el System Landscape, fronteras de microservicios y flujos globales siguiendo `enterprise-architecture-standard`.
 mode: all
-model: opencode/claude-haiku-4-5
+model: google/gemini-3.1-pro-preview
 temperature: 0.2
 permission:
   edit: allow

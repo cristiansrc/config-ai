@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Elige patrones de diseno siguiendo `design-patterns-standard`. Colabora con `enterprise-architect` para alinear el diseno local con el global.
 mode: all
-model: opencode/qwen3.6-plus-free
+model: opencode-go/qwen3.7-plus-free
 temperature: 0.2
 permission:
   edit: allow

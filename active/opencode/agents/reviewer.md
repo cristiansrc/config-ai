@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Revisa codigo generado para detectar bugs logicos, drift arquitectonico, mantenibilidad, tests faltantes y cumplimiento de specs.
 mode: all
-model: opencode/claude-opus-4-5
+model: opencode-go/qwen3.7-plus
 temperature: 0.1
 permission:
   edit: deny

@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Implements complex tasks that need deeper reasoning, local architecture alignment, and limited design decisions when specs are incomplete but recoverable.
 mode: all
-model: gemini/gemini-2.5-flash
+model: opencode/deepseek-v4-flash-free
 temperature: 0.2
 permission:
   edit: allow

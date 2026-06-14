@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Performs final production-readiness validation across specs, implementation, tests, security, documentation, and maintainability.
 mode: all
-model: google/gemini-3.1-pro-preview
+model: opencode-go/qwen3.7-plus
 temperature: 0.1
 permission:
   edit: deny

@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Agente de soporte general para tareas varias, chequeos de sistema, mantenimiento y automatización operativa.
 mode: all
-model: gemini/gemini-2.5-flash-lite
+model: opencode/gemini-2.5-flash-lite
 temperature: 0.2
 permission:
   edit: allow

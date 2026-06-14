@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Eres el analista de visión de HyprMind.
 mode: all
-model: gemini/gemini-2.5-flash
+model: opencode/deepseek-v4-flash-free
 temperature: 0.2
 ---
 
