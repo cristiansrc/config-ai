@@ -30,7 +30,7 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 | **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode-go/qwen3.7-plus          |
 | **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | opencode-go/qwen3.7-plus          |
 | **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode-go/qwen3.7-plus          |
-| **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode/deepseek-v4-flash-free   |
+| **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode/north-mini-code-free     |
 | **task-decomposer**           | Atomización de tareas para el ejecutor.                                               | opencode-go/deepseek-v4-pro       |
 | **executor**                  | Implementación técnica y verificación pre-vuelo.                                      | opencode/deepseek-v4-flash-free   |
 | **final-validation**          | Garantía de calidad final y cumplimiento de cobertura mínima.                         | opencode-go/qwen3.7-plus        |
@@ -39,11 +39,13 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 | **test-architect**            | Diseño de estrategias de prueba y automatización.                                     | opencode/deepseek-v4-flash-free   |
 | **context-curator**           | Filtra y prepara el contexto de alta señal para evitar ruido a los Obreros.           | opencode-go/qwen3.7-plus             |
 | **architect-executor**        | Implementa tareas de arquitectura local y lógica compleja.                             | opencode/deepseek-v4-flash-free   |
-| **devops-architect**          | Especialista en Infraestructura como Código y CI/CD.                                  | opencode/deepseek-v4-flash-free   |
-| **documentation**             | Gestiona el ciclo de vida de la documentación del proyecto.                           | opencode/deepseek-v4-flash-free   |
+| **devops-architect**          | Especialista en Infraestructura como Código y CI/CD.                                  | opencode/north-mini-code-free     |
+| **documentation**             | Gestiona el ciclo de vida de la documentación del proyecto.                           | opencode/north-mini-code-free     |
 | **refactor**                  | Refactoriza código existente siguiendo patrones limpios.                              | opencode-go/deepseek-v4-pro       |
-| **functional-test-planner**   | Diseña planes de pruebas funcionales y flujos de usuario estructurados.               | opencode/deepseek-v4-flash-free   |
+| **functional-test-planner**   | Diseña planes de pruebas funcionales y flujos de usuario estructurados.               | opencode/north-mini-code-free     |
 | **functional-tester-agent**   | Diseña, ejecuta y valida pruebas funcionales y UI/E2E en frontends.                   | opencode/deepseek-v4-flash-free   |
+| **git-executor**              | Centraliza todas las interacciones del repositorio con Git (ramas, commits, pushes).   | opencode/north-mini-code-free     |
+| **master-orchestrator**       | Agente Maestro / Orquestador Contextual. Mantiene el contexto y delega tareas.        | opencode/deepseek-v4-flash-free   |
 
 ---
 
@@ -114,8 +116,8 @@ Las skills están organizadas por dominios técnicos y arquitectónicos:
 3.  **Cobertura Mínima**: 85% obligatorio en archivos testables.
 4.  **Gates de Validación Humana**: Bloqueo estricto del desarrollo en los estados `awaiting-human-plan-approval` (después de validación de spec) y `awaiting-human-qa-approval` (después de validación final de código). Requiere firmas explícitas en el Shared Context.
 5.  **Inmutabilidad de Estados**: Los humanos tienen prohibido alterar bloques de estado de IA a mano. Toda manipulación manual suspende el flujo por `corrupted-state`.
-6.  **Protección de Ramas local**: Es obligatorio el uso de Git Hook `pre-push` local en base a los estados del SDLC-IA para evitar push incorrectos a `develop`, `qa` y `master`.
 7.  **Flujo SDD Actualizado**: `Requirements Analyst` ➔ `Planner` ➔ `Spec Validator` ➔ `Enterprise Spec Validator` (si aplica) ➔ **Plan Aprobado por Humano Gate** ➔ `Task Decomposer` ➔ `Executor` ➔ `Final Validation` ➔ **QA Aprobado por Humano Gate** ➔ `Git-Ops`.
+8.  **Aislamiento Operativo de Git**: Queda ESTRICTAMENTE PROHIBIDO para todos los agentes de desarrollo, pruebas o documentación ejecutar cualquier comando Git (`git add`, `git commit`, `git push`, `git checkout`, etc.) en la terminal. Toda operación relacionada con Git debe delegarse de forma exclusiva al agente `git-executor`.
 
 ---
 
@@ -133,7 +135,8 @@ Se incluye el script `test-latency.py` en la raíz del repositorio para verifica
     *   `opencode-go/qwen3.6-plus` (Qwen 3.6 Plus del Plan Go / Respaldo)
     *   `google/gemini-3.1-pro-preview` (Gemini Pro Comercial / Google API)
     *   `opencode/deepseek-v4-flash-free` (DeepSeek V4 Flash Libre / Gratuito)
+    *   `opencode/north-mini-code-free` (North Mini Code Free)
 
 ---
-*Última actualización de estructura y roles: 2026-06-13*
+*Última actualización de estructura y roles: 2026-06-15*
 

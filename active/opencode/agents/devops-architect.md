@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Especialista en Infraestructura como Codigo, Docker, CI/CD y Observabilidad.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: opencode/north-mini-code-free
 temperature: 0.2
 permission:
   edit: allow

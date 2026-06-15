@@ -31,9 +31,9 @@ Modelos por Agente
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
 | architect-executor | opencode/deepseek-v4-flash-free | allow | allow |
-| devops-architect | opencode/deepseek-v4-flash-free | allow | allow |
+| devops-architect | opencode/north-mini-code-free | allow | allow |
 | context-curator | opencode-go/qwen3.7-plus | deny | deny |
-| documentation | opencode/deepseek-v4-flash-free | allow | deny |
+| documentation | opencode/north-mini-code-free | allow | deny |
 | enterprise-architect | google/gemini-3.1-pro-preview | allow | deny |
 | enterprise-spec-validator | opencode-go/qwen3.7-plus | allow | deny |
 | executor | opencode/deepseek-v4-flash-free | allow | allow |
@@ -43,15 +43,18 @@ Modelos por Agente
 | requirements-analyst | opencode-go/qwen3.7-plus | allow | deny |
 | reviewer | opencode-go/qwen3.7-plus | deny | allow |
 | security-reviewer | opencode-go/qwen3.7-plus | deny | allow |
-| spec-remediator | opencode/deepseek-v4-flash-free | allow | deny |
+| spec-remediator | opencode/north-mini-code-free | allow | deny |
 | spec-validator | opencode-go/qwen3.7-plus | allow limitado | deny |
 | task-decomposer | opencode-go/deepseek-v4-pro | allow | deny |
 | test-architect | opencode/deepseek-v4-flash-free | allow | allow |
-| functional-test-planner | opencode/deepseek-v4-flash-free | allow | deny |
+| functional-test-planner | opencode/north-mini-code-free | allow | deny |
 | functional-tester-agent | opencode/deepseek-v4-flash-free | allow | allow |
+| git-executor | opencode/north-mini-code-free | allow | allow |
 | hyprmind-orchestrator | opencode-go/qwen3.7-plus | allow | allow |
 | hyprmind-vision-analyst | opencode/deepseek-v4-flash-free | deny | deny |
 | hyprmind-deep-thinker | opencode-go/qwen3.7-plus | deny | deny |
+| master-orchestrator | opencode/deepseek-v4-flash-free | deny | allow |
+
 
 
 Ecosistema de Skills (50 Skills Activas Resueltas)
