@@ -22,7 +22,7 @@ Escalamiento de Modelos (Tier Routing)
 - Agentes activos de OpenCode: /home/cristiansrc/.config/opencode/agents/.
 - Archivo canonico de agentes/modelos: /home/cristiansrc/Documentos/config-ai/active/opencode/agentes-y-modelos.md.
 - Backup actual de agentes y skills: /home/cristiansrc/Documentos/config-ai/archive/full-backup-20260514-final/.
-- Agentes criticos de validacion: gemini/gemini-2.5-flash.
+- Agentes criticos de validacion: opencode-go/qwen3.7-plus.
 - La configuración ha migrado hacia el proveedor `gemini`, optimizando el uso de modelos de la serie Gemini 2.5 (e.g. flash, pro, gemma-4) para las tareas de desarrollo y validación especializada.
 - Politica de idioma de agentes: definiciones operativas en ESPAÑOL; convenciones tecnicas, nombres de agentes/skills, estados canonicos, headings, rutas, comandos y tokens exactos en INGLES.
 - Perfil persistente LM Studio para Qwen 3.6 35B (Backup local): MoE con 3B activos, GPU offload ratio 26/64 capas, K/V cache Q4_0 activo. Velocidad observada: ~40 tok/s constantes con alta eficiencia energética.
@@ -35,16 +35,16 @@ Modelos por Agente
 | context-curator | opencode-go/qwen3.7-plus | deny | deny |
 | documentation | opencode/deepseek-v4-flash-free | allow | deny |
 | enterprise-architect | google/gemini-3.1-pro-preview | allow | deny |
-| enterprise-spec-validator | google/gemini-3.1-pro-preview | allow | deny |
+| enterprise-spec-validator | opencode-go/qwen3.7-plus | allow | deny |
 | executor | opencode/deepseek-v4-flash-free | allow | allow |
 | final-validation | opencode-go/qwen3.7-plus | deny | allow |
-| planner | google/gemini-3.1-pro-preview | allow | deny |
+| planner | opencode-go/qwen3.7-plus | allow | deny |
 | refactor | opencode-go/deepseek-v4-pro | allow | allow |
 | requirements-analyst | opencode-go/qwen3.7-plus | allow | deny |
 | reviewer | opencode-go/qwen3.7-plus | deny | allow |
 | security-reviewer | opencode-go/qwen3.7-plus | deny | allow |
 | spec-remediator | opencode/deepseek-v4-flash-free | allow | deny |
-| spec-validator | google/gemini-3.1-pro-preview | allow limitado | deny |
+| spec-validator | opencode-go/qwen3.7-plus | allow limitado | deny |
 | task-decomposer | opencode-go/deepseek-v4-pro | allow | deny |
 | test-architect | opencode/deepseek-v4-flash-free | allow | allow |
 | functional-test-planner | opencode/deepseek-v4-flash-free | allow | deny |
@@ -180,12 +180,12 @@ Pruebas y Cobertura Global
 - OpenAPI y spec deben usar el mismo schema de errores REST. Para Spring Boot, la estructura estándar es `timestamp`, `status`, `error`, `code`, `message`, `path`, `trace_id` y `details`.
 - Después de compaction o sesión resumida, Planner, Spec Validator, Task Decomposer y Executor deben rehidratar contexto desde disco: shared context, spec, OpenAPI, migraciones/config, task board y último reporte de validación. El resumen compacto del chat solo es una pista.
 - Si un reporte viejo o resumen contradice archivos actuales, se marca como `superseded` y se usan los archivos actuales.
-- Nuevo agente `spec-remediator`: usa gemini/gemini-2.5-flash para corregir hallazgos de Spec Validator uno por uno. Planner sigue siendo dueño de specs, arquitectura, alcance y contratos. Spec Remediator solo corrige hallazgos mecánicos o drift con fuente autoritativa inequívoca; decisiones de diseño se enrutan al Planner/User.
-- Spec Remediator debe solicitar validaciones exclusivamente al agente `spec-validator` configurado con `gemini/gemini-2.5-flash`. Si la validacion se ejecuta con otro modelo, debe detenerse con `Blocked: wrong validator model` y no usar ese resultado como aprobacion.
+- Nuevo agente `spec-remediator`: usa opencode-go/qwen3.7-plus para corregir hallazgos de Spec Validator uno por uno. Planner sigue siendo dueño de specs, arquitectura, alcance y contratos. Spec Remediator solo corrige hallazgos mecánicos o drift con fuente autoritativa inequívoca; decisiones de diseño se enrutan al Planner/User.
+- Spec Remediator debe solicitar validaciones exclusivamente al agente `spec-validator` configurado con `opencode-go/qwen3.7-plus`. Si la validacion se ejecuta con otro modelo, debe detenerse con `Blocked: wrong validator model` y no usar ese resultado como aprobacion.
 - Spec Remediator primero solicita validación completa, clasifica hallazgos (`mechanical`, `contract-drift`, `design-decision`, `migration-risk`, `validator/process-bug`, `user-decision`), toma el primer hallazgo seguro, aplica una corrección mínima, pide validación solo de ese hallazgo y continúa. Máximo 4 intentos por hallazgo; si no puede resolverlo o reaparece un hallazgo ya resuelto, detiene el flujo y escribe reporte en `<active-repo>/docs/specs/.working/<increment-name>-remediator-bug-report.md`.
 - `spec-remediator` no puede llamar a Task Decomposer ni Executor; solo trabaja contra Planner/Spec Validator y artefactos SDD.
 - Estos artefactos se crean por proyecto/incremento durante el flujo SDD; no debe existir un task board activo global por defecto.
-- Nuevo agente `requirements-analyst`: usa gemini/gemini-2.5-flash antes de Planner para levantar requerimientos cuando la solicitud aun no esta lista para SDD formal.
+- Nuevo agente `requirements-analyst`: usa opencode-go/qwen3.7-plus antes de Planner para levantar requerimientos cuando la solicitud aun no esta lista para SDD formal.
 - Entregable de requirements-analyst: `docs/specs/requirements/<increment-name>-requirements-brief.md` o, si el proyecto usa contexto temporal, `docs/specs/.working/<increment-name>-requirements-brief.md`.
 - **Placeholder Guard**: Los agentes deben reemplazar `<increment-name>` con el nombre real de la funcionalidad (ej. `user-auth`) y preguntar al usuario si no lo conocen. Queda prohibido el uso literal de marcadores de posición en nombres de archivos.
 - El requirements brief debe incluir estado `requirements-discovery`, objetivo, contexto, actores, roles/permisos, alcance, no objetivos, flujos, entidades funcionales, integraciones, seguridad, restricciones operativas, edge cases, criterios de aceptacion, preguntas abiertas y handoff para Planner.

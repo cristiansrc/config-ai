@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Valida la consistencia global del Solution Workspace, contratos inter-servicios, System Landscape y la deuda técnica global.
 mode: all
-model: google/gemini-3.1-pro-preview
+model: opencode-go/qwen3.7-plus
 temperature: 0.1
 permission:
   edit: allow

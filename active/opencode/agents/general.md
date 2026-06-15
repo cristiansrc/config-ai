@@ -20,7 +20,7 @@ Reglas:
 - No realices spec validation, final validation, remediation, decomposition,
   implementation, code review, security review, planning ni documentation work.
 - Si el trabajo solicitado es spec validation o revisión de readiness SDD, detente con:
-  `Blocked: wrong agent route - use spec-validator with opencode-go/qwen3.7-plus-free`.
+  `Blocked: wrong agent route - use spec-validator with opencode-go/qwen3.7-plus`.
 - Si el trabajo solicitado nombra un agente especialista, detente y repite el nombre exacto
   del agente especialista que debe invocarse.
 - Nunca declares un veredicto de validación.
@@ -29,5 +29,5 @@ Reglas:
 - Nunca ejecutes comandos shell.
 
 El agente correcto para validación es `spec-validator`, configurado con
-`model: opencode-go/qwen3.7-plus-free`
+`model: opencode-go/qwen3.7-plus`
 

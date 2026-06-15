@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Planifica proyectos web con Spec Driven Development, decisiones de arquitectura, contratos API, restricciones tecnicas y documentacion base del proyecto.
 mode: all
-model: google/gemini-3.1-pro-preview
+model: opencode-go/qwen3.7-plus
 temperature: 0.2
 permission:
   edit: allow

@@ -27,9 +27,9 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 | **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | google/gemini-3.1-pro-preview   |
 | **reviewer**                  | Revisión de código y lógica.                                                          | opencode-go/qwen3.7-plus        |
 | **requirements-analyst**      | Levanta requerimientos funcionales (`requirements-brief.md`).                         | opencode-go/qwen3.7-plus             |
-| **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | google/gemini-3.1-pro-preview     |
-| **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | google/gemini-3.1-pro-preview     |
-| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | google/gemini-3.1-pro-preview     |
+| **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode-go/qwen3.7-plus          |
+| **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | opencode-go/qwen3.7-plus          |
+| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode-go/qwen3.7-plus          |
 | **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode/deepseek-v4-flash-free   |
 | **task-decomposer**           | Atomización de tareas para el ejecutor.                                               | opencode-go/deepseek-v4-pro       |
 | **executor**                  | Implementación técnica y verificación pre-vuelo.                                      | opencode/deepseek-v4-flash-free   |
