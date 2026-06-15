@@ -24,7 +24,7 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 
 | Agente                        | Responsabilidad Principal                                                             | Modelo                            |
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
-| **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | google/gemini-3.1-pro-preview   |
+| **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | opencode-go/qwen3.7-plus        |
 | **reviewer**                  | Revisión de código y lógica.                                                          | opencode-go/qwen3.7-plus        |
 | **requirements-analyst**      | Levanta requerimientos funcionales (`requirements-brief.md`).                         | opencode-go/qwen3.7-plus             |
 | **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode-go/qwen3.7-plus          |

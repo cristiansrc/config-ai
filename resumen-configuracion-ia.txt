@@ -34,7 +34,7 @@ Modelos por Agente
 | devops-architect | opencode/north-mini-code-free | allow | allow |
 | context-curator | opencode-go/qwen3.7-plus | deny | deny |
 | documentation | opencode/north-mini-code-free | allow | deny |
-| enterprise-architect | google/gemini-3.1-pro-preview | allow | deny |
+| enterprise-architect | opencode-go/qwen3.7-plus | allow | deny |
 | enterprise-spec-validator | opencode-go/qwen3.7-plus | allow | deny |
 | executor | opencode/deepseek-v4-flash-free | allow | allow |
 | final-validation | opencode-go/qwen3.7-plus | deny | allow |
