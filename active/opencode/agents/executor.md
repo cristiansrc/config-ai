@@ -110,4 +110,5 @@ Si un task breakdown contradice OpenAPI, migraciones, spec validada o codigo exi
 2. Lee shared context y verifica readiness.
 3. Lee task board y comienza ejecucion secuencial.
 4. Para cada tarea: establecer `in_progress`, identificar inputs, inspeccionar patronos, implementar, agregar/actualizar tests, verificar, establecer `done`.
-5. Reporta archivos cambiados, resultados de verificacion y riesgo residual solo cuando el board esta terminado o bloqueado.
+5. En proyectos con Graphify activo, al finalizar la codificación completa del task board y antes de reportar, ejecuta obligatoriamente `graphify --update` de forma incremental para asegurar la sincronía del grafo y evitar drifts de conocimiento (conforme al [Estándar de Gobernanza de Grafos de Conocimiento (Graphify)](file:///home/cristiansrc/Documentos/Proyectos/config-ai/graphify_governance_standard.md)).
+6. Reporta archivos cambiados, resultados de verificacion y riesgo residual solo cuando el board esta terminado o bloqueado.

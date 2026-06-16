@@ -9,8 +9,7 @@ MODELS_TO_TEST = [
     "opencode-go/qwen3.6-plus",
     "opencode-go/deepseek-v4-pro",
     "google/gemini-3.1-pro-preview",
-    "opencode/deepseek-v4-flash-free",
-    "opencode/north-mini-code-free"
+    "opencode/deepseek-v4-flash-free"
 ]
 
 def test_model(model_name):

@@ -65,6 +65,7 @@ Objetivo: revisar las 47 skills activas de OpenCode una por una, mejorar mejores
 - [x] frontend-architecture
 - [x] react-stack
 - [x] angular-stack
+- [x] minimalist-ui
 
 ## Prioridad P5 - Operacion, Seguridad y Documentacion
 

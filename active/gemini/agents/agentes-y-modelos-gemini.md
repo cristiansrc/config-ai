@@ -24,5 +24,5 @@ Fuente activa:
 | spec-validator | opencode/deepseek-v4-flash-free | allow | deny | Validacion de specs SDD. |
 | task-decomposer | opencode/deepseek-v4-flash-free | allow | deny | Descomposicion de tareas. |
 | test-architect | opencode/deepseek-v4-flash-free | allow | allow | Diseno de pruebas automatizadas. |
-| functional-test-planner | opencode/north-mini-code-free | allow | deny | Analisis de specs y diseno de planes de pruebas funcionales. |
+| functional-test-planner | opencode/deepseek-v4-flash-free | allow | deny | Analisis de specs y diseno de planes de pruebas funcionales. |
 | functional-tester-agent | opencode/deepseek-v4-flash-free | allow | allow | Diseno, ejecucion y validacion de pruebas funcionales y UI/E2E en frontends. |

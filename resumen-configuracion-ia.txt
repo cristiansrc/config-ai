@@ -31,9 +31,9 @@ Modelos por Agente
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
 | architect-executor | opencode/deepseek-v4-flash-free | allow | allow |
-| devops-architect | opencode/north-mini-code-free | allow | allow |
+| devops-architect | opencode/deepseek-v4-flash-free | allow | allow |
 | context-curator | opencode-go/qwen3.7-plus | deny | deny |
-| documentation | opencode/north-mini-code-free | allow | deny |
+| documentation | opencode/deepseek-v4-flash-free | allow | deny |
 | enterprise-architect | opencode-go/qwen3.7-plus | allow | deny |
 | enterprise-spec-validator | opencode-go/qwen3.7-plus | allow | deny |
 | executor | opencode/deepseek-v4-flash-free | allow | allow |
@@ -43,13 +43,13 @@ Modelos por Agente
 | requirements-analyst | opencode-go/qwen3.7-plus | allow | deny |
 | reviewer | opencode-go/qwen3.7-plus | deny | allow |
 | security-reviewer | opencode-go/qwen3.7-plus | deny | allow |
-| spec-remediator | opencode/north-mini-code-free | allow | deny |
+| spec-remediator | opencode/deepseek-v4-flash-free | allow | deny |
 | spec-validator | opencode-go/qwen3.7-plus | allow limitado | deny |
 | task-decomposer | opencode-go/deepseek-v4-pro | allow | deny |
 | test-architect | opencode/deepseek-v4-flash-free | allow | allow |
-| functional-test-planner | opencode/north-mini-code-free | allow | deny |
+| functional-test-planner | opencode/deepseek-v4-flash-free | allow | deny |
 | functional-tester-agent | opencode/deepseek-v4-flash-free | allow | allow |
-| git-executor | opencode/north-mini-code-free | allow | allow |
+| git-executor | opencode/deepseek-v4-flash-free | allow | allow |
 | hyprmind-orchestrator | opencode-go/qwen3.7-plus | allow | allow |
 | hyprmind-vision-analyst | opencode/deepseek-v4-flash-free | deny | deny |
 | hyprmind-deep-thinker | opencode-go/qwen3.7-plus | deny | deny |
@@ -104,6 +104,7 @@ Conteo actual: 42 skills canonicas en shared-ai-services/locales = 51 skills act
 39. quality/functional-testing-standard (Planeación, ejecución, reporte y remediación de pruebas UI/E2E).
 40. orchestration/graphify (Optimización de contexto mediante grafos).
 41. orchestration/workspace-coordination (Coordinación de Solution Workspace y control de Deuda Técnica).
+42. frontend/minimalist-ui (Clean editorial-style interfaces, warm monochrome, bento grids).
 
 Skills stack/globales locales adicionales activas en OpenCode:
 - angular-stack.

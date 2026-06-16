@@ -60,5 +60,5 @@ Tu proposito principal es evitar que modelos de ejecucion mas pequenos reciban c
 ## Formato de Handoff
 
 Para cada handoff, produce: `target_agent`, `task_id`, `objective`, `must_read`, `relevant_context`, `contracts`, `constraints`, `allowed_scope`, `out_of_scope`, `edge_cases`, `verification`, `blockers`, `routing_reason`.
-- **Regla de Grafo:** Si Graphify está activo en el proyecto, el agente debe incluir obligatoriamente el archivo `graphify-out/GRAPH_REPORT.md` en la sección `must_read` del handoff dirigido a `planner`, `spec-validator` o `executor`.
+- **Regla de Grafo (Gobernanza):** Si Graphify está activo, el agente debe incluir obligatoriamente el archivo `graphify-out/GRAPH_REPORT.md` en la sección `must_read` para `planner`, `spec-validator` o `executor`. Además, debe indicar a los agentes el uso de `graphify query` para extraer el subgrafo de dependencias relevante según el [Estándar de Gobernanza de Grafos de Conocimiento (Graphify)](file:///home/cristiansrc/Documentos/Proyectos/config-ai/graphify_governance_standard.md).
 

@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Corrige hallazgos de validación de forma iterativa siguiendo `spec-remediation`.
 mode: all
-model: opencode/north-mini-code-free
+model: opencode/deepseek-v4-flash-free
 temperature: 0.1
 permission:
   edit: allow

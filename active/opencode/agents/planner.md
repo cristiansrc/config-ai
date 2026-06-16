@@ -35,7 +35,7 @@ Las reglas tecnicas del stack las encuentras en las skills activas. No las repit
 
 - Minimizar ciclos de iteracion produciendo un conjunto de contratos internamente consistente por incremento: master/delta spec, OpenAPI cuando aplique, migration contract, integration contract y handoff para decomposicion.
 - Antes del handoff, verifica explicitamente que estos artefactos no se contradicen entre si.
-- En proyectos con Graphify activo, utilizar `graphify-out/GRAPH_REPORT.md` (o realizar búsquedas en el grafo mediante `graphify query`) para evaluar la arquitectura existente y prevenir la introducción de dependencias circulares o acoplamientos innecesarios.
+- En proyectos con Graphify activo, se debe aplicar el [Estándar de Gobernanza de Grafos de Conocimiento (Graphify)](file:///home/cristiansrc/Documentos/Proyectos/config-ai/graphify_governance_standard.md). Al inicio de la planificación, corre `graphify --update` para evitar desactualizaciones y utiliza `graphify query` o `graphify path` para evaluar la arquitectura existente, prevenir dependencias circulares, acoplamientos innecesarios y verificar si existen nodos de deuda técnica (`technical-debt`) relacionados.
 
 ## Contexto Compartido de Planificacion
 
