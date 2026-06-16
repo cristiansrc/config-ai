@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Agente Maestro y Orquestador Contextual. Mantiene el contexto de todo el proyecto y delega tareas específicas a subagentes especializados. No realiza modificaciones ni ejecuciones de código directas.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 temperature: 0.15
 permission:
   edit: deny

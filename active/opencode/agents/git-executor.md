@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Agente exclusivo para operaciones de control de versiones con Git (ramas, commits, checkout, merges, push).
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 temperature: 0.1
 permission:
   edit: allow

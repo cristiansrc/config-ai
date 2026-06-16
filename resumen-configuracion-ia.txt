@@ -30,30 +30,30 @@ Escalamiento de Modelos (Tier Routing)
 Modelos por Agente
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
-| architect-executor | opencode/deepseek-v4-flash-free | allow | allow |
-| devops-architect | opencode/deepseek-v4-flash-free | allow | allow |
+| architect-executor | opencode-go/deepseek-v4-flash | allow | allow |
+| devops-architect | opencode-go/deepseek-v4-flash | allow | allow |
 | context-curator | opencode-go/qwen3.7-plus | deny | deny |
-| documentation | opencode/deepseek-v4-flash-free | allow | deny |
+| documentation | opencode-go/deepseek-v4-flash | allow | deny |
 | enterprise-architect | opencode-go/qwen3.7-plus | allow | deny |
 | enterprise-spec-validator | opencode-go/qwen3.7-plus | allow | deny |
-| executor | opencode/deepseek-v4-flash-free | allow | allow |
+| executor | opencode-go/deepseek-v4-flash | allow | allow |
 | final-validation | opencode-go/qwen3.7-plus | deny | allow |
 | planner | opencode-go/qwen3.7-plus | allow | deny |
 | refactor | opencode-go/deepseek-v4-pro | allow | allow |
 | requirements-analyst | opencode-go/qwen3.7-plus | allow | deny |
 | reviewer | opencode-go/qwen3.7-plus | deny | allow |
 | security-reviewer | opencode-go/qwen3.7-plus | deny | allow |
-| spec-remediator | opencode/deepseek-v4-flash-free | allow | deny |
+| spec-remediator | opencode-go/deepseek-v4-flash | allow | deny |
 | spec-validator | opencode-go/qwen3.7-plus | allow limitado | deny |
 | task-decomposer | opencode-go/deepseek-v4-pro | allow | deny |
-| test-architect | opencode/deepseek-v4-flash-free | allow | allow |
-| functional-test-planner | opencode/deepseek-v4-flash-free | allow | deny |
-| functional-tester-agent | opencode/deepseek-v4-flash-free | allow | allow |
-| git-executor | opencode/deepseek-v4-flash-free | allow | allow |
+| test-architect | opencode-go/deepseek-v4-flash | allow | allow |
+| functional-test-planner | opencode-go/deepseek-v4-flash | allow | deny |
+| functional-tester-agent | opencode-go/deepseek-v4-flash | allow | allow |
+| git-executor | opencode-go/deepseek-v4-flash | allow | allow |
 | hyprmind-orchestrator | opencode-go/qwen3.7-plus | allow | allow |
-| hyprmind-vision-analyst | opencode/deepseek-v4-flash-free | deny | deny |
+| hyprmind-vision-analyst | opencode-go/deepseek-v4-flash | deny | deny |
 | hyprmind-deep-thinker | opencode-go/qwen3.7-plus | deny | deny |
-| master-orchestrator | opencode/deepseek-v4-flash-free | deny | allow |
+| master-orchestrator | opencode-go/deepseek-v4-flash | deny | allow |
 
 
 

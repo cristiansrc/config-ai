@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Analiza las especificaciones (specs) a nivel de workspace/proyectos y diseña planes de pruebas funcionales y flujos de usuario estructurados.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 temperature: 0.2
 permission:
   edit: allow

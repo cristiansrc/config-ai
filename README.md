@@ -30,22 +30,22 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 | **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode-go/qwen3.7-plus          |
 | **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | opencode-go/qwen3.7-plus          |
 | **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode-go/qwen3.7-plus          |
-| **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode/deepseek-v4-flash-free   |
+| **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode-go/deepseek-v4-flash   |
 | **task-decomposer**           | Atomización de tareas para el ejecutor.                                               | opencode-go/deepseek-v4-pro       |
-| **executor**                  | Implementación técnica y verificación pre-vuelo.                                      | opencode/deepseek-v4-flash-free   |
+| **executor**                  | Implementación técnica y verificación pre-vuelo.                                      | opencode-go/deepseek-v4-flash   |
 | **final-validation**          | Garantía de calidad final y cumplimiento de cobertura mínima.                         | opencode-go/qwen3.7-plus        |
 | **solution-architect**        | Selección de patrones de diseño GoF y estructuras locales.                            | opencode-go/qwen3.7-plus        |
 | **security-reviewer**         | Auditoría de seguridad y estándares OWASP.                                            | opencode-go/qwen3.7-plus        |
-| **test-architect**            | Diseño de estrategias de prueba y automatización.                                     | opencode/deepseek-v4-flash-free   |
+| **test-architect**            | Diseño de estrategias de prueba y automatización.                                     | opencode-go/deepseek-v4-flash   |
 | **context-curator**           | Filtra y prepara el contexto de alta señal para evitar ruido a los Obreros.           | opencode-go/qwen3.7-plus             |
-| **architect-executor**        | Implementa tareas de arquitectura local y lógica compleja.                             | opencode/deepseek-v4-flash-free   |
-| **devops-architect**          | Especialista en Infraestructura como Código y CI/CD.                                  | opencode/deepseek-v4-flash-free   |
-| **documentation**             | Gestiona el ciclo de vida de la documentación del proyecto.                           | opencode/deepseek-v4-flash-free   |
+| **architect-executor**        | Implementa tareas de arquitectura local y lógica compleja.                             | opencode-go/deepseek-v4-flash   |
+| **devops-architect**          | Especialista en Infraestructura como Código y CI/CD.                                  | opencode-go/deepseek-v4-flash   |
+| **documentation**             | Gestiona el ciclo de vida de la documentación del proyecto.                           | opencode-go/deepseek-v4-flash   |
 | **refactor**                  | Refactoriza código existente siguiendo patrones limpios.                              | opencode-go/deepseek-v4-pro       |
-| **functional-test-planner**   | Diseña planes de pruebas funcionales y flujos de usuario estructurados.               | opencode/deepseek-v4-flash-free   |
-| **functional-tester-agent**   | Diseña, ejecuta y valida pruebas funcionales y UI/E2E en frontends.                   | opencode/deepseek-v4-flash-free   |
-| **git-executor**              | Centraliza todas las interacciones del repositorio con Git (ramas, commits, pushes).   | opencode/deepseek-v4-flash-free   |
-| **master-orchestrator**       | Agente Maestro / Orquestador Contextual. Mantiene el contexto y delega tareas.        | opencode/deepseek-v4-flash-free   |
+| **functional-test-planner**   | Diseña planes de pruebas funcionales y flujos de usuario estructurados.               | opencode-go/deepseek-v4-flash   |
+| **functional-tester-agent**   | Diseña, ejecuta y valida pruebas funcionales y UI/E2E en frontends.                   | opencode-go/deepseek-v4-flash   |
+| **git-executor**              | Centraliza todas las interacciones del repositorio con Git (ramas, commits, pushes).   | opencode-go/deepseek-v4-flash   |
+| **master-orchestrator**       | Agente Maestro / Orquestador Contextual. Mantiene el contexto y delega tareas.        | opencode-go/deepseek-v4-flash   |
 
 ---
 
@@ -56,7 +56,7 @@ Agentes que operan fuera del SDLC actuando como asistentes personales con capaci
 | Agente                        | Responsabilidad Principal                                                             | Modelo                            |
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
 | **hyprmind-orchestrator**     | Interfaz principal (V.I.E.R.N.E.S.) para interacción por voz y delegación de tareas.  | opencode-go/qwen3.7-plus             |
-| **hyprmind-vision-analyst**   | Ojo Biónico para análisis de imágenes, UI y capturas de pantalla de código.           | opencode/deepseek-v4-flash-free      |
+| **hyprmind-vision-analyst**   | Ojo Biónico para análisis de imágenes, UI y capturas de pantalla de código.           | opencode-go/deepseek-v4-flash      |
 | **hyprmind-deep-thinker**     | Analista profundo para problemas arquitectónicos o lógicos muy complejos.             | opencode-go/qwen3.7-plus             |
 
 ---
@@ -135,7 +135,7 @@ Se incluye el script `test-latency.py` en la raíz del repositorio para verifica
     *   `opencode-go/qwen3.7-plus` (Qwen 3.6 Plus Libre / Gratuito)
     *   `opencode-go/qwen3.6-plus` (Qwen 3.6 Plus del Plan Go / Respaldo)
     *   `google/gemini-3.1-pro-preview` (Gemini Pro Comercial / Google API)
-    *   `opencode/deepseek-v4-flash-free` (DeepSeek V4 Flash Libre / Gratuito)
+    *   `opencode-go/deepseek-v4-flash` (DeepSeek V4 Flash Libre / Gratuito)
 
 ---
 *Última actualización de estructura y roles: 2026-06-15*
