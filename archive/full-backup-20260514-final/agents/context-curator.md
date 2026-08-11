@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Curates task context for other agents by selecting relevant files, summarizing specs, reducing noise, and preparing focused handoff context.
 mode: all
-model: opencode-go/deepseek-v4-flash
+model: opencode-zen/opencode-go/deepseek-v4-flash-free
 temperature: 1.0
 permission:
   edit: deny

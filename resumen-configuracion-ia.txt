@@ -1,5 +1,5 @@
 Resumen de Sesión - Configuración de IA (OpenCode + LM Studio + Agentes)
-Última actualización: 2026-05-22
+Última actualización: 2026-08-10
 
 Objetivo
 Consolidación de un entorno de IA de nivel senior basado en Arquitectura Hexagonal, SDD Incremental y automatización de Git-Ops. El sistema ahora soporta el ciclo de vida completo: creación, incremento, modificación y corrección de bugs.
@@ -8,9 +8,9 @@ Hardware y Entorno
 
 Política de Backups y Retención
 - **Frecuencia**: Cada vez que se realice un cambio significativo en agentes o skills.
-- **Automatización**: Gestionado por `/home/cristiansrc/Documentos/config-ai/sync-ai-configs.sh`.
-- **Retención**: Se mantienen estrictamente los últimos 25 snapshots en `/home/cristiansrc/Documentos/config-ai/archive/snapshots/`.
-- **Formato**: Archivos comprimidos `.tar.gz` con timestamp para recuperación rápida.
+- **Automatización**: Gestionado por `/home/cristiansrc/Documentos/Proyectos/config-ai/sync-ai-configs.sh`.
+- **Retención**: Se mantienen estrictamente los últimos 25 snapshots en `/home/cristiansrc/Documentos/Proyectos/config-ai/archive/snapshots/`.
+- **Formato**: Archivos comprimidos `.tar.gz` with timestamp para recuperación rápida.
 - GPU: NVIDIA RTX 4080 (16 GB).
 - Modos: ai-game-mode / ai-work-mode operativos.
 - Variables sensibles: gestionadas en /home/cristiansrc/.config/opencode/.env para MCPs corporativos.
@@ -20,42 +20,43 @@ Escalamiento de Modelos (Tier Routing)
 - Modelo default global de OpenCode: gemini/gemini-2.5-flash.
 - Configuracion activa de OpenCode: /home/cristiansrc/.config/opencode/opencode.jsonc.
 - Agentes activos de OpenCode: /home/cristiansrc/.config/opencode/agents/.
-- Archivo canonico de agentes/modelos: /home/cristiansrc/Documentos/config-ai/active/opencode/agentes-y-modelos.md.
-- Backup actual de agentes y skills: /home/cristiansrc/Documentos/config-ai/archive/full-backup-20260514-final/.
-- Agentes criticos de validacion: opencode-go/qwen3.7-plus.
-- La configuración ha migrado hacia el proveedor `gemini`, optimizando el uso de modelos de la serie Gemini 2.5 (e.g. flash, pro, gemma-4) para las tareas de desarrollo y validación especializada.
+- Archivo canonico de agentes/modelos: /home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agentes-y-modelos.md.
+- Backup actual de agentes y skills: /home/cristiansrc/Documentos/Proyectos/config-ai/archive/full-backup-20260514-final/.
+- Agentes criticos de validacion: opencode-go/gpt-luna.
+- La configuración ha migrado hacia el escalamiento de modelos de alto beneficio/costo (DeepSeek V4 Pro/Flash, GPT-Terra/Luna, Kimi-K3, GLM-5.2) para las tareas de desarrollo y validación especializada.
 - Politica de idioma de agentes: definiciones operativas en ESPAÑOL; convenciones tecnicas, nombres de agentes/skills, estados canonicos, headings, rutas, comandos y tokens exactos en INGLES.
 - Perfil persistente LM Studio para Qwen 3.6 35B (Backup local): MoE con 3B activos, GPU offload ratio 26/64 capas, K/V cache Q4_0 activo. Velocidad observada: ~40 tok/s constantes con alta eficiencia energética.
 
 Modelos por Agente
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
-| architect-executor | opencode-go/deepseek-v4-flash | allow | allow |
+| api-governance-agent | opencode-zen/gpt-terra | deny | allow |
+| architect-executor | opencode-go/deepseek-v4-pro | allow | allow |
+| bug-diagnostician | opencode-zen/glm-5.2 | deny | allow |
+| context-curator | opencode-go/gpt-luna | deny | deny |
+| database-architect | opencode-go/deepseek-v4-flash | allow | allow |
 | devops-architect | opencode-go/deepseek-v4-flash | allow | allow |
-| context-curator | opencode-go/qwen3.7-plus | deny | deny |
 | documentation | opencode-go/deepseek-v4-flash | allow | deny |
-| enterprise-architect | opencode-go/qwen3.7-plus | allow | deny |
-| enterprise-spec-validator | opencode-go/qwen3.7-plus | allow | deny |
+| enterprise-architect | opencode-go/deepseek-v4-pro | allow | deny |
+| enterprise-spec-validator | opencode-go/gpt-luna | allow | deny |
 | executor | opencode-go/deepseek-v4-flash | allow | allow |
-| final-validation | opencode-go/qwen3.7-plus | deny | allow |
-| planner | opencode-go/qwen3.7-plus | allow | deny |
-| refactor | opencode-go/deepseek-v4-pro | allow | allow |
-| requirements-analyst | opencode-go/qwen3.7-plus | allow | deny |
-| reviewer | opencode-go/qwen3.7-plus | deny | allow |
-| security-reviewer | opencode-go/qwen3.7-plus | deny | allow |
-| spec-remediator | opencode-go/deepseek-v4-flash | allow | deny |
-| spec-validator | opencode-go/qwen3.7-plus | allow limitado | deny |
-| task-decomposer | opencode-go/deepseek-v4-pro | allow | deny |
-| test-architect | opencode-go/deepseek-v4-flash | allow | allow |
-| functional-test-planner | opencode-go/deepseek-v4-flash | allow | deny |
+| final-validation | opencode-zen/glm-5.2 | deny | allow |
 | functional-tester-agent | opencode-go/deepseek-v4-flash | allow | allow |
 | git-executor | opencode-go/deepseek-v4-flash | allow | allow |
+| master-orchestrator | opencode-zen/kimi-k3 | deny | allow |
+| planner | opencode-zen/gpt-terra | allow | deny |
+| refactor | opencode-go/gpt-luna | allow | allow |
+| requirements-analyst | opencode-zen/glm-5.2 | allow | deny |
+| reviewer | opencode-zen/gpt-terra | deny | allow |
+| security-reviewer | opencode-zen/gpt-terra | deny | allow |
+| solution-architect | opencode-go/deepseek-v4-pro | allow | deny |
+| spec-remediator | opencode-go/deepseek-v4-flash | allow | deny |
+| spec-validator | opencode-go/gpt-luna | allow limitado | deny |
+| task-decomposer | opencode-go/gpt-luna | allow | deny |
+| test-architect | opencode-go/deepseek-v4-flash | allow | allow |
 | hyprmind-orchestrator | opencode-go/qwen3.7-plus | allow | allow |
 | hyprmind-vision-analyst | opencode-go/deepseek-v4-flash | deny | deny |
 | hyprmind-deep-thinker | opencode-go/qwen3.7-plus | deny | deny |
-| master-orchestrator | opencode-go/deepseek-v4-flash | deny | allow |
-
-
 
 Ecosistema de Skills (50 Skills Activas Resueltas)
 Directorio activo: /home/cristiansrc/.config/opencode/skills

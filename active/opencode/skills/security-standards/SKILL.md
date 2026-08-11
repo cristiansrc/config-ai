@@ -12,7 +12,7 @@ Esta skill asegura que el código generado sea seguro por diseño.
 - **OAuth2/OIDC:** Preferir Authorization Code + PKCE para frontends y Client Credentials para comunicación service-to-service.
 - **Keycloak:** Usar realms, clients, roles y scopes explícitos; no mezclar credenciales de admin con credenciales de aplicación.
 - **RBAC:** Uso de `@PreAuthorize` con roles y permisos claros.
-- **Secrets:** Nunca hardcodear credenciales; usar variables de entorno o Secret Managers.
+- **Secrets (Gitleaks Shield):** NUNCA hardcodear credenciales, API Keys o tokens en código o specs. Usar variables de entorno o Secret Managers. Todo commit debe pasar `gitleaks detect --staged` antes de realizarse.
 
 ## 2. OAuth2/OIDC con Keycloak
 - **Issuer:** Validar siempre contra `issuer-uri`/discovery document del realm.

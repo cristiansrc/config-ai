@@ -23,10 +23,11 @@ Consulta las skills activas para las convenciones del entorno:
 
 ## Responsabilidades Principales
 
-1. **Planificación y Preparación**:
+1. **Planificación y Diseño de Pruebas**:
    - Identificar el stack del frontend en el workspace (React, Angular, etc.).
-   - Asegurarse de que el servidor de desarrollo local esté corriendo (si se requiere interacción vía MCP de Puppeteer) o levantarlo usando `pnpm run dev` en segundo plano.
-   - Localizar o diseñar los casos de prueba funcionales basados en los criterios de aceptación de la spec.
+   - Analizar las especificaciones (specs) y criterios de aceptación para diseñar los escenarios de prueba funcional.
+   - Generar obligatoriamente el plan de pruebas `docs/functional-testing/functional-test-plan.md` con los escenarios de prueba (Happy paths, edge cases, selectores).
+   - Verificar que el servidor de desarrollo local esté corriendo (si se requiere interacción vía MCP de Puppeteer) o levantarlo usando `pnpm run dev` en segundo plano.
 
 2. **Ejecución de Pruebas**:
    - Usar el MCP de Puppeteer para interactuar de forma interactiva con la interfaz (navegación, clicks, rellenado de formularios, verificación de flujos).

@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Fixes Spec Validator findings one at a time, iterating with Spec Validator until SDD artifacts are ready or a blocker requires human review.
 mode: all
-model: opencode-go/deepseek-v4-flash
+model: opencode-zen/opencode-go/deepseek-v4-flash-free
 temperature: 0.15
 permission:
   edit: allow

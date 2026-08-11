@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Elige patrones de diseno siguiendo `design-patterns-standard`. Colabora con `enterprise-architect` para alinear el diseno local con el global.
 mode: all
-model: opencode-go/qwen3.7-plus-free
+model: opencode-go/deepseek-v4-pro
 temperature: 0.2
 permission:
   edit: allow

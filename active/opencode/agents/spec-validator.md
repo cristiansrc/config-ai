@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Valida specs SDD contra ambiguedad, inconsistencia, riesgo arquitectonico, restricciones faltantes y readiness de implementacion.
 mode: all
-model: opencode-go/qwen3.7-plus
+model: opencode-go/gpt-5.6-luna
 temperature: 0.1
 permission:
   edit: allow

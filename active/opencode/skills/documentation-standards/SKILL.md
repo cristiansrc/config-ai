@@ -28,3 +28,28 @@ Define los requisitos mínimos y formatos permitidos para la documentación téc
 - Documentación de todas las variables necesarias en archivos `.env.example`.
 - Descripción del propósito de cada variable y sus posibles valores.
 - Clasificación de variables por entorno (Desarrollo, Staging, Producción).
+
+### Registros de Decisiones de Arquitectura (ADRs)
+- Obligatoriedad de registrar cualquier decisión técnica o de diseño relevante en `docs/architecture/decisions/000X-titulo-descriptivo.md`.
+- Usar la plantilla MADR (Markdown Architectural Decision Records):
+  ```markdown
+  # [ADR-0001] Título de la Decisión Arquitectónica
+
+  * **Estatus:** [propuesto | aceptado | superado | rechazado]
+  * **Fecha:** AAAA-MM-DD
+  * **Decisor:** enterprise-architect / planner
+
+  ## Contexto y Problema
+  Descripción breve del problema o necesidad técnica que requirió la decisión.
+
+  ## Opciones Consideradas
+  1. Opción A (ej. RabbitMQ)
+  2. Opción B (ej. Apache Kafka)
+
+  ## Decisión Elegida
+  **Opción B**, porque satisface la necesidad de persistencia de eventos y replayability.
+
+  ## Consecuencias
+  * **Positivas:** Escalabilidad, desacoplamiento.
+  * **Negativas:** Mayor complejidad de infraestructura en desarrollo local.
+  ```

@@ -9,33 +9,37 @@ Este documento establece el estándar para el Ciclo de Vida de Desarrollo (Softw
 Para garantizar una correcta división de responsabilidades y flujos de comunicación eficientes, los agentes de OpenCode se clasifican en tres categorías:
 
 ### A. Obreros (Workers)
-Son los agentes que implementan cambios en el código, documentación técnica u operaciones de infraestructura:
-*   [executor](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/executor.md): Escribe código de producción y tests unitarios locales.
-*   [architect-executor](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/architect-executor.md): Modifica lógica compleja, estructuras de clases y patrones de arquitectura hexagonal locales.
-*   [devops-architect](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/devops-architect.md): Modifica Docker, configuraciones de red, CI/CD y despliegue local.
-*   [refactor](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/refactor.md): Realiza refactorizaciones de código legacy sin cambiar el comportamiento externo.
-*   [documentation](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/documentation.md): Consolida documentación final, especificaciones e historial de cambios.
-*   [spec-remediator](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/spec-remediator.md): Corrige drifts mecánicos y hallazgos menores reportados por los validadores en la especificación.
-*   [functional-tester-agent](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/functional-tester-agent.md): Diseña, ejecuta y corrige fallos en las pruebas funcionales de interfaz (E2E/UI).
+Son los agentes que implementan cambios en el código, bases de datos, documentación técnica u operaciones de infraestructura:
+*   [executor](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/executor.md): Escribe código de producción y tests unitarios cuando EXISTE especificación SDD aprobada (DeepSeek V4 Flash).
+*   [architect-executor](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/architect-executor.md): Implementa lógica compleja y refactorizaciones locales con razonamiento denso (DeepSeek V4 Pro) cuando NO existe especificación SDD completa.
+*   [database-architect](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/database-architect.md): Diseña esquemas relacionales, scripts Flyway/Liquibase, índices y migraciones sin inactividad (Zero-Downtime DB Migrations).
+*   [devops-architect](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/devops-architect.md): Modifica Docker, configuraciones de red, CI/CD y despliegue local.
+*   [refactor](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/refactor.md): Realiza refactorizaciones de código legacy sin cambiar el comportamiento externo.
+*   [documentation](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/documentation.md): Consolida documentación final, especificaciones e historial de cambios.
+*   [spec-remediator](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/spec-remediator.md): Corrige drifts mecánicos y hallazgos menores reportados por los validadores en la especificación.
+*   [functional-tester-agent](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/functional-tester-agent.md): Diseña el plan de pruebas, ejecuta y corrige fallos en las pruebas funcionales de interfaz (E2E/UI).
+*   [git-executor](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/git-executor.md): Centraliza de manera exclusiva todas las operaciones de Git (ramas, commits, checkout, pushes).
 
 ### B. Consultores (Consultants)
 Agentes especializados que asesoran, diseñan arquitectura y descomponen planes de trabajo:
-*   [requirements-analyst](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/requirements-analyst.md): Levanta requerimientos funcionales y genera el Brief inicial.
-*   [planner](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/planner.md): Diseña la especificación del incremento (Delta Spec) y los contratos OpenAPI.
-*   [enterprise-architect](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/enterprise-architect.md): Define el System Landscape global, límites del Solution Workspace y boundaries de microservicios.
-*   [solution-architect](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/solution-architect.md): Provee los mejores patrones de diseño (GoF) y estructura hexagonal local.
-*   [test-architect](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/test-architect.md): Diseña la estrategia de testing y genera casos de prueba unitarios y de integración.
-*   [functional-test-planner](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/functional-test-planner.md): Analiza las specs y diseña el plan detallado de pruebas funcionales de usuario.
-*   [task-decomposer](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/task-decomposer.md): Divide especificaciones validadas y aprobadas en un Task Board de tareas atómicas y secuenciales.
-*   [context-curator](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/context-curator.md): Prepara contexto de alta señal y maneja el ciclo de vida del SDD context.
+*   [requirements-analyst](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/requirements-analyst.md): Levanta requerimientos funcionales y genera el Brief inicial.
+*   [planner](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/planner.md): Diseña la especificación del incremento (Delta Spec) y los contratos OpenAPI.
+*   [enterprise-architect](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/enterprise-architect.md): Define el System Landscape global, límites del Solution Workspace y boundaries de microservicios.
+*   [solution-architect](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/solution-architect.md): Provee los mejores patrones de diseño (GoF) y estructura hexagonal local.
+*   [test-architect](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/test-architect.md): Diseña la estrategia de testing y genera casos de prueba unitarios y de integración.
+*   [task-decomposer](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/task-decomposer.md): Divide especificaciones validadas y aprobadas en un Task Board de tareas atómicas y secuenciales.
+*   [context-curator](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/context-curator.md): Prepara contexto de alta señal y maneja el ciclo de vida del SDD context.
+*   [master-orchestrator](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/master-orchestrator.md): Agente Maestro y Orquestador Contextual. Mantiene el contexto global y delega tareas a subagentes.
 
 ### C. Validadores (Validators)
 Agentes con permiso de solo lectura de código que auditan la calidad, seguridad y consistencia de los artefactos:
-*   [spec-validator](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/spec-validator.md): Audita las especificaciones locales de proyecto buscando ambigüedades.
-*   [enterprise-spec-validator](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/enterprise-spec-validator.md): Audita la alineación entre las interfaces de los proyectos y la Master Spec global del Workspace.
-*   [reviewer](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/reviewer.md): Revisa el código implementado buscando bugs y architecture drift.
-*   [security-reviewer](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/security-reviewer.md): Audita políticas de seguridad (CORS, JWT, Keycloak, boundaries).
-*   [final-validation](file:///home/cristiansrc/Documentos/config-ai/active/opencode/agents/final-validation.md): Valida el incremento completado, verificando cobertura de tests (>85%) y criterios de aceptación.
+*   [spec-validator](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/spec-validator.md): Audita las especificaciones locales de proyecto buscando ambigüedades.
+*   [enterprise-spec-validator](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/enterprise-spec-validator.md): Audita la alineación entre las interfaces de los proyectos y la Master Spec global del Workspace.
+*   [api-governance-agent](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/api-governance-agent.md): Audita contratos OpenAPI para Breaking Changes, compatibilidad hacia atrás y semver.
+*   [bug-diagnostician](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/bug-diagnostician.md): Realiza Análisis de Causa Raíz (RCA) e inspección de logs/stack traces antes de arreglos.
+*   [reviewer](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/reviewer.md): Revisa el código implementado buscando bugs y architecture drift.
+*   [security-reviewer](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/security-reviewer.md): Audita políticas de seguridad (CORS, JWT, Keycloak, boundaries).
+*   [final-validation](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/final-validation.md): Valida el incremento completado, verificando cobertura de tests (>85%) y criterios de aceptación.
 
 ### D. Asistentes Personales (Personal Assistants)
 Agentes externos al ciclo de desarrollo de software (SDLC) que operan como tu interfaz personal, pero con capacidad de interactuar y delegar trabajo a los agentes del SDLC.

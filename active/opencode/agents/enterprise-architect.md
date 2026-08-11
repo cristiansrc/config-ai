@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Define el System Landscape, fronteras de microservicios y flujos globales siguiendo `enterprise-architecture-standard`.
 mode: all
-model: opencode-go/qwen3.7-plus
+model: opencode-go/deepseek-v4-pro
 temperature: 0.2
 permission:
   edit: allow

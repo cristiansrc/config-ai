@@ -11,9 +11,9 @@ Esta skill define el estándar operativo para realizar pruebas funcionales de ca
 
 ```mermaid
 graph TD
-    A[Specs del Workspace/Proyecto] --> B(functional-test-planner)
+    A[Specs del Workspace/Proyecto] --> B(functional-tester-agent: Planificación)
     B --> C[docs/functional-testing/functional-test-plan.md]
-    C --> D(functional-tester-agent)
+    C --> D(functional-tester-agent: Ejecución)
     D -->|Ejecución de Tests/MCP| E[docs/functional-testing/functional-test-report.md]
     E -->|Errores Mecánicos| F[Aplicar Fixes en Frontend]
     E -->|Bloqueos/Drifts Complejos| G[Enrutar a Planner o Usuario]
@@ -23,9 +23,9 @@ graph TD
 
 ---
 
-## 1. Fase de Planeación y Diseño (Functional Test Planner)
+## 1. Fase de Planeación y Diseño (Functional Tester Agent)
 
-El agente `functional-test-planner` debe analizar las especificaciones del proyecto y construir el archivo:
+El agente `functional-tester-agent` analiza las especificaciones del proyecto y construye obligatoriamente el archivo:
 `docs/functional-testing/functional-test-plan.md`
 
 El formato del plan de pruebas debe ser el siguiente:
@@ -35,7 +35,7 @@ El formato del plan de pruebas debe ser el siguiente:
 
 **Proyecto:** [Nombre del Proyecto]
 **Fecha de Creación:** [AAAA-MM-DD]
-**Diseñador:** functional-test-planner
+**Diseñador:** functional-tester-agent
 
 ---
 

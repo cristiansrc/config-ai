@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Realiza el levantamiento de requerimientos funcionales siguiendo `requirements-gathering`.
 mode: all
-model: opencode-go/qwen3.7-plus
+model: opencode-go/glm-5.2
 temperature: 0.3
 permission:
   edit: allow

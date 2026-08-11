@@ -1,91 +1,142 @@
 ---
 name: hexagonal-architecture
-description: Implementación de Puertos y Adaptadores (Clean Architecture) con dominio puro, boundaries explícitos y desacoplamiento de frameworks.
+description: Implementación de Puertos y Adaptadores (Clean Architecture) con dominio puro, boundaries explícitos, estructura de directorios por tecnología y desacoplamiento total de frameworks.
 ---
 
 # Arquitectura Hexagonal (Puertos y Adaptadores)
 
-Guía para implementar una arquitectura limpia que protege la lógica de negocio de cambios tecnológicos. Esta skill define boundaries arquitectónicos; las convenciones de framework/lenguaje pertenecen a skills como `springboot-stack`, `java-stack`, `kotlin-stack`, `fastapi-stack`, `nodejs-stack` o `react-stack`.
+Guía mandatoria para implementar una arquitectura limpia que protege la lógica de negocio de cambios tecnológicos. Esta skill define los boundaries y la **estructura exacta de directorios por stack tecnológico**.
 
-## Estructura de Paquetes y Responsabilidades
+---
 
-### 1. Núcleo de Dominio (`domain`)
-- **Entidades**: Objetos con identidad propia que contienen lógica de negocio.
-- **Value Objects**: Objetos inmutables por valor (ej: `Email`, `Price`).
-- **Domain Services**: Lógica que involucra múltiples entidades.
-- **Domain Exceptions**: Excepciones de negocio (ej: `InsufficientFundsException`).
-- **Domain Events**: Hechos de negocio ya ocurridos, sin semántica de infraestructura.
-- **REGLA**: Dependencia CERO hacia frameworks, persistencia, transporte, UI, colas, HTTP, JSON, ORM o librerías de infraestructura.
-- El dominio puede definir contratos de negocio puros cuando sean parte del lenguaje del dominio, pero los puertos técnicos suelen vivir en `application`.
+## 1. Estructura de Capas y Responsabilidades
 
-### 2. Capa de Aplicación (`application`)
-- **Input Ports (Interfaces)**: Definen qué puede hacer el sistema (ej: `CreateOrderUseCase`).
-- **Use Cases (Implementation)**: Orquestan entidades, reglas de aplicación, transacciones conceptuales y puertos de salida.
-- **Output Ports (Interfaces)**: Definen lo que la aplicación necesita del exterior (ej: `ProductRepositoryPort`, `NotificationPort`, `PaymentGatewayPort`).
-- **Commands / Queries / Results**: Modelos de entrada/salida de caso de uso, independientes de HTTP, DB o UI.
-- **REGLA**: No contiene detalles de framework ni infraestructura. Puede contener reglas de aplicación, pero la lógica de negocio central debe permanecer en dominio.
+### A. Núcleo de Dominio (`domain`)
+- **Entidades**: Objetos con identidad propia que contienen la lógica de negocio central.
+- **Value Objects**: Objetos inmutables por valor (ej: `Email`, `Money`, `TaxId`).
+- **Domain Services**: Lógica de negocio que involucra múltiples entidades.
+- **Domain Exceptions**: Excepciones de negocio (ej: `InsufficientBalanceException`).
+- **Domain Events**: Hechos del negocio ya ocurridos (ej: `OrderPlacedEvent`).
+- **⚠️ REGLA DE ORO**: Dependencia CERO hacia frameworks, JPA, ORM, Jackson, HTTP, JSON, Pydantic, TypeORM, Spring Annotations o SQL. El dominio es 100% Java/Kotlin/Python/Go/TS puro.
 
-### 3. Capa de Infraestructura (`infrastructure`)
-- **Driving Adapters (Input)**: Adaptadores que inician acciones (Controladores REST, Listeners de MQ, CLI).
-- **Driven Adapters (Output)**: Implementaciones técnicas de los `Output Ports` (JPA Repositories, Clientes Feign, Adaptadores de Mail).
-- **Mappers**: Convierten entre modelos de infraestructura (DTOs, Entity) y modelos de dominio.
-- **Configuration / Wiring**: Registra dependencias concretas, transacciones técnicas, clientes externos, config y beans/providers.
-- **REGLA**: La infraestructura depende de aplicación/dominio; dominio y aplicación no dependen de infraestructura.
+### B. Capa de Aplicación (`application`)
+- **Input Ports (Interfaces)**: Definen los casos de uso que expone el sistema (ej: `CreateOrderUseCase`).
+- **Use Cases (Implementación)**: Orquestan entidades de dominio, transacciones lógicas y puertos de salida.
+- **Output Ports (Interfaces)**: Definen lo que la aplicación requiere del exterior (ej: `OrderRepositoryPort`, `PaymentGatewayPort`, `NotificationPort`).
+- **DTOs / Commands / Queries / Results**: Objetos de transferencia de entrada/salida de los casos de uso, independientes de HTTP o DB.
+- **REGLA**: Depende únicamente de `domain`. No conoce controladores HTTP, entidades JPA ni librerías de infraestructura.
 
-## Dirección de Dependencias
-- `domain` no depende de ninguna otra capa.
-- `application` depende de `domain`.
-- `infrastructure` depende de `application` y `domain`.
-- `frontend`, `controllers`, `workers`, `jobs`, `n8n workflows` o `CLI` son driving adapters, no dueños de reglas de negocio.
-- Los driven adapters implementan output ports definidos por aplicación.
+### C. Capa de Infraestructura (`infrastructure`)
+- **Driving Adapters (Input)**: Adaptadores de entrada que inician acciones (Controladores REST/FastAPI, Listeners de Kafka/RabbitMQ, CLI, Cron Jobs).
+- **Driven Adapters (Output)**: Implementaciones concretas de los `Output Ports` (JPA/SQLAlchemy Repositories, Clientes HTTP Feign/httpx, adaptadores de Email/S3).
+- **Mappers**: Mapean entre modelos de infraestructura (DTOs HTTP, Entidades ORM) y entidades de Dominio/DTOs de Aplicación.
+- **Configuration / Wiring**: Inyección de dependencias, beans de Spring, contenedores DI, registros de módulos.
+- **REGLA**: La infraestructura depende de `application` y `domain`. Dominio y aplicación NUNCA dependen de infraestructura.
 
-## Mejores Prácticas
+---
 
-### Independencia del Dominio
-- El dominio **NUNCA** debe usar anotaciones de JPA (`@Entity`, `@Table`) ni de Jackson (`@JsonProperty`).
-- Si una entidad de dominio necesita ser persistida, debe existir una `Entity` separada en infraestructura y un `Mapper` que realice la conversión.
-- El dominio no debe recibir DTOs de API, request objects, response objects, ORM entities, framework contexts, HTTP status, headers, claims técnicos ni objetos de infraestructura.
-- El dominio debe expresar invariantes con métodos y Value Objects, no con validaciones dispersas en controllers/adapters.
+## 2. Estructura de Directorios Estándar por Tecnología
 
-### Nomenclatura de Puertos
-- **Input (Driving)**: `UseCase` (ej: `ProcessPaymentUseCase`).
-- **Output (Driven)**: `Port` (ej: `PaymentGatewayPort`).
-- Los nombres de puertos deben expresar capacidad de negocio, no tecnología. Preferir `PaymentGatewayPort` sobre `StripeClientPort` salvo que el proveedor sea parte explícita del dominio.
+### ☕ Java / Kotlin (Spring Boot / Micronaut)
+```
+src/main/java/com/empresa/proyecto/
+├── domain/
+│   ├── model/ (Entidades, Value Objects)
+│   ├── service/ (Domain Services)
+│   ├── exception/ (Domain Exceptions)
+│   └── event/ (Domain Events)
+├── application/
+│   ├── port/
+│   │   ├── in/ (Input Ports / UseCase Interfaces)
+│   │   └── out/ (Output Ports / Repositories Interfaces)
+│   ├── usecase/ (Implementaciones de UseCases)
+│   └── dto/ (Commands, Queries, DTOs de Aplicación)
+└── infrastructure/
+    ├── adapter/
+    │   ├── in/web/ (REST Controllers, DTOs de entrada, GlobalExceptionHandler)
+    │   ├── in/event/ (Kafka/RabbitMQ Listeners)
+    │   └── out/persistence/ (JPA Entities, Spring Data Repositories, Adaptador de Salida, Flyway)
+    └── config/ (Spring @Configuration, Beans Wiring)
+```
 
-### Inyección de Dependencias
-- Usar **Inyección por Constructor** siempre.
-- El dominio no debe usar contenedor de dependencias.
-- En stacks con DI, el wiring técnico pertenece a infraestructura o configuración de framework.
-- Las reglas específicas sobre `@Service`, `@Component`, providers, modules o decorators pertenecen a la skill del stack activo.
+### 🐍 Python (FastAPI / Flask)
+```
+src/
+├── domain/
+│   ├── models.py (Dataclasses / Entidades Puras)
+│   ├── value_objects.py
+│   ├── exceptions.py
+│   └── services.py
+├── application/
+│   ├── ports/ (Abstracciones / ABC Classes)
+│   │   ├── input_ports.py
+│   │   └── output_ports.py
+│   ├── use_cases/ (Servicios de Aplicación)
+│   └── dtos.py (Pydantic / Dataclasses de Aplicación)
+└── infrastructure/
+    ├── adapters/
+    │   ├── input/ (FastAPI Routers, Middleware, Exception Handlers)
+    │   └── output/ (SQLAlchemy Models, Repositorios Alembic/Async, Clientes HTTP)
+    └── config/ (Settings, Dependency Injection Container)
+```
 
-### Manejo de Errores
-- Las excepciones de dominio deben ser capturadas en la capa de infraestructura por un `GlobalExceptionHandler` o equivalente (ver la skill de error response del stack activo) para transformarlas en respuestas HTTP adecuadas.
-- Las excepciones o errores de dominio deben expresar lenguaje de negocio.
-- La traducción a HTTP, gRPC, eventos, jobs o UI errors ocurre en adapters.
-- No filtrar errores técnicos hacia dominio ni convertir business errors en excepciones genéricas sin semántica.
+### 🦫 Go (Golang)
+```
+internal/
+├── domain/
+│   ├── entity.go (Structs de Dominio)
+│   ├── value_object.go
+│   └── repository.go (Interfaces de Output Ports)
+├── application/
+│   ├── usecase.go (Servicios de Aplicación)
+│   ├── dto.go (Request/Response DTOs)
+│   └── port.go (Interfaces de Input Ports)
+└── infrastructure/
+    ├── handler/ (HTTP Handlers / Chi / Gin / Fiber)
+    ├── repository/ (GORM / sqlx / Postgres Adaptador)
+    └── config/ (Viper, DI container)
+```
 
-### Auditoría y Soft Delete
-- Aplicar los estándares de `jpa-stack` y `postgresql-standard` exclusivamente en los adaptadores de salida de persistencia. El dominio solo debe saber que los datos se guardan o recuperan.
+### 🟦 Node.js / TypeScript (NestJS / Express / React)
+```
+src/
+├── domain/
+│   ├── entities/ (Clases o Interfaces puras)
+│   ├── value-objects/
+│   └── exceptions/
+├── application/
+│   ├── ports/ (Interfaces Input/Output)
+│   ├── use-cases/ (Servicios de Aplicación)
+│   └── dtos/
+└── infrastructure/
+    ├── adapters/
+    │   ├── input/ (Controllers, Event Handlers)
+    │   └── output/ (TypeORM/Prisma Entities, Repositorios, Axios Clients)
+    └── config/ (Nest Modules, Inyección DI)
+```
 
-### Mapeo Entre Capas
-- Los mappers viven en application o infrastructure según el origen/destino, nunca dentro del dominio puro.
-- Java puede usar MapStruct como estándar según `java-stack`.
-- Kotlin debe preferir capacidades del lenguaje y usar MapStruct solo cuando lo justifique `kotlin-stack`.
-- Los DTOs de transporte no deben cruzar hacia dominio.
+---
 
-## Reglas de Bloqueo
-- Bloquear si dominio depende de framework, ORM, HTTP, JSON, cola, DB o UI.
-- Bloquear si controller/adapter contiene lógica de negocio que pertenece a use case o dominio.
-- Bloquear si repository/entity se usa directamente como modelo de dominio.
-- Bloquear si un use case llama directamente a un cliente externo sin output port.
-- Bloquear si una decisión de arquitectura requiere elegir boundaries nuevos sin Planner.
+## 3. Matriz de Mapeo y Flujo de Datos
 
-## Checklist Para Planner / Executor / Reviewer
-- ¿Dónde vive la regla de negocio?
-- ¿Qué input port/use case expone la capacidad?
-- ¿Qué output ports necesita la aplicación?
-- ¿Qué adapters implementan esos ports?
-- ¿Qué modelos cruzan boundaries?
-- ¿Dónde se mapean DTO/entity/domain/result?
-- ¿Dónde se manejan transacciones, errores, retries, observability y seguridad?
-- ¿El dominio puede probarse sin framework ni infraestructura?
+```
+[ HTTP Request ] ➔ (REST Controller) ➔ [Map to Command] ➔ (Input Port / Use Case)
+                                                                 │
+                                                                 ▼
+[ HTTP Response ] ◄ (REST Controller) ◄ [Map to Response] ◄ (Domain Entity / Result)
+                                                                 │
+                                                                 ▼ (Llama Output Port)
+                                                          (Driven Adapter / JPA)
+                                                                 │
+                                                                 ▼
+                                                          [ Base de Datos ]
+```
+
+---
+
+## 4. Reglas Estrictas de Bloqueo (Checklist)
+
+- 🚫 **Bloquear**: Si una entidad de `domain` utiliza `@Entity`, `@Table`, `@JsonProperty`, `BaseModel` de Pydantic o `@Column`.
+- 🚫 **Bloquear**: Si un `REST Controller` o `FastAPI Router` invoca directamente un `Repository` de persistencia sin pasar por un `UseCase`.
+- 🚫 **Bloquear**: Si la capa de `application` importa clases concretas de `infrastructure` (ej. import `com.empresa.infrastructure.JpaOrderRepository`).
+- 🚫 **Bloquear**: Si los modelos de respuesta de API (HTTP Response DTOs) ingresan al `domain` o `application`.

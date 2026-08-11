@@ -33,11 +33,12 @@ Los mensajes deben ser claros y seguir el estándar `tipo(scope): descripcion`.
 
 El agente debe seguir este orden estrictamente:
 
-### Paso A: Verificación (Pre-commit)
-Nunca realizar un commit si el código no ha sido verificado.
-- Ejecutar tests relevantes con el gestor del stack: `pnpm test`, `mvn test`, `pytest`, etc.
-- Ejecutar linter/formater con el gestor del stack: `pnpm run lint`, `prettier --check`.
-- En proyectos JavaScript/TypeScript, no usar `npm`; si existe `package-lock.json`, detenerse y proponer migración a `pnpm-lock.yaml`.
+### Paso A: Verificación (Pre-commit & Gitleaks Secret Shield)
+Nunca realizar un commit si el código contiene secretos o no ha sido verificado.
+- **Escaneo de Secretos (Gitleaks)**: Ejecutar `gitleaks detect --staged --verbose` para asegurar que ningún token, clave privada o API Key esté en staging.
+- **Hooks de Git Automatizados**: Instalar el pre-commit hook ejecutable `.git/hooks/pre-commit` que ejecuta `gitleaks` y los linters ultrarrápidos (`ruff`, `golangci-lint`, `spotbugs`, `pnpm run lint`).
+- **Tests Unitarios**: Ejecutar tests con el gestor del stack: `pnpm test`, `./mvnw test`, `pytest`, `go test ./...`.
+- En proyectos JavaScript/TypeScript, usar `pnpm`; si existe `package-lock.json`, proponer migración a `pnpm-lock.yaml`.
 
 ### Paso B: Preparación de Cambios
 1. Identificar archivos modificados relacionados estrictamente con la tarea.
