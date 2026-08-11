@@ -141,9 +141,11 @@ Políticas de Especialización por Agente
 - **spec-remediator**: Responsable de la corrección iterativa de hallazgos siguiendo `spec-remediation`.
 - **task-decomposer**: Responsable de la atomización de tareas siguiendo los contratos de descomposición definidos en `spec-driven-development`.
 - **executor**: Responsable de la implementación técnica y verificación pre-vuelo siguiendo los estándares del stack correspondiente (`springboot-stack`, `fastapi-stack`).
-- **final-validation**: Responsable de la garantía de calidad final y cumplimiento de cobertura mínima.
-- **functional-test-planner**: Responsable de analizar specs de proyectos y workspace y diseñar planes de pruebas funcionales detallados.
-- **functional-tester-agent**: Responsable de ejecutar planes de pruebas funcionales y reportar/corregir fallos.
+- **final-validation**: Responsable de la garantía de calidad final, ejecución de `./verify-code.sh` y cumplimiento de cobertura mínima.
+- **functional-tester-agent**: Responsable de diseñar el plan de pruebas funcionales y ejecutar/reportar fallos UI/E2E con Puppeteer MCP.
+- **database-architect**: Responsable de esquemas relacionales, migraciones sin inactividad (`zero-downtime-migrations`) e índices concurrentes.
+- **bug-diagnostician**: Responsable del análisis de causa raíz (RCA), triage no destructivo de logs y stack traces (`root-cause-analysis`).
+- **api-governance-agent**: Responsable de auditar contratos OpenAPI buscando Breaking Changes y cumplimiento de SemVer (`api-governance-linter`).
 
 
 Optimización del Proceso SDD (Fuente: skill/spec-driven-development)

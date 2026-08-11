@@ -63,15 +63,16 @@ Agentes que operan fuera del SDLC actuando como asistentes personales con capaci
 
 ---
 
-## 📚 Ecosistema de Skills (50 Skills)
+## 📚 Ecosistema de Skills (56 Skills)
 
 Las skills están organizadas por dominios técnicos y arquitectónicos:
 
 ### 🏗️ Arquitectura y Metodología
-*   **hexagonal-architecture**: Implementación de Puertos y Adaptadores.
+*   **hexagonal-architecture**: Implementación de Puertos y Adaptadores con directorios explícitos por tecnología (Java, Python, Go, TS).
 *   **spec-driven-development**: Ciclo de vida Master Spec e Incrementos con gates humanos.
 *   **openapi-first**: Diseño de APIs basado en contratos.
 *   **requirements-gathering**: Protocolo de levantamiento de necesidades.
+*   **api-governance-linter**: Auditoría de Breaking Changes en contratos OpenAPI 3.0/3.1 y versión semántica (SemVer).
 
 ### 💻 Backend Stack
 *   **springboot-stack / java-stack / kotlin-stack**: Estándares para el ecosistema JVM.
@@ -83,7 +84,8 @@ Las skills están organizadas por dominios técnicos y arquitectónicos:
 *   **jpa-stack / repository-dto-patterns**: Gestión de persistencia y transferencia de datos.
 
 ### 🗄️ Bases de Datos y Migraciones
-*   **flyway-migrations**: Gestión de esquemas multi-motor.
+*   **zero-downtime-migrations**: Evolución de esquemas relacionales sin inactividad (Patrón Expand/Contract y `CREATE INDEX CONCURRENTLY`).
+*   **flyway-migrations**: Gestión de esquemas multi-motor y scripts de migración.
 *   **postgresql / mysql / oracle / sqlserver-standard**: Configuraciones específicas por motor.
 
 ### 🎨 Frontend
@@ -91,17 +93,21 @@ Las skills están organizadas por dominios técnicos y arquitectónicos:
 *   **frontend-architecture**: Arquitectura limpia para SPAs.
 *   **minimalist-ui**: Diseño de interfaces minimalistas y limpias al estilo editorial (Warm monochrome, bento grids).
 
-### 🔐 Seguridad y Calidad
-*   **security-standards / keycloak-standard**: JWT, OAuth2, RBAC y protección de identidad.
-*   **testing-strategy**: Estrategia Unit, Integration (Testcontainers) y E2E.
+### 🔐 Seguridad, Calidad y Calibración
+*   **security-standards / keycloak-standard**: JWT, OAuth2, RBAC, Gitleaks Secret Shield y protección de identidad.
+*   **code-quality-and-sonarqube**: SonarQube local, SonarScanner, Linters (Ruff, SpotBugs, golangci-lint) y bucle `./verify-code.sh`.
+*   **testing-strategy**: Metodología TDD (Red-Green-Refactor), ArchUnit (tests de arquitectura), Pruebas de Concurrencia y Testcontainers.
+*   **performance-testing-k6**: Pruebas de carga, estrés y latencia con k6 (SLA p95 < 200ms).
+*   **root-cause-analysis**: Protocolo RCA y triage no destructivo de logs/stack traces.
 *   **pre-flight-check**: Validación técnica obligatoria antes de commits con Self-Healing Guard.
 *   **bug-fixing-workflow**: Protocolo riguroso de reproducción y fix.
 
-### 🔄 Orquestación y DevOps
-*   **git-ops**: Automatización de ramas, commits semánticos y PRs validados por humanos.
-*   **graphify**: Optimización de contexto mediante grafos de conocimiento estructurados.
+### 🔄 Orquestación, DevOps & EvalOps
+*   **git-ops**: Automatización de ramas, commits semánticos, Gitleaks y PRs validados por humanos.
+*   **eval-ops-agent-benchmarks**: Benchmarking automatizado y pruebas de regresión para agentes de IA.
+*   **graphify**: Optimización de contexto mediante grafos de conocimiento estructurados (v0.9.39).
 *   **workspace-coordination**: Sincronización global-local y control de deuda técnica.
-*   **model-tier-routing**: Escalamiento de modelos según complejidad.
+*   **model-tier-routing**: Escalamiento de modelos por niveles (Tiers 1 al 6).
 *   **context-pinning / context-curation**: Gestión de contexto y protección de Master Spec.
 *   **n8n-stack**: Estrategia de automatización de workflows.
 
