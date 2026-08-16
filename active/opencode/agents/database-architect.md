@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Diseña y valida esquemas de bases de datos relacionales, migraciones Flyway/Liquibase, índices, modelos DTO/Entidad y estrategias de migración sin inactividad (Zero-Downtime DB Migrations).
 mode: all
-model: opencode/deepseek-v4-flash
+model: opencode/deepseek-v4-flash-free
 temperature: 0.10
 permission:
   edit: allow

@@ -10,13 +10,13 @@
     "semantic_hash": ""
   },
   "test-latency.py": {
-    "mtime": 1786819665.162967,
-    "ast_hash": "78d17c18ef3837014dfaef3bf021b39c",
+    "mtime": 1786905328.6191113,
+    "ast_hash": "68f7898f6004ebbddd97de0c94899ce0",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1786819633.101078,
-    "ast_hash": "fe223f113a0e65c01b80342844c36ca9",
+    "mtime": 1786905381.906738,
+    "ast_hash": "0b92ba5d80be0982c6d0848b19f025f0",
     "semantic_hash": ""
   },
   "active/gemini/agents/agentes-y-modelos-gemini.md": {
@@ -140,33 +140,33 @@
     "semantic_hash": ""
   },
   "active/opencode/agentes-y-modelos.md": {
-    "mtime": 1786819625.7661061,
-    "ast_hash": "6e7cec6b475ac8a46363b8e577974436",
+    "mtime": 1786905381.9048522,
+    "ast_hash": "d92f5beab9231299c35d63166f5bc54c",
     "semantic_hash": ""
   },
   "active/opencode/agents/architect-executor.md": {
-    "mtime": 1786819561.1413982,
-    "ast_hash": "94418747acb23c2f81b0b14d788f6f13",
+    "mtime": 1786905102.5550072,
+    "ast_hash": "5abe1a31d938a33e3a00a70f08ae23fc",
     "semantic_hash": ""
   },
   "active/opencode/agents/context-curator.md": {
-    "mtime": 1786417083.6550624,
-    "ast_hash": "294b1e03fc9c7950b2dc72f886964422",
+    "mtime": 1786905103.3460298,
+    "ast_hash": "36cdfc95009dc0fdab9fe501617fc78d",
     "semantic_hash": ""
   },
   "active/opencode/agents/devops-architect.md": {
-    "mtime": 1786497372.9748673,
-    "ast_hash": "52cb33a12b23bd5b83dd8da2d4968592",
+    "mtime": 1786905048.0759532,
+    "ast_hash": "5e9f413f4141f26c2918bfe5d73bfabe",
     "semantic_hash": ""
   },
   "active/opencode/agents/documentation.md": {
-    "mtime": 1786497375.7888987,
-    "ast_hash": "fe288e9e1677fa3ca58a965ae74c115c",
+    "mtime": 1786905048.0761235,
+    "ast_hash": "11571e992439bcbb142cb0b47b470efc",
     "semantic_hash": ""
   },
   "active/opencode/agents/enterprise-architect.md": {
-    "mtime": 1786819543.9374902,
-    "ast_hash": "cfbb050cd96df737d15b21902d925613",
+    "mtime": 1786905063.0690892,
+    "ast_hash": "1a53aa72053fe7ef47c23f4a7c5034d8",
     "semantic_hash": ""
   },
   "active/opencode/agents/enterprise-spec-validator.md": {
@@ -175,8 +175,8 @@
     "semantic_hash": ""
   },
   "active/opencode/agents/executor.md": {
-    "mtime": 1786497380.6629527,
-    "ast_hash": "707dbaa752061e38b0b1c21c47043db9",
+    "mtime": 1786905048.0762384,
+    "ast_hash": "c2fedd866398284913d2e789cf0d8e04",
     "semantic_hash": ""
   },
   "active/opencode/agents/final-validation.md": {
@@ -185,18 +185,18 @@
     "semantic_hash": ""
   },
   "active/opencode/agents/functional-tester-agent.md": {
-    "mtime": 1786497384.4189944,
-    "ast_hash": "87b30b69fe9fd12cc02f06b7037f6c1f",
+    "mtime": 1786905048.0764077,
+    "ast_hash": "c099acd1742d4d96fd60c5d0d6ad52b8",
     "semantic_hash": ""
   },
   "active/opencode/agents/general.md": {
-    "mtime": 1786497389.4090497,
-    "ast_hash": "0dd412dfa75142fac1c43d99d66c04c9",
+    "mtime": 1786905048.076981,
+    "ast_hash": "bf3394978027ff99c74564a6628ea2e3",
     "semantic_hash": ""
   },
   "active/opencode/agents/git-executor.md": {
-    "mtime": 1786497392.5290842,
-    "ast_hash": "810420a028f9b034a455839d5e1171c5",
+    "mtime": 1786905048.0765326,
+    "ast_hash": "fafaf3a12da061b6b1af1efc3432055c",
     "semantic_hash": ""
   },
   "active/opencode/agents/hyprmind-deep-thinker.md": {
@@ -210,13 +210,13 @@
     "semantic_hash": ""
   },
   "active/opencode/agents/hyprmind-vision-analyst.md": {
-    "mtime": 1786497395.040112,
-    "ast_hash": "b287b1b4dc1438ee3c892ccfb48d0841",
+    "mtime": 1786905048.076645,
+    "ast_hash": "5c1f5558c99ae771414e45d6985aaed9",
     "semantic_hash": ""
   },
   "active/opencode/agents/master-orchestrator.md": {
-    "mtime": 1786418875.6659553,
-    "ast_hash": "797a9515bfccd28bce809da0edea8a3d",
+    "mtime": 1786905104.1240523,
+    "ast_hash": "08f98f5de97e5539a21d23f0143e9ac1",
     "semantic_hash": ""
   },
   "active/opencode/agents/planner.md": {
@@ -245,13 +245,13 @@
     "semantic_hash": ""
   },
   "active/opencode/agents/solution-architect.md": {
-    "mtime": 1786819550.761453,
-    "ast_hash": "140d864732b6d7280fae14de3d0220c7",
+    "mtime": 1786905063.0693524,
+    "ast_hash": "6429f7cf934ef074e9ea78b24c8beedf",
     "semantic_hash": ""
   },
   "active/opencode/agents/spec-remediator.md": {
-    "mtime": 1786497401.6931856,
-    "ast_hash": "117e26ce8b3d377713dd0551783b7bce",
+    "mtime": 1786905048.0767512,
+    "ast_hash": "a849b8b98008a7650198a8f8055117ec",
     "semantic_hash": ""
   },
   "active/opencode/agents/spec-validator.md": {
@@ -265,8 +265,8 @@
     "semantic_hash": ""
   },
   "active/opencode/agents/test-architect.md": {
-    "mtime": 1786497404.9482217,
-    "ast_hash": "f307586fd2f3913436a0d36dd5d8f5ed",
+    "mtime": 1786905048.0768654,
+    "ast_hash": "aedc59cc743320ba367938c2da28064e",
     "semantic_hash": ""
   },
   "active/opencode/skills-review-backlog.md": {
@@ -2305,8 +2305,8 @@
     "semantic_hash": ""
   },
   "resumen-configuracion-ia.txt": {
-    "mtime": 1786819644.926035,
-    "ast_hash": "20c14c079977efdd8101ee71ef59a4e4",
+    "mtime": 1786905381.9060073,
+    "ast_hash": "6bdabc55db8cf39afb6a868174441328",
     "semantic_hash": ""
   },
   "workspace_coordination_and_debt_standard.md": {
@@ -2345,8 +2345,8 @@
     "semantic_hash": ""
   },
   "active/opencode/agents/database-architect.md": {
-    "mtime": 1786497369.0468237,
-    "ast_hash": "c9adf2702e437a45e783a08a3b4bece9",
+    "mtime": 1786905048.0757363,
+    "ast_hash": "b647799de9472cefe776ab19e57fddbd",
     "semantic_hash": ""
   },
   "active/opencode/skills/api-governance-linter/SKILL.md": {

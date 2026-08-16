@@ -1,5 +1,5 @@
 Resumen de Sesión - Configuración de IA (OpenCode + LM Studio + Agentes)
-Última actualización: 2026-08-10
+2026-08-16
 
 Objetivo
 Consolidación de un entorno de IA de nivel senior basado en Arquitectura Hexagonal, SDD Incremental y automatización de Git-Ops. El sistema ahora soporta el ciclo de vida completo: creación, incremento, modificación y corrección de bugs.
@@ -22,7 +22,7 @@ Escalamiento de Modelos (Tier Routing)
 - Agentes activos de OpenCode: /home/cristiansrc/.config/opencode/agents/.
 - Archivo canonico de agentes/modelos: /home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agentes-y-modelos.md.
 - Backup actual de agentes y skills: /home/cristiansrc/Documentos/Proyectos/config-ai/archive/full-backup-20260514-final/.
-- Agentes criticos de validacion: opencode-go/gpt-luna.
+- Agentes criticos de validacion: opencode-go/gpt-5.6-luna.
 - La configuración ha migrado hacia el escalamiento de modelos de alto beneficio/costo (DeepSeek V4 Pro/Flash, GPT-Terra/Luna, Kimi-K3, GLM-5.2) para las tareas de desarrollo y validación especializada.
 - Politica de idioma de agentes: definiciones operativas en ESPAÑOL; convenciones tecnicas, nombres de agentes/skills, estados canonicos, headings, rutas, comandos y tokens exactos en INGLES.
 - Perfil persistente LM Studio para Qwen 3.6 35B (Backup local): MoE con 3B activos, GPU offload ratio 26/64 capas, K/V cache Q4_0 activo. Velocidad observada: ~40 tok/s constantes con alta eficiencia energética.
@@ -31,31 +31,31 @@ Modelos por Agente
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
 | api-governance-agent | opencode-zen/gpt-terra | deny | allow |
-| architect-executor | opencode/deepseek-v4-pro | allow | allow |
+| architect-executor | opencode-go/gpt-5.6-luna | allow | allow |
 | bug-diagnostician | opencode-zen/glm-5.2 | deny | allow |
-| context-curator | opencode-go/gpt-luna | deny | deny |
-| database-architect | opencode/deepseek-v4-flash | allow | allow |
-| devops-architect | opencode/deepseek-v4-flash | allow | allow |
-| documentation | opencode/deepseek-v4-flash | allow | deny |
-| enterprise-architect | opencode/deepseek-v4-pro | allow | deny |
-| enterprise-spec-validator | opencode-go/gpt-luna | allow | deny |
-| executor | opencode/deepseek-v4-flash | allow | allow |
+| context-curator | opencode-go/gpt-5.6-luna | deny | deny |
+| database-architect | opencode/deepseek-v4-flash-free | allow | allow |
+| devops-architect | opencode/deepseek-v4-flash-free | allow | allow |
+| documentation | opencode/deepseek-v4-flash-free | allow | deny |
+| enterprise-architect | opencode-go/gpt-5.6-luna | allow | deny |
+| enterprise-spec-validator | opencode-go/gpt-5.6-luna | allow | deny |
+| executor | opencode/deepseek-v4-flash-free | allow | allow |
 | final-validation | opencode-zen/glm-5.2 | deny | allow |
-| functional-tester-agent | opencode/deepseek-v4-flash | allow | allow |
-| git-executor | opencode/deepseek-v4-flash | allow | allow |
+| functional-tester-agent | opencode/deepseek-v4-flash-free | allow | allow |
+| git-executor | opencode/deepseek-v4-flash-free | allow | allow |
 | master-orchestrator | opencode-zen/kimi-k3 | deny | allow |
 | planner | opencode-zen/gpt-terra | allow | deny |
-| refactor | opencode-go/gpt-luna | allow | allow |
+| refactor | opencode-go/gpt-5.6-luna | allow | allow |
 | requirements-analyst | opencode-zen/glm-5.2 | allow | deny |
 | reviewer | opencode-zen/gpt-terra | deny | allow |
 | security-reviewer | opencode-zen/gpt-terra | deny | allow |
-| solution-architect | opencode/deepseek-v4-pro | allow | deny |
-| spec-remediator | opencode/deepseek-v4-flash | allow | deny |
-| spec-validator | opencode-go/gpt-luna | allow limitado | deny |
-| task-decomposer | opencode-go/gpt-luna | allow | deny |
-| test-architect | opencode/deepseek-v4-flash | allow | allow |
+| solution-architect | opencode-go/gpt-5.6-luna | allow | deny |
+| spec-remediator | opencode/deepseek-v4-flash-free | allow | deny |
+| spec-validator | opencode-go/gpt-5.6-luna | allow limitado | deny |
+| task-decomposer | opencode-go/gpt-5.6-luna | allow | deny |
+| test-architect | opencode/deepseek-v4-flash-free | allow | allow |
 | hyprmind-orchestrator | opencode-go/qwen3.7-plus | allow | allow |
-| hyprmind-vision-analyst | opencode/deepseek-v4-flash | deny | deny |
+| hyprmind-vision-analyst | opencode/deepseek-v4-flash-free | deny | deny |
 | hyprmind-deep-thinker | opencode-go/qwen3.7-plus | deny | deny |
 
 Ecosistema de Skills (50 Skills Activas Resueltas)
