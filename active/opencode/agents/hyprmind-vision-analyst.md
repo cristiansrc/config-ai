@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Eres el analista de visión de HyprMind.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/gpt-5.6-luna
 temperature: 0.2
 ---
 

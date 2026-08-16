@@ -24,30 +24,30 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 
 | Agente                        | Responsabilidad Principal                                                             | Modelo                            |
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
-| **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | opencode-go/gpt-5.6-luna          |
-| **reviewer**                  | Revisión de código y lógica.                                                          | opencode-zen/gpt-terra            |
-| **requirements-analyst**      | Levanta requerimientos funcionales (`requirements-brief.md`).                         | opencode-zen/glm-5.2              |
-| **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode-zen/gpt-terra            |
-| **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | opencode-go/gpt-luna              |
-| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode-go/gpt-luna              |
-| **api-governance-agent**      | Audita contratos OpenAPI buscando Breaking Changes y compatibilidad semver.            | opencode-zen/gpt-terra            |
-| **bug-diagnostician**         | Análisis de causa raíz (RCA) e inspección de logs y stack traces antes de arreglos.   | opencode-zen/glm-5.2              |
-| **database-architect**        | Diseña esquemas DB, migraciones Flyway/Liquibase e índices sin inactividad.           | opencode/deepseek-v4-flash-free        |
-| **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode/deepseek-v4-flash-free        |
-| **task-decomposer**           | Atomización de tareas para el ejecutor.                                               | opencode-go/gpt-luna              |
-| **executor**                  | Implementación técnica cuando EXISTE spec SDD validada (Temp 0.15).                    | opencode/deepseek-v4-flash-free        |
-| **architect-executor**        | Lógica compleja y arquitectura local con GPT-5.6-Luna (Go) cuando NO existe spec SDD.  | opencode-go/gpt-5.6-luna          |
-| **final-validation**          | Garantía de calidad final y cumplimiento de cobertura mínima.                         | opencode-zen/glm-5.2              |
-| **solution-architect**        | Selección de patrones de diseño GoF y estructuras locales.                            | opencode-go/gpt-5.6-luna          |
-| **security-reviewer**         | Auditoría de seguridad y estándares OWASP.                                            | opencode-zen/gpt-terra            |
-| **test-architect**            | Diseño de estrategias de prueba unitarias e integración.                              | opencode/deepseek-v4-flash-free        |
-| **context-curator**           | Filtra y prepara el contexto de alta señal (Temp 0.10) para evitar ruido.             | opencode-go/gpt-luna              |
-| **devops-architect**          | Especialista en Infraestructura como Código y CI/CD.                                  | opencode/deepseek-v4-flash-free        |
-| **documentation**             | Gestiona el ciclo de vida de la documentación del proyecto.                           | opencode/deepseek-v4-flash-free        |
-| **refactor**                  | Refactoriza código existente siguiendo patrones limpios.                              | opencode-go/gpt-luna              |
-| **functional-tester-agent**   | Diseña plan, ejecuta y valida pruebas funcionales y UI/E2E en frontends.              | opencode/deepseek-v4-flash-free        |
-| **git-executor**              | Centraliza todas las interacciones del repositorio con Git (ramas, commits, pushes).   | opencode/deepseek-v4-flash-free        |
-| **master-orchestrator**       | Agente Maestro / Orquestador Contextual. Mantiene el contexto y delega tareas.        | opencode-zen/kimi-k3              |
+| **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | opencode-go/qwen3.7-plus          |
+| **reviewer**                  | Revisión de código y lógica.                                                          | opencode-go/glm-5.2            |
+| **requirements-analyst**      | Levanta requerimientos funcionales (`requirements-brief.md`).                         | opencode-go/glm-5.2              |
+| **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode-go/glm-5.2            |
+| **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | opencode-go/qwen3.7-plus              |
+| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode-go/qwen3.7-plus              |
+| **api-governance-agent**      | Audita contratos OpenAPI buscando Breaking Changes y compatibilidad semver.            | opencode-go/glm-5.2            |
+| **bug-diagnostician**         | Análisis de causa raíz (RCA) e inspección de logs y stack traces antes de arreglos.   | opencode-go/glm-5.2              |
+| **database-architect**        | Diseña esquemas DB, migraciones Flyway/Liquibase e índices sin inactividad.           | opencode-go/qwen3.7-plus        |
+| **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode-go/qwen3.7-plus        |
+| **task-decomposer**           | Atomización de tareas para el ejecutor.                                               | opencode-go/qwen3.7-plus              |
+| **executor**                  | Implementación técnica cuando EXISTE spec SDD validada (Temp 0.15).                    | opencode-go/qwen3.7-plus        |
+| **architect-executor**        | Lógica compleja y arquitectura local con Qwen 3.7 Plus (Go) cuando NO existe spec SDD.  | opencode-go/qwen3.7-plus          |
+| **final-validation**          | Garantía de calidad final y cumplimiento de cobertura mínima.                         | opencode-go/glm-5.2              |
+| **solution-architect**        | Selección de patrones de diseño GoF y estructuras locales.                            | opencode-go/qwen3.7-plus          |
+| **security-reviewer**         | Auditoría de seguridad y estándares OWASP.                                            | opencode-go/glm-5.2            |
+| **test-architect**            | Diseño de estrategias de prueba unitarias e integración.                              | opencode-go/qwen3.7-plus        |
+| **context-curator**           | Filtra y prepara el contexto de alta señal (Temp 0.10) para evitar ruido.             | opencode-go/qwen3.7-plus              |
+| **devops-architect**          | Especialista en Infraestructura como Código y CI/CD.                                  | opencode-go/qwen3.7-plus        |
+| **documentation**             | Gestiona el ciclo de vida de la documentación del proyecto.                           | opencode-go/qwen3.7-plus        |
+| **refactor**                  | Refactoriza código existente siguiendo patrones limpios.                              | opencode-go/qwen3.7-plus              |
+| **functional-tester-agent**   | Diseña plan, ejecuta y valida pruebas funcionales y UI/E2E en frontends.              | opencode-go/qwen3.7-plus        |
+| **git-executor**              | Centraliza todas las interacciones del repositorio con Git (ramas, commits, pushes).   | opencode-go/qwen3.7-plus        |
+| **master-orchestrator**       | Agente Maestro / Orquestador Contextual. Mantiene el contexto y delega tareas.        | opencode/kimi-k3              |
 
 ---
 
@@ -57,9 +57,9 @@ Agentes que operan fuera del SDLC actuando como asistentes personales con capaci
 
 | Agente                        | Responsabilidad Principal                                                             | Modelo                            |
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
-| **hyprmind-orchestrator**     | Interfaz principal (V.I.E.R.N.E.S.) para interacción por voz y delegación de tareas.  | opencode-go/qwen3.7-max              |
-| **hyprmind-vision-analyst**   | Ojo Biónico para análisis de imágenes, UI y capturas de pantalla de código.           | opencode/deepseek-v4-flash-free           |
-| **hyprmind-deep-thinker**     | Analista profundo para problemas arquitectónicos o lógicos muy complejos.             | opencode-go/qwen3.7-max              |
+| **hyprmind-orchestrator**     | Interfaz principal (V.I.E.R.N.E.S.) para interacción por voz y delegación de tareas.  | opencode/kimi-k3              |
+| **hyprmind-vision-analyst**   | Ojo Biónico para análisis de imágenes, UI y capturas de pantalla de código.           | opencode-go/qwen3.7-plus           |
+| **hyprmind-deep-thinker**     | Analista profundo para problemas arquitectónicos o lógicos muy complejos.             | opencode-go/qwen3.7-plus              |
 
 ---
 
@@ -142,9 +142,9 @@ Se incluye el script `test-latency.py` en la raíz del repositorio para verifica
 *   **Modelos Probados:**
     *   `opencode-go/qwen3.7-plus` (Qwen 3.7 Plus del Plan Go)
     *   `opencode-go/qwen3.6-plus` (Qwen 3.6 Plus del Plan Go / Respaldo)
-    *   `opencode-go/gpt-5.6-luna` (GPT Luna del Plan Go / Validadores)
+    *   `opencode-go/glm-5.2` (GLM 5.2 del Plan Go / Planificación, revisión, RCA y validación final)
+    *   `opencode/kimi-k3` (Kimi K3 / Orquestación)
     *   `google/gemini-3.1-pro-preview` (Gemini Pro Comercial / Google API)
-    *   `opencode/deepseek-v4-flash-free` (DeepSeek V4 Flash Free / Plan Zen)
 
 ---
 *Última actualización de estructura y roles: 2026-08-16*

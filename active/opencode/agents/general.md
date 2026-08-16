@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Guardrail para llamadas accidentales al subagente general integrado. Bloquea validaciones SDD en el modelo local incorrecto.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/gpt-5.6-luna
 temperature: 0.1
 permission:
   edit: deny

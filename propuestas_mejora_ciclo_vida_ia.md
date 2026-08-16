@@ -21,7 +21,7 @@ Basado en el análisis de las mejores prácticas y tendencias de la industria en
 ---
 
 ## 3. Pruebas de Evaluación de Comportamiento de Agentes (EvalOps)
-*   **El Problema:** Cuando se actualiza un prompt o se cambia de modelo de LLM (por ejemplo, pasar de Qwen a DeepSeek), es difícil saber si los agentes han sufrido una regresión en su capacidad para seguir las especificaciones o si introducen alucinaciones en el código.
+*   **El Problema:** Cuando se actualiza un prompt o se cambia de modelo de LLM (por ejemplo, cambiar entre modelos), es difícil saber si los agentes han sufrido una regresión en su capacidad para seguir las especificaciones o si introducen alucinaciones en el código.
 *   **La Propuesta:** Crear un pipeline básico de **Evaluación de Prompts (Evals)**:
     *   *Mecanismo:* Definir un conjunto de "casos de prueba" estáticos para los prompts (por ejemplo, pasarle una especificación deliberadamente ambigua al `spec-validator` y verificar que el resultado devuelva `not ready`). Si el validador aprueba la especificación errónea, la evaluación de prompt falla, alertando sobre degradación del modelo.
 

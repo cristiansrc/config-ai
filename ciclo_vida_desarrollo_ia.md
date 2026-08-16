@@ -10,8 +10,8 @@ Para garantizar una correcta división de responsabilidades y flujos de comunica
 
 ### A. Obreros (Workers)
 Son los agentes que implementan cambios en el código, bases de datos, documentación técnica u operaciones de infraestructura:
-*   [executor](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/executor.md): Escribe código de producción y tests unitarios cuando EXISTE especificación SDD aprobada (DeepSeek V4 Flash).
-*   [architect-executor](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/architect-executor.md): Implementa lógica compleja y refactorizaciones locales con razonamiento denso (DeepSeek V4 Pro) cuando NO existe especificación SDD completa.
+*   [executor](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/executor.md): Escribe código de producción y tests unitarios cuando EXISTE especificación SDD aprobada (Qwen 3.7 Plus).
+*   [architect-executor](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/architect-executor.md): Implementa lógica compleja y refactorizaciones locales con razonamiento denso (Qwen 3.7 Plus) cuando NO existe especificación SDD completa.
 *   [database-architect](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/database-architect.md): Diseña esquemas relacionales, scripts Flyway/Liquibase, índices y migraciones sin inactividad (Zero-Downtime DB Migrations).
 *   [devops-architect](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/devops-architect.md): Modifica Docker, configuraciones de red, CI/CD y despliegue local.
 *   [refactor](file:///home/cristiansrc/Documentos/Proyectos/config-ai/active/opencode/agents/refactor.md): Realiza refactorizaciones de código legacy sin cambiar el comportamiento externo.

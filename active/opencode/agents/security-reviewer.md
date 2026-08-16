@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Reviews web projects for security risks, OWASP issues, auth/authz flaws, sensitive data handling, and secure architecture.
 mode: all
-model: opencode/gpt-5.6-terra
+model: opencode-go/glm-5.2
 temperature: 0.1
 permission:
   edit: deny

@@ -1,7 +1,7 @@
 ---
-description: (IDIOMA: ESPANOL) Implementa código a partir de especificaciones SDD aprobadas y descomposiciones de tareas utilizando el modelo DeepSeek V4 Flash.
+description: (IDIOMA: ESPANOL) Implementa código a partir de especificaciones SDD aprobadas y descomposiciones de tareas utilizando el modelo Qwen 3.7 Plus.
 mode: all
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/gpt-5.6-luna
 temperature: 0.15
 permission:
   edit: allow

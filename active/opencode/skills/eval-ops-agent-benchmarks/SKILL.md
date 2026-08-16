@@ -11,7 +11,7 @@ Guía metodológica para auditar la precisión, estructura JSON, tasa de alucina
 
 ## 1. El Principio de EvalOps
 
-Cualquier cambio en el modelo o prompt de un agente (ej. migrar `spec-validator` de `qwen3.7-plus` a `gpt-luna`) debe certificarse ejecutando una suite de prueba contra **Specs Canónicas de Referencia** (*Gold Standard Specs*).
+Cualquier cambio en el modelo o prompt de un agente (ej. migrar `planner` de `opencode-go/qwen3.7-plus` a `opencode-go/glm-5.2`) debe certificarse ejecutando una suite de prueba contra **Specs Canónicas de Referencia** (*Gold Standard Specs*).
 
 ---
 
@@ -45,5 +45,5 @@ En `tests/eval-ops/gold-standards/` se mantienen 3 especificaciones de referenci
 
 ```bash
 # Script de evaluación de regresión de agentes
-python3 tests/eval-ops/run_benchmarks.py --agent spec-validator --model opencode-go/gpt-luna
+python3 tests/eval-ops/run_benchmarks.py --agent spec-validator --model opencode-go/qwen3.7-plus
 ```

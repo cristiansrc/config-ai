@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Planifica proyectos web con Spec Driven Development, decisiones de arquitectura, contratos API, restricciones tecnicas y documentacion base del proyecto.
 mode: all
-model: opencode/gpt-5.6-terra
+model: opencode-go/glm-5.2
 temperature: 0.2
 permission:
   edit: allow

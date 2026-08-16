@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Revisa codigo generado para detectar bugs logicos, drift arquitectonico, mantenibilidad, tests faltantes y cumplimiento de specs.
 mode: all
-model: opencode/gpt-5.6-terra
+model: opencode-go/glm-5.2
 temperature: 0.1
 permission:
   edit: deny

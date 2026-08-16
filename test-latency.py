@@ -7,9 +7,10 @@ import json
 MODELS_TO_TEST = [
     "opencode-go/qwen3.7-plus",
     "opencode-go/qwen3.6-plus",
-    "opencode-go/gpt-5.6-luna",
-    "google/gemini-3.1-pro-preview",
-    "opencode/deepseek-v4-flash-free"
+    "opencode-go/glm-5.2",
+    "opencode-go/glm-5.2",
+    "opencode/kimi-k3",
+    "google/gemini-3.1-pro-preview"
 ]
 
 def test_model(model_name):
