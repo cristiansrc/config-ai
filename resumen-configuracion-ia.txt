@@ -31,31 +31,31 @@ Modelos por Agente
 | Agente | Modelo | Editar | Bash |
 |---|---|---:|---:|
 | api-governance-agent | opencode-zen/gpt-terra | deny | allow |
-| architect-executor | opencode-go/deepseek-v4-pro | allow | allow |
+| architect-executor | opencode/deepseek-v4-pro | allow | allow |
 | bug-diagnostician | opencode-zen/glm-5.2 | deny | allow |
 | context-curator | opencode-go/gpt-luna | deny | deny |
-| database-architect | opencode-go/deepseek-v4-flash | allow | allow |
-| devops-architect | opencode-go/deepseek-v4-flash | allow | allow |
-| documentation | opencode-go/deepseek-v4-flash | allow | deny |
-| enterprise-architect | opencode-go/deepseek-v4-pro | allow | deny |
+| database-architect | opencode/deepseek-v4-flash | allow | allow |
+| devops-architect | opencode/deepseek-v4-flash | allow | allow |
+| documentation | opencode/deepseek-v4-flash | allow | deny |
+| enterprise-architect | opencode/deepseek-v4-pro | allow | deny |
 | enterprise-spec-validator | opencode-go/gpt-luna | allow | deny |
-| executor | opencode-go/deepseek-v4-flash | allow | allow |
+| executor | opencode/deepseek-v4-flash | allow | allow |
 | final-validation | opencode-zen/glm-5.2 | deny | allow |
-| functional-tester-agent | opencode-go/deepseek-v4-flash | allow | allow |
-| git-executor | opencode-go/deepseek-v4-flash | allow | allow |
+| functional-tester-agent | opencode/deepseek-v4-flash | allow | allow |
+| git-executor | opencode/deepseek-v4-flash | allow | allow |
 | master-orchestrator | opencode-zen/kimi-k3 | deny | allow |
 | planner | opencode-zen/gpt-terra | allow | deny |
 | refactor | opencode-go/gpt-luna | allow | allow |
 | requirements-analyst | opencode-zen/glm-5.2 | allow | deny |
 | reviewer | opencode-zen/gpt-terra | deny | allow |
 | security-reviewer | opencode-zen/gpt-terra | deny | allow |
-| solution-architect | opencode-go/deepseek-v4-pro | allow | deny |
-| spec-remediator | opencode-go/deepseek-v4-flash | allow | deny |
+| solution-architect | opencode/deepseek-v4-pro | allow | deny |
+| spec-remediator | opencode/deepseek-v4-flash | allow | deny |
 | spec-validator | opencode-go/gpt-luna | allow limitado | deny |
 | task-decomposer | opencode-go/gpt-luna | allow | deny |
-| test-architect | opencode-go/deepseek-v4-flash | allow | allow |
+| test-architect | opencode/deepseek-v4-flash | allow | allow |
 | hyprmind-orchestrator | opencode-go/qwen3.7-plus | allow | allow |
-| hyprmind-vision-analyst | opencode-go/deepseek-v4-flash | deny | deny |
+| hyprmind-vision-analyst | opencode/deepseek-v4-flash | deny | deny |
 | hyprmind-deep-thinker | opencode-go/qwen3.7-plus | deny | deny |
 
 Ecosistema de Skills (50 Skills Activas Resueltas)

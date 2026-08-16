@@ -29,7 +29,7 @@ Esta skill define la asignación oficial de modelos de IA por niveles de complej
 
 ---
 
-## Nivel 1: Obreros Rápidos & Ejecución en Código (`opencode-go/deepseek-v4-flash`)
+## Nivel 1: Obreros Rápidos & Ejecución en Código (`opencode/deepseek-v4-flash`)
 **Uso:** Mecanografía rápida, tareas atómicas con specs claras, infraestructura y operaciones Git.
 - `executor`: Implementación técnica cuando EXISTE spec SDD aprobada.
 - `devops-architect`: Dockerfiles, CI/CD, docker-compose y observabilidad.
@@ -69,7 +69,7 @@ Esta skill define la asignación oficial de modelos de IA por niveles de complej
 
 ---
 
-## Nivel 5: Arquitectura & Razonamiento Denso (`opencode-go/deepseek-v4-pro`)
+## Nivel 5: Arquitectura & Razonamiento Denso (`opencode/deepseek-v4-pro`)
 **Uso:** Decisiones de macro-arquitectura, patrones GoF e implementación sin spec SDD formal.
 - `enterprise-architect`: System Landscape global, boundaries de microservicios y Bounded Contexts.
 - `solution-architect`: Selección de patrones de diseño GoF y arquitectura limpia local.

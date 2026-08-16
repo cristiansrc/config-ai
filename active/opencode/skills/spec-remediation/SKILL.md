@@ -48,7 +48,7 @@ Guía para corregir de forma segura y granular los hallazgos reportados por el `
 
 ## Reglas de Oro
 - **Iteración Granular**: No intentar corregir todos los hallazgos a la vez.
-- **Validación Específica**: Las validaciones deben pedirse exclusivamente al agente `spec-validator` configurado con el modelo oficial (`opencode-go/deepseek-v4-pro`).
+- **Validación Específica**: Las validaciones deben pedirse exclusivamente al agente `spec-validator` configurado con el modelo oficial (`opencode-go/gpt-5.6-luna`).
 - **Bloqueo por Modelo**: Si la validación se ejecuta con un modelo no autorizado, se debe detener el proceso con `Blocked: wrong validator model`.
 - **Límite de Intentos**: Máximo 4 intentos por hallazgo. Si persiste, escribir `<active-repo>/docs/specs/.working/<increment-name>-remediator-bug-report.md` y detener el flujo.
 - **Alcance**: No puede crear ni llamar a `task-decomposer` ni `executor`. Solo trabaja sobre artefactos SDD (Specs, OpenAPI, Migraciones, Config).

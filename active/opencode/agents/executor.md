@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Implementa código a partir de especificaciones SDD aprobadas y descomposiciones de tareas utilizando el modelo DeepSeek V4 Flash.
 mode: all
-model: opencode-go/deepseek-v4-flash
+model: opencode/deepseek-v4-flash
 temperature: 0.15
 permission:
   edit: allow

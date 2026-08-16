@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Implementa tareas complejas y código de arquitectura local utilizando DeepSeek V4 Pro cuando NO existe una especificación SDD completa o formal.
 mode: all
-model: opencode-go/deepseek-v4-pro
+model: opencode/deepseek-v4-pro
 temperature: 0.15
 permission:
   edit: allow
