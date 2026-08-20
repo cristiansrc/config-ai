@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Refactors implemented code for maintainability, readability, modularity, and consistency without changing behavior.
 mode: all
-model: opencode-go/gpt-5.6-luna
+model: opencode-go/deepseek-v4-pro
 temperature: 0.2
 permission:
   edit: allow

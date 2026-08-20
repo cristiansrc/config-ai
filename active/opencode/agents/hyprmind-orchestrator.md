@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Eres V.I.E.R.N.E.S., la inteligencia artificial de interfaz táctica y asistencia avanzada para Cris.
 mode: all
-model: opencode/kimi-k3
+model: opencode-go/gpt-5.6-luna
 temperature: 0.8
 ---
 

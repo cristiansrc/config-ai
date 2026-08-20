@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Especialista en Infraestructura como Codigo, Docker, CI/CD y Observabilidad.
 mode: all
-model: opencode-go/gpt-5.6-luna
+model: opencode-go/mimo-v2.5
 temperature: 0.2
 permission:
   edit: allow

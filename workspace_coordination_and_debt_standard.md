@@ -67,6 +67,6 @@ En la raíz del Workspace existirá el archivo `docs/specs/technical_debt.md`.
 Para garantizar la estabilidad y consistencia global del Solution Workspace, se introduce un nuevo rol de agente.
 
 *   **Nombre:** `enterprise-spec-validator`
-*   **Modelo Sugerido:** `opencode-go/qwen3.7-plus`
+*   **Modelo Sugerido:** `opencode-go/gpt-5.6-luna`
 *   **Propósito:** Validar la coherencia macro de la Master Spec del Workspace, el archivo de cambios estructurales `workspace_changes.md`, los contratos compartidos de API, la consistencia de esquemas de bases de datos distribuidas y la consolidación de la deuda técnica global.
 *   **Gate de Calidad:** Ningún incremento local de proyecto que afecte a contratos compartidos puede pasar a producción sin que el `enterprise-spec-validator` otorgue el veredicto de `Workspace Aligned` en la Master Spec global del Workspace.

@@ -24,30 +24,30 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 
 | Agente                        | Responsabilidad Principal                                                             | Modelo                            |
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
-| **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | opencode-go/qwen3.7-plus          |
-| **reviewer**                  | Revisión de código y lógica.                                                          | opencode-go/glm-5.2            |
-| **requirements-analyst**      | Levanta requerimientos funcionales (`requirements-brief.md`).                         | opencode-go/glm-5.2              |
-| **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode-go/glm-5.2            |
-| **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | opencode-go/qwen3.7-plus              |
-| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode-go/qwen3.7-plus              |
-| **api-governance-agent**      | Audita contratos OpenAPI buscando Breaking Changes y compatibilidad semver.            | opencode-go/glm-5.2            |
-| **bug-diagnostician**         | Análisis de causa raíz (RCA) e inspección de logs y stack traces antes de arreglos.   | opencode-go/glm-5.2              |
-| **database-architect**        | Diseña esquemas DB, migraciones Flyway/Liquibase e índices sin inactividad.           | opencode-go/qwen3.7-plus        |
-| **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode-go/qwen3.7-plus        |
-| **task-decomposer**           | Atomización de tareas para el ejecutor.                                               | opencode-go/qwen3.7-plus              |
-| **executor**                  | Implementación técnica cuando EXISTE spec SDD validada (Temp 0.15).                    | opencode-go/qwen3.7-plus        |
-| **architect-executor**        | Lógica compleja y arquitectura local con Qwen 3.7 Plus (Go) cuando NO existe spec SDD.  | opencode-go/qwen3.7-plus          |
-| **final-validation**          | Garantía de calidad final y cumplimiento de cobertura mínima.                         | opencode-go/glm-5.2              |
-| **solution-architect**        | Selección de patrones de diseño GoF y estructuras locales.                            | opencode-go/qwen3.7-plus          |
-| **security-reviewer**         | Auditoría de seguridad y estándares OWASP.                                            | opencode-go/glm-5.2            |
-| **test-architect**            | Diseño de estrategias de prueba unitarias e integración.                              | opencode-go/qwen3.7-plus        |
-| **context-curator**           | Filtra y prepara el contexto de alta señal (Temp 0.10) para evitar ruido.             | opencode-go/qwen3.7-plus              |
-| **devops-architect**          | Especialista en Infraestructura como Código y CI/CD.                                  | opencode-go/qwen3.7-plus        |
-| **documentation**             | Gestiona el ciclo de vida de la documentación del proyecto.                           | opencode-go/qwen3.7-plus        |
-| **refactor**                  | Refactoriza código existente siguiendo patrones limpios.                              | opencode-go/qwen3.7-plus              |
-| **functional-tester-agent**   | Diseña plan, ejecuta y valida pruebas funcionales y UI/E2E en frontends.              | opencode-go/qwen3.7-plus        |
-| **git-executor**              | Centraliza todas las interacciones del repositorio con Git (ramas, commits, pushes).   | opencode-go/qwen3.7-plus        |
-| **master-orchestrator**       | Agente Maestro / Orquestador Contextual. Mantiene el contexto y delega tareas.        | opencode/kimi-k3              |
+| **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | opencode-go/gpt-5.6-luna          |
+| **reviewer**                  | Revisión de código y lógica.                                                          | opencode-go/hy3                   |
+| **requirements-analyst**      | Levanta requerimientos funcionales (`requirements-brief.md`).                         | opencode-go/hy3                   |
+| **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode-go/minimax-m3            |
+| **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | opencode-go/gpt-5.6-luna          |
+| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode-go/gpt-5.6-luna          |
+| **api-governance-agent**      | Audita contratos OpenAPI buscando Breaking Changes y compatibilidad semver.            | opencode-go/minimax-m3            |
+| **bug-diagnostician**         | Análisis de causa raíz (RCA) e inspección de logs y stack traces antes de arreglos.   | opencode-go/deepseek-v4-pro       |
+| **database-architect**        | Diseña esquemas DB, migraciones Flyway/Liquibase e índices sin inactividad.           | opencode-go/deepseek-v4-pro       |
+| **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode-go/gpt-5.6-luna          |
+| **task-decomposer**           | Atomización de tareas para el ejecutor.                                               | opencode-go/minimax-m3            |
+| **executor**                  | Implementación técnica cuando EXISTE spec SDD validada (Temp 0.15).                    | opencode-go/mimo-v2.5            |
+| **architect-executor**        | Lógica compleja y arquitectura local (Go) cuando NO existe spec SDD.                  | opencode-go/gpt-5.6-luna          |
+| **final-validation**          | Garantía de calidad final y cumplimiento de cobertura mínima.                         | opencode-go/gpt-5.6-luna          |
+| **solution-architect**        | Selección de patrones de diseño GoF y estructuras locales.                            | opencode-go/gpt-5.6-luna          |
+| **security-reviewer**         | Auditoría de seguridad y estándares OWASP.                                            | opencode-go/minimax-m3            |
+| **test-architect**            | Diseño de estrategias de prueba unitarias e integración.                              | opencode-go/mimo-v2.5            |
+| **context-curator**           | Filtra y prepara el contexto de alta señal (Temp 0.10) para evitar ruido.             | opencode-go/minimax-m3            |
+| **devops-architect**          | Especialista en Infraestructura como Código y CI/CD.                                  | opencode-go/mimo-v2.5            |
+| **documentation**             | Gestiona el ciclo de vida de la documentación del proyecto.                           | opencode-go/hy3                   |
+| **refactor**                  | Refactoriza código existente siguiendo patrones limpios.                              | opencode-go/deepseek-v4-pro       |
+| **functional-tester-agent**   | Diseña plan, ejecuta y valida pruebas funcionales y UI/E2E en frontends.              | opencode-go/hy3                   |
+| **git-executor**              | Centraliza todas las interacciones del repositorio con Git (ramas, commits, pushes).   | opencode-go/mimo-v2.5             |
+| **master-orchestrator**       | Agente Maestro / Orquestador Contextual. Mantiene el contexto y delega tareas.        | opencode-go/gpt-5.6-luna          |
 
 ---
 
@@ -57,9 +57,9 @@ Agentes que operan fuera del SDLC actuando como asistentes personales con capaci
 
 | Agente                        | Responsabilidad Principal                                                             | Modelo                            |
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
-| **hyprmind-orchestrator**     | Interfaz principal (V.I.E.R.N.E.S.) para interacción por voz y delegación de tareas.  | opencode/kimi-k3              |
-| **hyprmind-vision-analyst**   | Ojo Biónico para análisis de imágenes, UI y capturas de pantalla de código.           | opencode-go/qwen3.7-plus           |
-| **hyprmind-deep-thinker**     | Analista profundo para problemas arquitectónicos o lógicos muy complejos.             | opencode-go/qwen3.7-plus              |
+| **hyprmind-orchestrator**     | Interfaz principal (V.I.E.R.N.E.S.) para interacción por voz y delegación de tareas.  | opencode-go/gpt-5.6-luna          |
+| **hyprmind-vision-analyst**   | Ojo Biónico para análisis de imágenes, UI y capturas de pantalla de código.           | opencode-go/gpt-5.6-luna          |
+| **hyprmind-deep-thinker**     | Analista profundo para problemas arquitectónicos o lógicos muy complejos.             | opencode-go/gpt-5.6-luna          |
 
 ---
 
@@ -140,11 +140,11 @@ Se incluye el script `test-latency.py` en la raíz del repositorio para verifica
     python3 ./test-latency.py
     ```
 *   **Modelos Probados:**
-    *   `opencode-go/qwen3.7-plus` (Qwen 3.7 Plus del Plan Go)
-    *   `opencode-go/qwen3.6-plus` (Qwen 3.6 Plus del Plan Go / Respaldo)
-    *   `opencode-go/glm-5.2` (GLM 5.2 del Plan Go / Planificación, revisión, RCA y validación final)
-    *   `opencode/kimi-k3` (Kimi K3 / Orquestación)
-    *   `google/gemini-3.1-pro-preview` (Gemini Pro Comercial / Google API)
+    *   `opencode-go/gpt-5.6-luna` (Luna del Plan Go / Primario, validación, orquestación, visión)
+    *   `opencode-go/hy3` (hy3 del Plan Go / Review, requerimientos, docs, UI-E2E)
+    *   `opencode-go/deepseek-v4-pro` (DeepSeek V4 Pro / Código pesado, servidores China)
+    *   `opencode-go/minimax-m3` (MiniMax M3 / Planning, gobernanza, descomposición, contexto)
+    *   `opencode-go/mimo-v2.5` (MiMo V2.5 / Ejecución de volumen + Git)
 
 ---
-*Última actualización de estructura y roles: 2026-08-16*
+*Última actualización de estructura y roles: 2026-08-17*

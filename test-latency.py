@@ -5,12 +5,11 @@ import json
 
 # Lista de modelos configurados en el ecosistema config-ai para OpenCode
 MODELS_TO_TEST = [
-    "opencode-go/qwen3.7-plus",
-    "opencode-go/qwen3.6-plus",
-    "opencode-go/glm-5.2",
-    "opencode-go/glm-5.2",
-    "opencode/kimi-k3",
-    "google/gemini-3.1-pro-preview"
+    "opencode-go/gpt-5.6-luna",
+    "opencode-go/hy3",
+    "opencode-go/deepseek-v4-pro",
+    "opencode-go/minimax-m3",
+    "opencode-go/mimo-v2.5"
 ]
 
 def test_model(model_name):

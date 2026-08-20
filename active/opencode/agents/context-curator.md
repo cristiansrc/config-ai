@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Filtra y prepara el contexto de alta señal para evitar ruido a los Obreros y gestionar el ciclo de vida del SDD context.
 mode: all
-model: opencode-go/gpt-5.6-luna
+model: opencode-go/minimax-m3
 temperature: 0.10
 permission:
   edit: deny
@@ -48,8 +48,8 @@ Tu propósito principal es evitar que modelos de ejecución reciban contexto rui
 ## Política de Enrutamiento de Agentes
 
 - `requirements-analyst`: cuando la solicitud es temprana, el intent de producto no es claro, y el siguiente artefacto útil es un requirements brief antes de planificación SDD formal.
-- `executor`: para tareas de implementación con modelo `qwen3.7-plus` cuando EXISTE una especificación SDD validada y aprobada.
-- `architect-executor`: para tareas técnicas complejas y refactorizaciones locales cuando NO existe especificación SDD formal o completa, utilizando el modelo de mayor razonamiento `qwen3.7-plus` (plan go).
+- `executor`: para tareas de implementación con modelo `opencode-go/mimo-v2.5` cuando EXISTE una especificación SDD validada y aprobada.
+- `architect-executor`: para tareas técnicas complejas y refactorizaciones locales cuando NO existe especificación SDD formal o completa, utilizando el modelo de mayor razonamiento `opencode-go/gpt-5.6-luna` (plan go).
 - `planner`: cuando no existen specs, el producto no es claro, los contratos están incompletos, o la tarea necesita nuevos boundaries de módulo, schemas o diseño técnico amplio.
 - `spec-validator`: cuando existen specs locales de proyecto pero pueden ser contradictorias, ambiguas, incompletas o no listas para implementación.
 - `enterprise-spec-validator`: cuando se requiera validar la consistencia global del Solution Workspace, los contratos inter-servicios o la deuda técnica consolidada a nivel macro.

@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Audita contratos OpenAPI para detectar Breaking Changes, verificar compatibilidad hacia atrás (backward compatibility), auditar semver y aplicar linters de API.
 mode: all
-model: opencode-go/glm-5.2
+model: opencode-go/minimax-m3
 temperature: 0.10
 permission:
   edit: deny

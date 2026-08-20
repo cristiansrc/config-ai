@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Breaks validated specs into small, ordered, executable engineering tasks with dependencies and verification steps.
 mode: all
-model: opencode-go/gpt-5.6-luna
+model: opencode-go/minimax-m3
 temperature: 0.2
 permission:
   edit: allow

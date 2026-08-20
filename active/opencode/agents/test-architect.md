@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Diseña y genera pruebas automatizadas, edge cases, checks de integracion y estrategia de validacion para proyectos web.
 mode: all
-model: opencode-go/gpt-5.6-luna
+model: opencode-go/mimo-v2.5
 temperature: 0.2
 permission:
   edit: allow

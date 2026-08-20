@@ -1,5 +1,5 @@
 ---
-description: (IDIOMA: ESPAÑOL) Implementa tareas complejas y código de arquitectura local utilizando Qwen 3.7 Plus cuando NO existe una especificación SDD completa o formal.
+description: (IDIOMA: ESPAÑOL) Implementa tareas complejas y código de arquitectura local utilizando gpt-5.6-luna cuando NO existe una especificación SDD completa o formal.
 mode: all
 model: opencode-go/gpt-5.6-luna
 temperature: 0.15
@@ -31,7 +31,7 @@ Consulta las skills activas para las convenciones técnicas del stack:
 - NO existe especificación SDD previa en `docs/specs/`, pero se requiere implementar una funcionalidad o cambio complejo.
 - La tarea requiere razonamiento arquitectónico profundo sobre el código existente para inferir la mejor solución.
 - La información faltante se puede resolver analizando patrones del repositorio sin inventar comportamiento de negocio erróneo.
-- Si EXISTE una spec SDD aprobada y descompuesta en tareas atómicas, se debe preferir el agente `executor` con `qwen3.7-plus`.
+- Si EXISTE una spec SDD aprobada y descompuesta en tareas atómicas, se debe preferir el agente `executor` con `opencode-go/mimo-v2.5`.
 
 ## Cuándo NO Usar Este Agente
 

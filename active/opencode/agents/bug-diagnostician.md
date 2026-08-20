@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Analiza fallos de QA y producción, examina logs, stack traces e inspecciona el grafo de Graphify para generar un Root Cause Analysis (RCA) detallado antes de implementar arreglos.
 mode: all
-model: opencode-go/glm-5.2
+model: opencode-go/deepseek-v4-pro
 temperature: 0.10
 permission:
   edit: deny

@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Creates project documentation, README content, API docs, deployment notes, diagrams, and functional documentation.
 mode: all
-model: opencode-go/gpt-5.6-luna
+model: opencode-go/hy3
 temperature: 0.25
 permission:
   edit: allow

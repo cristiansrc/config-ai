@@ -1,7 +1,7 @@
 ---
-description: (IDIOMA: ESPANOL) Implementa código a partir de especificaciones SDD aprobadas y descomposiciones de tareas utilizando el modelo Qwen 3.7 Plus.
+description: (IDIOMA: ESPANOL) Implementa código a partir de especificaciones SDD aprobadas y descomposiciones de tareas utilizando el modelo mimo-v2.5.
 mode: all
-model: opencode-go/gpt-5.6-luna
+model: opencode-go/mimo-v2.5
 temperature: 0.15
 permission:
   edit: allow

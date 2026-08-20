@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Agente Maestro y Orquestador Contextual. Mantiene el contexto de todo el proyecto y delega tareas específicas a subagentes especializados. No realiza modificaciones ni ejecuciones de código directas.
 mode: all
-model: opencode/kimi-k3
+model: opencode-go/gpt-5.6-luna
 temperature: 0.15
 permission:
   edit: deny
@@ -26,8 +26,8 @@ Al estructurar instrucciones para los agentes delegados:
 
 ## Agentes a tu Disposición
 * `planner`: Para planificar y crear especificaciones, OpenAPI e interfaces SDD.
-* `executor`: Para implementar lógica de negocio con `qwen3.7-plus` cuando EXISTE spec SDD validada.
-* `architect-executor`: Para razonamiento técnico profundo e implementación compleja con `qwen3.7-plus` (plan go) cuando NO existe spec SDD previa.
+* `executor`: Para implementar lógica de negocio con `opencode-go/mimo-v2.5` cuando EXISTE spec SDD validada.
+* `architect-executor`: Para razonamiento técnico profundo e implementación compleja con `opencode-go/gpt-5.6-luna` (plan go) cuando NO existe spec SDD previa.
 * `database-architect`: Para diseño de tablas SQL, migraciones Flyway y migraciones sin inactividad (Zero-Downtime).
 * `bug-diagnostician`: Para análisis de causa raíz (RCA) y triage de excepciones en tiempo de ejecución.
 * `api-governance-agent`: Para auditar contratos OpenAPI buscando Breaking Changes y semver.
