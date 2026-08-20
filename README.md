@@ -24,30 +24,30 @@ El ecosistema está organizado para garantizar limpieza, trazabilidad y segurida
 
 | Agente                        | Responsabilidad Principal                                                             | Modelo                            |
 |-------------------------------|---------------------------------------------------------------------------------------|-----------------------------------|
-| **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | opencode-go/gpt-5.6-luna          |
-| **reviewer**                  | Revisión de código y lógica.                                                          | opencode-go/hy3                   |
-| **requirements-analyst**      | Levanta requerimientos funcionales (`requirements-brief.md`).                         | opencode-go/hy3                   |
-| **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode-go/minimax-m3            |
-| **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | opencode-go/gpt-5.6-luna          |
-| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode-go/gpt-5.6-luna          |
-| **api-governance-agent**      | Audita contratos OpenAPI buscando Breaking Changes y compatibilidad semver.            | opencode-go/minimax-m3            |
-| **bug-diagnostician**         | Análisis de causa raíz (RCA) e inspección de logs y stack traces antes de arreglos.   | opencode-go/deepseek-v4-pro       |
-| **database-architect**        | Diseña esquemas DB, migraciones Flyway/Liquibase e índices sin inactividad.           | opencode-go/deepseek-v4-pro       |
-| **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode-go/gpt-5.6-luna          |
-| **task-decomposer**           | Atomización de tareas para el ejecutor.                                               | opencode-go/minimax-m3            |
-| **executor**                  | Implementación técnica cuando EXISTE spec SDD validada (Temp 0.15).                    | opencode-go/mimo-v2.5            |
-| **architect-executor**        | Lógica compleja y arquitectura local (Go) cuando NO existe spec SDD.                  | opencode-go/gpt-5.6-luna          |
-| **final-validation**          | Garantía de calidad final y cumplimiento de cobertura mínima.                         | opencode-go/gpt-5.6-luna          |
-| **solution-architect**        | Selección de patrones de diseño GoF y estructuras locales.                            | opencode-go/gpt-5.6-luna          |
-| **security-reviewer**         | Auditoría de seguridad y estándares OWASP.                                            | opencode-go/minimax-m3            |
-| **test-architect**            | Diseño de estrategias de prueba unitarias e integración.                              | opencode-go/mimo-v2.5            |
-| **context-curator**           | Filtra y prepara el contexto de alta señal (Temp 0.10) para evitar ruido.             | opencode-go/minimax-m3            |
-| **devops-architect**          | Especialista en Infraestructura como Código y CI/CD.                                  | opencode-go/mimo-v2.5            |
-| **documentation**             | Gestiona el ciclo de vida de la documentación del proyecto.                           | opencode-go/hy3                   |
-| **refactor**                  | Refactoriza código existente siguiendo patrones limpios.                              | opencode-go/deepseek-v4-pro       |
-| **functional-tester-agent**   | Diseña plan, ejecuta y valida pruebas funcionales y UI/E2E en frontends.              | opencode-go/hy3                   |
-| **git-executor**              | Centraliza todas las interacciones del repositorio con Git (ramas, commits, pushes).   | opencode-go/mimo-v2.5             |
-| **master-orchestrator**       | Agente Maestro / Orquestador Contextual. Mantiene el contexto y delega tareas.        | opencode-go/gpt-5.6-luna          |
+| **enterprise-architect**      | Visión macro, microservicios, System Landscape y Workspace.                           | opencode-go/gpt-5.6-luna                     |
+| **reviewer**                  | Revisión de código y lógica.                                                          | opencode-go/muse-spark-1.2-contributor     |
+| **requirements-analyst**      | Levanta requerimientos funcionales (`requirements-brief.md`).                         | opencode-go/muse-spark-1.2-contributor     |
+| **planner**                   | Arquitectura, diseño técnico y contratos OpenAPI (SDD).                               | opencode-go/minimax-m3                     |
+| **spec-validator**            | Validación estricta de consistencia local y veredictos de 'ready'.                    | opencode-go/muse-spark-1.2-contributor     |
+| **enterprise-spec-validator** | Validación macro de Workspace, contratos inter-servicios y deuda global.              | opencode-go/muse-spark-1.2-contributor     |
+| **api-governance-agent**      | Audita contratos OpenAPI buscando Breaking Changes y compatibilidad semver.            | opencode-go/minimax-m3                     |
+| **bug-diagnostician**         | Análisis de causa raíz (RCA) e inspección de logs y stack traces antes de arreglos.   | opencode-go/deepseek-v4-pro                |
+| **database-architect**        | Diseña esquemas DB, migraciones Flyway/Liquibase e índices sin inactividad.           | opencode-go/deepseek-v4-pro                |
+| **spec-remediator**           | Corrección iterativa de hallazgos mecánicos o de contrato.                            | opencode-go/muse-spark-1.2-contributor     |
+| **task-decomposer**           | Atomización de tareas para el ejecutor.                                               | opencode-go/minimax-m3                     |
+| **executor**                  | Implementación técnica cuando EXISTE spec SDD validada (Temp 0.15).                    | opencode-go/mimo-v2.5                     |
+| **architect-executor**        | Lógica compleja y arquitectura local (Go) cuando NO existe spec SDD.                  | opencode-go/deepseek-v4-pro                |
+| **final-validation**          | Garantía de calidad final y cumplimiento de cobertura mínima.                         | opencode-go/muse-spark-1.2-contributor     |
+| **solution-architect**        | Selección de patrones de diseño GoF y estructuras locales.                            | opencode-go/muse-spark-1.2-contributor     |
+| **security-reviewer**         | Auditoría de seguridad y estándares OWASP.                                            | opencode-go/muse-spark-1.2-contributor     |
+| **test-architect**            | Diseño de estrategias de prueba unitarias e integración.                              | opencode-go/mimo-v2.5                     |
+| **context-curator**           | Filtra y prepara el contexto de alta señal (Temp 0.10) para evitar ruido.             | opencode-go/muse-spark-1.2-contributor     |
+| **devops-architect**          | Especialista en Infraestructura como Código y CI/CD.                                  | opencode-go/mimo-v2.5                     |
+| **documentation**             | Gestiona el ciclo de vida de la documentación del proyecto.                           | opencode-go/muse-spark-1.2-contributor     |
+| **refactor**                  | Refactoriza código existente siguiendo patrones limpios.                              | opencode-go/deepseek-v4-pro                |
+| **functional-tester-agent**   | Diseña plan, ejecuta y valida pruebas funcionales y UI/E2E en frontends.              | opencode-go/hy3                            |
+| **git-executor**              | Centraliza todas las interacciones del repositorio con Git (ramas, commits, pushes).   | opencode-go/mimo-v2.5                      |
+| **master-orchestrator**       | Agente Maestro / Orquestador Contextual. Mantiene el contexto y delega tareas.        | opencode-go/gpt-5.6-luna                   |
 
 ---
 
@@ -140,11 +140,12 @@ Se incluye el script `test-latency.py` en la raíz del repositorio para verifica
     python3 ./test-latency.py
     ```
 *   **Modelos Probados:**
-    *   `opencode-go/gpt-5.6-luna` (Luna del Plan Go / Primario, validación, orquestación, visión)
-    *   `opencode-go/hy3` (hy3 del Plan Go / Review, requerimientos, docs, UI-E2E)
-    *   `opencode-go/deepseek-v4-pro` (DeepSeek V4 Pro / Código pesado, servidores China)
-    *   `opencode-go/minimax-m3` (MiniMax M3 / Planning, gobernanza, descomposición, contexto)
+    *   `opencode-go/gpt-5.6-luna` (Luna del Plan Go / Orquestación macro, arquitectura)
+    *   `opencode-go/muse-spark-1.2-contributor` (Muse Spark / Validación, remediación, QA, patrones, curación, docs, review, seguridad)
+    *   `opencode-go/hy3` (hy3 del Plan Go / UI-E2E)
+    *   `opencode-go/deepseek-v4-pro` (DeepSeek V4 Pro / Código pesado + architect-executor, servidores China)
+    *   `opencode-go/minimax-m3` (MiniMax M3 / Planning, gobernanza, descomposición)
     *   `opencode-go/mimo-v2.5` (MiMo V2.5 / Ejecución de volumen + Git)
 
 ---
-*Última actualización de estructura y roles: 2026-08-17*
+*Última actualización de estructura y roles: 2026-08-20 (migración a muse-spark-1.2-contributor para validación, QA, patrones, curación, docs y review; architect-executor → deepseek-v4-pro)*

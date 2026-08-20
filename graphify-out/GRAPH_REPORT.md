@@ -1,16 +1,16 @@
-# Graph Report - config-ai  (2026-08-15)
+# Graph Report - config-ai  (2026-08-20)
 
 ## Corpus Check
-- 532 files · ~326,539 words
+- 532 files · ~327,989 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2398 nodes · 1878 edges · 520 communities (460 shown, 60 thin omitted)
+- 2415 nodes · 1895 edges · 520 communities (461 shown, 59 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2cd2f459`
+- Built from commit: `4bcbb09d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -284,7 +284,7 @@
 - graphify reference: transcribe video and audio
 - graphify.js
 - agentes-y-modelos-gemini.md
-- agentes-y-modelos.md
+- Agentes y Modelos OpenCode
 - opencode/agents/general.md
 - extraction-spec.md
 - AGENTS.md
@@ -344,14 +344,14 @@
 ## God Nodes (most connected - your core abstractions)
 1. `JPA / Hibernate Stack` - 16 edges
 2. `Repository and DTO Patterns` - 16 edges
-3. `Enterprise Architecture Standard` - 14 edges
-4. `Spring Boot Java REST Error Response Standards` - 14 edges
-5. `Spec-Driven Development (SDD) Incremental` - 13 edges
-6. `REGLA DE IDIOMA OBLIGATORIA: Todas tus respuestas e interacciones deben ser en ESPANOL.` - 12 edges
+3. `Model Tier Routing Skill` - 15 edges
+4. `Enterprise Architecture Standard` - 14 edges
+5. `Spring Boot Java REST Error Response Standards` - 14 edges
+6. `Spec-Driven Development (SDD) Incremental` - 13 edges
 7. `REGLA DE IDIOMA OBLIGATORIA: Todas tus respuestas e interacciones deben ser en ESPANOL.` - 12 edges
-8. `Skills Review Backlog` - 12 edges
-9. `FastAPI REST Error Response Standards` - 12 edges
-10. `OpenAPI Standard` - 12 edges
+8. `REGLA DE IDIOMA OBLIGATORIA: Todas tus respuestas e interacciones deben ser en ESPANOL.` - 12 edges
+9. `Skills Review Backlog` - 12 edges
+10. `FastAPI REST Error Response Standards` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -359,7 +359,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (520 total, 60 thin omitted)
+## Communities (520 total, 59 thin omitted)
 
 ### Community 0 - "Gestión de Base de Datos con Flyway"
 Cohesion: 0.06
@@ -634,8 +634,8 @@ Cohesion: 0.22
 Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
 
 ### Community 68 - "Model Tier Routing Skill"
-Cohesion: 0.22
-Nodes (8): Model Tier Routing Skill, Nivel 1: Obreros Rápidos & Ejecución en Código (`opencode/deepseek-v4-flash`), Nivel 2: Validación SDD, Descomposición & Refactor (`opencode-go/gpt-5.6-luna`), Nivel 3: Planificación, Auditoría de Código & Gobernanza (`opencode/gpt-5.6-terra`), Nivel 4: Análisis de Causa Raíz & Requerimientos (`opencode-go/glm-5.2`), Nivel 5: Arquitectura & Razonamiento Denso (`opencode/deepseek-v4-pro`), Nivel 6: Orquestación Superior & Coordinación (`opencode/kimi-k3`), Pirámide de Escalamiento de Modelos
+Cohesion: 0.12
+Nodes (15): Agentes de Soporte, Agentes HyprMind (Modelo Go), Model Tier Routing Skill, Modelos BLOQUEADOS (No usar bajo ninguna circunstancia), Nivel 1: Obreros Rapidos & Ejecucion en Codigo, Nivel 2: Validacion SDD, Descomposicion & Curacion (Actualizado 2026-08-20), Nivel 3: Planificacion, Auditoria de Codigo & Gobernanza (Actualizado 2026-08-20), Nivel 4: Analisis de Causa Raiz, Requerimientos & QA Final (Actualizado 2026-08-20) (+7 more)
 
 ### Community 69 - "Levantamiento de Requerimientos (Requirements Gathering)"
 Cohesion: 0.22
@@ -1421,16 +1421,20 @@ Nodes (3): Comportamiento Obligatorio, La Pirámide de Pruebas (2026), Skill: Te
 Cohesion: 0.50
 Nodes (3): plugin, $schema, .opencode/plugins/graphify.js
 
+### Community 269 - "Agentes y Modelos OpenCode"
+Cohesion: 0.17
+Nodes (11): Agentes y Modelos OpenCode, BLOQUEO DE MODELOS (Agosto 2026), Cambio: Consolidacion a SOLO modelos Go (5 modelos), Cambio previo (2026-08-17): deepseek-v4-flash habilitado y luego ROLLBACK, Estado de Modelos Go (Agosto 2026), Estado final, Migracion a Muse Spark (muse-spark-1.2-contributor), Politica de Fallback Rapida (+3 more)
+
 ## Knowledge Gaps
-- **1486 isolated node(s):** `$schema`, `.opencode/plugins/graphify.js`, `install-to-opencode.sh script`, `pre-push-hook-template.sh script`, `sync-ai-configs.sh script` (+1481 more)
+- **1500 isolated node(s):** `$schema`, `.opencode/plugins/graphify.js`, `install-to-opencode.sh script`, `pre-push-hook-template.sh script`, `sync-ai-configs.sh script` (+1495 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **60 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **59 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **What connects `$schema`, `.opencode/plugins/graphify.js`, `install-to-opencode.sh script` to the rest of the system?**
-  _1486 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1500 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Gestión de Base de Datos con Flyway` be split into smaller, more focused modules?**
   _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
 - **Should `Gestión de Base de Datos con Flyway` be split into smaller, more focused modules?**

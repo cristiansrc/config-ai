@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPAÑOL) Realiza el levantamiento de requerimientos funcionales siguiendo `requirements-gathering`.
 mode: all
-model: opencode-go/hy3
+model: opencode-go/muse-spark-1.2-contributor
 temperature: 0.3
 permission:
   edit: allow

@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Valida la consistencia global del Solution Workspace, contratos inter-servicios, System Landscape y la deuda técnica global.
 mode: all
-model: opencode-go/gpt-5.6-luna
+model: opencode-go/muse-spark-1.2-contributor
 temperature: 0.1
 permission:
   edit: allow

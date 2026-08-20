@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Creates project documentation, README content, API docs, deployment notes, diagrams, and functional documentation.
 mode: all
-model: opencode-go/hy3
+model: opencode-go/muse-spark-1.2-contributor
 temperature: 0.25
 permission:
   edit: allow

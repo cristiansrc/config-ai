@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Elige patrones de diseno siguiendo `design-patterns-standard`. Colabora con `enterprise-architect` para alinear el diseno local con el global.
 mode: all
-model: opencode-go/gpt-5.6-luna
+model: opencode-go/muse-spark-1.2-contributor
 temperature: 0.2
 permission:
   edit: allow

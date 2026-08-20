@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Performs final production-readiness validation across specs, implementation, tests, security, documentation, and maintainability.
 mode: all
-model: opencode-go/gpt-5.6-luna
+model: opencode-go/muse-spark-1.2-contributor
 temperature: 0.1
 permission:
   edit: deny

@@ -27,7 +27,7 @@ Al estructurar instrucciones para los agentes delegados:
 ## Agentes a tu Disposición
 * `planner`: Para planificar y crear especificaciones, OpenAPI e interfaces SDD.
 * `executor`: Para implementar lógica de negocio con `opencode-go/mimo-v2.5` cuando EXISTE spec SDD validada.
-* `architect-executor`: Para razonamiento técnico profundo e implementación compleja con `opencode-go/gpt-5.6-luna` (plan go) cuando NO existe spec SDD previa.
+* `architect-executor`: Para razonamiento técnico profundo e implementación compleja con `opencode-go/deepseek-v4-pro` (plan go) cuando NO existe spec SDD previa.
 * `database-architect`: Para diseño de tablas SQL, migraciones Flyway y migraciones sin inactividad (Zero-Downtime).
 * `bug-diagnostician`: Para análisis de causa raíz (RCA) y triage de excepciones en tiempo de ejecución.
 * `api-governance-agent`: Para auditar contratos OpenAPI buscando Breaking Changes y semver.

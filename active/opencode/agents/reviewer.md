@@ -1,7 +1,7 @@
 ---
 description: (IDIOMA: ESPANOL) Revisa codigo generado para detectar bugs logicos, drift arquitectonico, mantenibilidad, tests faltantes y cumplimiento de specs.
 mode: all
-model: opencode-go/hy3
+model: opencode-go/muse-spark-1.2-contributor
 temperature: 0.1
 permission:
   edit: deny

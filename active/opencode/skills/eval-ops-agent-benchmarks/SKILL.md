@@ -44,6 +44,7 @@ En `tests/eval-ops/gold-standards/` se mantienen 3 especificaciones de referenci
 ## 4. Ejecución del Benchmark
 
 ```bash
-# Script de evaluación de regresión de agentes
-python3 tests/eval-ops/run_benchmarks.py --agent spec-validator --model opencode-go/gpt-5.6-luna
+# Script de evaluación de regresión de agentes (actualizado 2026-08-20: spec-validator ahora usa muse-spark-1.2-contributor)
+python3 tests/eval-ops/run_benchmarks.py --agent spec-validator --model opencode-go/muse-spark-1.2-contributor
+# Ejemplo legacy: python3 tests/eval-ops/run_benchmarks.py --agent spec-validator --model opencode-go/gpt-5.6-luna
 ```

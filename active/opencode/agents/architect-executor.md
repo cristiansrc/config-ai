@@ -1,7 +1,7 @@
 ---
-description: (IDIOMA: ESPAÑOL) Implementa tareas complejas y código de arquitectura local utilizando gpt-5.6-luna cuando NO existe una especificación SDD completa o formal.
+description: (IDIOMA: ESPAÑOL) Implementa tareas complejas y código de arquitectura local utilizando deepseek-v4-pro cuando NO existe una especificación SDD completa o formal.
 mode: all
-model: opencode-go/gpt-5.6-luna
+model: opencode-go/deepseek-v4-pro
 temperature: 0.15
 permission:
   edit: allow

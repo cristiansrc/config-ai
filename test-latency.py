@@ -3,9 +3,10 @@ import time
 import subprocess
 import json
 
-# Lista de modelos configurados en el ecosistema config-ai para OpenCode
+# Lista de modelos configurados en el ecosistema config-ai para OpenCode (actualizado 2026-08-20)
 MODELS_TO_TEST = [
     "opencode-go/gpt-5.6-luna",
+    "opencode-go/muse-spark-1.2-contributor",
     "opencode-go/hy3",
     "opencode-go/deepseek-v4-pro",
     "opencode-go/minimax-m3",
